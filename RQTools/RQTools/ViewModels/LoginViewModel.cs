@@ -76,6 +76,7 @@
                     "Aceptar");
                 return;
             }
+            MainViewModel.GetInstance().Principal = new PrincipalViewModel();
             await Application.Current.MainPage.Navigation.PushAsync(new PrincipalPage());
         }
         #endregion
