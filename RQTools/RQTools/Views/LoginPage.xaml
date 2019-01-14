@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             x:Class="RQTools.LoginPage" NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <Grid BindingContext="{Binding Login}">
+            <Image Source="fondo.jpg" Aspect="AspectFill" />
+            <BoxView Color="WhiteSmoke" Opacity="0.9" />
+            <ScrollView>
+                <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Image Grid.Row="0" Source="LOGO.png" WidthRequest="100" HeightRequest="100" Margin="0,30,0,10"/>
+                <StackLayout Grid.Row="1" Padding="20,20">
+                    <Label Text="Login" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="25" Margin="0,0,0,20"  />
+                    <Entry Placeholder="Correo Electronico" PlaceholderColor="Black" Text="{Binding Email, Mode=TwoWay}"/>
+                        <Entry Placeholder="Contraseña" PlaceholderColor="Black" IsPassword="True" Text="{Binding Password, Mode=TwoWay}"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Recuedame" TextColor="Black" VerticalOptions="Center" HorizontalOptions="StartAndExpand"/>
+                            <Switch HorizontalOptions="End" OnColor="Red" IsToggled="{Binding IsRemembered, Mode=TwoWay}"/>
+                    </StackLayout>
+                        <ActivityIndicator IsRunning="{Binding IsRunning, Mode=TwoWay}">
+                        </ActivityIndicator>
+                    <Button Text="Iniciar Sesión" BackgroundColor="White" BorderRadius="20" TextColor="Red" Command="{Binding LoginCommand}" IsEnabled="{Binding IsEnable, Mode=TwoWay}" />
+                    <StackLayout Orientation="Horizontal" Padding="10">
+                        <Label Text="Recuperar contraseña" TextColor="Black"/>
+                        <Label Text="Registrarse" HorizontalOptions="EndAndExpand" FontAttributes="Bold" TextColor="Black"/>
+                    </StackLayout>
+                </StackLayout>
+            </Grid>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

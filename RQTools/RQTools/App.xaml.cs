@@ -1,5 +1,4 @@
-﻿using System;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
@@ -11,7 +10,7 @@ namespace RQTools
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            this.MainPage = new NavigationPage(new LoginPage());
         }
 
         protected override void OnStart()

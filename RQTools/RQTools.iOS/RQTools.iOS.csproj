@@ -157,4 +157,7 @@
       <Name>RQTools</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\LOGO.png" />
+  </ItemGroup>
 </Project>
