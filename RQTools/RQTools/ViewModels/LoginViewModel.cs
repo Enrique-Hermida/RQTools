@@ -1,6 +1,7 @@
 ﻿namespace RQTools.ViewModels
 {
     using GalaSoft.MvvmLight.Command;
+    using RQTools.Views;
     using System.Windows.Input;
     using Xamarin.Forms;
 
@@ -75,6 +76,7 @@
                     "Aceptar");
                 return;
             }
+            await Application.Current.MainPage.Navigation.PushAsync(new PrincipalPage());
         }
         #endregion
     }
