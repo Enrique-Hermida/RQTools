@@ -4,22 +4,30 @@
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              x:Class="RQTools.Views.PrincipalPage">
     <ContentPage.Content>
-        <StackLayout
-            BindingContext="{Binding Principal}">
-            <Label Text="Bienvenido al sistema de registro de Inventarios !" />
-            <Label Text="Por favor selecciona una opción" />
-            <StackLayout  Padding="10">
-                <Label Text="Realizar un Inventario"/>
-                <Button Text="IR"/>
-            </StackLayout>
-            <StackLayout  Padding="10">
-                <Label Text="Ver historial de inventarios"/>
-                <Button Text="ir" />
-            </StackLayout>
-            <StackLayout  Padding="10">
-                <Label Text="Ir a la sección de ayuda"/>
-                <Button Text="IR"/>
-            </StackLayout>
-        </StackLayout>
+        <Grid BindingContext="{Binding Principal}">
+            <Image Source="fondo.jpg" Aspect="AspectFill" />
+            <BoxView Color="WhiteSmoke" Opacity="0.9" />
+            <ScrollView>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0" Source="LOGO.png" WidthRequest="100" HeightRequest="100" Margin="0,30,0,10"/>
+                    <StackLayout Grid.Row="1" Padding="20,20">
+                        <Label Text="Bienvenido al sistema de registro de Inventarios !"  HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="20" Margin="10,10" />
+                        <StackLayout Padding="20">
+                            <Label Text="Bienvenido :" TextColor="Black" FontSize="17"/>
+                            <Label Text="Enfermera juanuita xd" TextColor="Black" FontSize="17"/>
+                        </StackLayout>
+                        <StackLayout Padding="20" VerticalOptions="EndAndExpand" >
+                            <Label Text="Realizar un Inventario"  HorizontalOptions="EndAndExpand" VerticalOptions="Center" TextColor="Black"/>
+                            <Button Text="+" BackgroundColor="White" BorderRadius="20" TextColor="Red" HorizontalOptions="EndAndExpand" VerticalOptions="Center" FontSize="20" FontAttributes="Bold"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+            </ScrollView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
