@@ -6,9 +6,20 @@
     <ContentPage.Content>
         <StackLayout
             BindingContext="{Binding Principal}">
-            <Label Text="Welcome to Principal Page!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Bienvenido al sistema de registro de Inventarios !" />
+            <Label Text="Por favor selecciona una opción" />
+            <StackLayout  Padding="10">
+                <Label Text="Realizar un Inventario"/>
+                <Button Text="IR"/>
+            </StackLayout>
+            <StackLayout  Padding="10">
+                <Label Text="Ver historial de inventarios"/>
+                <Button Text="ir" />
+            </StackLayout>
+            <StackLayout  Padding="10">
+                <Label Text="Ir a la sección de ayuda"/>
+                <Button Text="IR"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
