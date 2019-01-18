@@ -23,7 +23,7 @@
                         </StackLayout>
                         <StackLayout Padding="20" VerticalOptions="EndAndExpand" >
                             <Label Text="Realizar un Inventario"  HorizontalOptions="EndAndExpand" VerticalOptions="Center" TextColor="Black"/>
-                            <Button Text="+" BackgroundColor="White" BorderRadius="20" TextColor="Red" HorizontalOptions="EndAndExpand" VerticalOptions="Center" FontSize="20" FontAttributes="Bold"/>
+                            <Button Text="+" BackgroundColor="White" BorderRadius="20" TextColor="Red" HorizontalOptions="EndAndExpand" VerticalOptions="Center" FontSize="20" FontAttributes="Bold" Command="{Binding Shospiltalcommand}"/>
                         </StackLayout>
                     </StackLayout>
                 </Grid>
