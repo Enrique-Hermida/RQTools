@@ -5,6 +5,7 @@
         #region ViewModels
         public LoginViewModel Login { get; set; }
         public PrincipalViewModel Principal { get; set; }
+        public HospitalViewModel Hospital { get; set; }
         #endregion
 
         #region Constructors

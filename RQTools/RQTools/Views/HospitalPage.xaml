@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             x:Class="RQTools.Views.HospitalPage">
+    <ContentPage.Content>
+        <Grid BindingContext="{Binding Principal}">
+            <Image Source="fondo.jpg" Aspect="AspectFill" />
+            <BoxView Color="WhiteSmoke" Opacity="0.9" />
+            <ScrollView>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0" Source="LOGO.png" WidthRequest="100" HeightRequest="100" Margin="0,30,0,10"/>
+                    <StackLayout Grid.Row="1" Padding="20,20">
+                        <Label Text="Selecciona la opcion que deseas para poder realizar un inventario"  HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="Medium" Margin="5,10" />
+                        <StackLayout Padding="15">
+                            <Label Text="Selecciona esta opcion para escanear " TextColor="Black" FontSize="Medium"/>
+                            <Button Text="Scanear Hospital" BackgroundColor="White" BorderRadius="10" TextColor="Red" VerticalOptions="Center" FontSize="Medium" FontAttributes="Bold"/>
+                        </StackLayout>
+                        <StackLayout Padding="15">
+                            <Label Text="Selecciona esta opcion si tu camara no funciona" TextColor="Black" FontSize="Medium"/>
+                            <Button Text="Buscar Hospital" BackgroundColor="White" BorderRadius="10" TextColor="Red" VerticalOptions="Center" FontSize="Medium" FontAttributes="Bold"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

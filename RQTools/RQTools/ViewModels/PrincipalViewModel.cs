@@ -18,11 +18,8 @@
 
         private async void Shospital()
         {
-            await Application.Current.MainPage.DisplayAlert(
-                    "Bien",
-                    "Si funciona este desvergue xd",
-                    "Aceptar");
-            return;
+            MainViewModel.GetInstance().Hospital = new HospitalViewModel();
+            await Application.Current.MainPage.Navigation.PushAsync(new HospitalPage());
         }
 
         #endregion
