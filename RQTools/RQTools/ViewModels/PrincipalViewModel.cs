@@ -2,7 +2,6 @@
 {
     using GalaSoft.MvvmLight.Command;
     using RQTools.Views;
-    using System;
     using System.Windows.Input;
     using Xamarin.Forms;
     class PrincipalViewModel:BaseViewModel

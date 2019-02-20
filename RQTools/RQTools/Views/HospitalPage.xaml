@@ -4,7 +4,7 @@
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              x:Class="RQTools.Views.HospitalPage">
     <ContentPage.Content>
-        <Grid BindingContext="{Binding Principal}">
+        <Grid BindingContext="{Binding Hospital}">
             <Image Source="fondo.jpg" Aspect="AspectFill" />
             <BoxView Color="WhiteSmoke" Opacity="0.9" />
             <ScrollView>
@@ -14,18 +14,24 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <Image Grid.Row="0" Source="LOGO.png" WidthRequest="100" HeightRequest="100" Margin="0,30,0,10"/>
-                    <StackLayout Grid.Row="1" Padding="20,20">
+                    <Image Grid.Row="0" Source="LOGO.png" WidthRequest="100" HeightRequest="100" Margin="0,10,0,10"/>
+                    <StackLayout Grid.Row="1" Padding="5,10">
+                        <StackLayout>
+                            <Label Text="Hospital:" TextColor="Black" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" FontSize="Medium" FontAttributes="Bold"/>
+                            <Label Text="{Binding HospitalSeleccionado, Mode=TwoWay}" TextColor="Red" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" FontSize="Medium" FontAttributes="Bold"/>
+                        </StackLayout>
                         <Label Text="Selecciona la opcion que deseas para poder realizar un inventario"  HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="Medium" Margin="5,10" />
                         <StackLayout Padding="15">
                             <Label Text="Selecciona esta opcion para escanear " TextColor="Black" FontSize="Medium"/>
-                            <Button Text="Scanear Hospital" BackgroundColor="White" BorderRadius="10" TextColor="Red" VerticalOptions="Center" FontSize="Medium" FontAttributes="Bold"/>
+                            <Button Text="Scanear Hospital" BackgroundColor="White" BorderRadius="10" TextColor="Red" VerticalOptions="Center" FontSize="Medium" FontAttributes="Bold" Command="{Binding EscanearHospitalcommand}"/>
                         </StackLayout>
                         <StackLayout Padding="15">
                             <Label Text="Selecciona esta opcion si tu camara no funciona" TextColor="Black" FontSize="Medium"/>
-                            <Button Text="Buscar Hospital" BackgroundColor="White" BorderRadius="10" TextColor="Red" VerticalOptions="Center" FontSize="Medium" FontAttributes="Bold"/>
+                            <Button Text="Buscar Hospital" BackgroundColor="White" BorderRadius="10" TextColor="Red" VerticalOptions="Center" FontSize="Medium" FontAttributes="Bold" Command="{Binding BuscarHospitalCommand}"/>
+                            <Editor Placeholder=" Introduce aqui el motivo por el cual no puedes hacer uso de la camara " PlaceholderColor="Black" AutoSize="TextChanges" Text="{Binding MotivoNoCamara, Mode=TwoWay}"/>
                         </StackLayout>
-                    </StackLayout>
+                        <Button Text="¡Iniciar Inventario!" BackgroundColor="White" BorderRadius="10" TextColor="Red" VerticalOptions="Center" FontSize="Medium" FontAttributes="Bold" Command="{Binding InciarInventariocommand}"/>
+                    </StackLayout> 
                 </Grid>
             </ScrollView>
         </Grid>
