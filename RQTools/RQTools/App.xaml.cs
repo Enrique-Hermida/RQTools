@@ -1,5 +1,8 @@
-﻿using Xamarin.Forms;
+﻿using RQTools.Models;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Linq;
+
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace RQTools
@@ -12,8 +15,7 @@ namespace RQTools
         #region Constructores
         public App()
         {
-            InitializeComponent();
-
+            InitializeComponent();         
             this.MainPage = new NavigationPage(new LoginPage());
         }
         #endregion

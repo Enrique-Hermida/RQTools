@@ -5,6 +5,7 @@
     using RQTools.Views;
     using System.Windows.Input;
     using Xamarin.Forms;
+
     class PrincipalViewModel:BaseViewModel
     {
         #region Atributos
@@ -16,11 +17,13 @@
             get { return this.user; }
             set { SetValue(ref this.user, value); }
         }
+        public DeviceUser LocalUser { get; set; }
         #endregion
         #region Constructores
-        public PrincipalViewModel(DeviceUser deviceUser)
+        public PrincipalViewModel()
         {
-            this.User = deviceUser.Name_User;
+            this.LocalUser = MainViewModel.GetInstance().LocalUser;
+            this.User = LocalUser.Name_User;
         }
         #endregion
         #region Comandos

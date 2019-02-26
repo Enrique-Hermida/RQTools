@@ -1,13 +1,23 @@
 ﻿namespace RQTools.ViewModels
 {
-    class MainViewModel
+    using RQTools.Models;
+    class MainViewModel : BaseViewModel
     {
+        #region Attibrutes
+        private DeviceUser user;
+        #endregion
+        #region Properties
+        public DeviceUser LocalUser
+        {
+            get { return this.user; }
+            set { SetValue(ref this.user, value); }
+        }
+        #endregion
         #region ViewModels
         public LoginViewModel Login { get; set; }
         public PrincipalViewModel Principal { get; set; }
         public HospitalViewModel Hospital { get; set; }
         #endregion
-
         #region Constructors
         public MainViewModel()
         {

@@ -57,6 +57,8 @@
         #region Constructores
         public LoginViewModel()
         {
+            this.Email = "enriqueh.cehd@gmail.com";
+            this.Password = "1234";
             this.IsRemembered = true;
             this.isEnabled = true;
         }
@@ -133,12 +135,19 @@
                         "Aceptar");
                 return;
             }
-            var deviceUser = JsonConvert.DeserializeObject<DeviceUser>(result);
-
-
-
-            MainViewModel.GetInstance().Principal = new PrincipalViewModel(deviceUser);
-            await Application.Current.MainPage.Navigation.PushAsync(new PrincipalPage());
+            if (result.Contains("Name_User"))
+            {
+                var deviceUser = JsonConvert.DeserializeObject<DeviceUser>(result);
+                var mainViewModel = MainViewModel.GetInstance();
+                mainViewModel.LocalUser = deviceUser;
+                await Application.Current.MainPage.DisplayAlert(
+                        "aver",
+                        string.Format("esto el :{0},", result),
+                        "Aceptar");
+                mainViewModel.Principal = new PrincipalViewModel();
+                await Application.Current.MainPage.Navigation.PushAsync(new PrincipalPage());
+            }
+           
         }
         #endregion
     }

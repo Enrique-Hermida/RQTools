@@ -33,7 +33,7 @@ namespace RQTools.Models
         {
             return connection.Table<DeviceUser>().FirstOrDefault(du => du.ID_User == ID_User);
         }
-        public List<DeviceUser> GetDeviceUser()
+        public List<DeviceUser> GetDeviceUsers()
         {
             return connection.Table<DeviceUser>().ToList();
         }
