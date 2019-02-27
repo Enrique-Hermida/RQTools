@@ -1,12 +1,11 @@
-﻿using RQTools.Interface;
-using SQLite.Net;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Xamarin.Forms;
-
-namespace RQTools.Models
+﻿namespace RQTools.Models
 {
+    using RQTools.Interface;
+    using SQLite.Net;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Xamarin.Forms;
     public class DataAccess : IDisposable
     {
         private SQLiteConnection connection;

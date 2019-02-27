@@ -147,6 +147,10 @@
                 if (this.IsRemembered)
                 {
                     Settings.IsRemembered = "true";
+                    using (var datos = new DataAccess())
+                    {
+                        datos.InsertDeviceUser(deviceUser);
+                    }
                 }
                 else
                 {
