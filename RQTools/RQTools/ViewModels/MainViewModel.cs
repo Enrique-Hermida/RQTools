@@ -4,14 +4,11 @@
     class MainViewModel : BaseViewModel
     {
         #region Attibrutes
-        private DeviceUser user;
+
         #endregion
         #region Properties
-        public DeviceUser LocalUser
-        {
-            get { return this.user; }
-            set { SetValue(ref this.user, value); }
-        }
+        public DeviceUser deviceUser { get; set; }
+
         #endregion
         #region ViewModels
         public LoginViewModel Login { get; set; }

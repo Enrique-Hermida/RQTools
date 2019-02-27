@@ -5,6 +5,7 @@
     using RQTools.Models;
     using RQTools.Views;
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Net.Http;
     using System.Windows.Input;
@@ -15,7 +16,7 @@
     {
 
         #region Atributos
-        private string IPLocal = "http://192.168.1.38:80";
+        private string IPLocal = "http://192.168.15.14:80";
         private string url;
         private string password;
         private string email;
@@ -96,7 +97,7 @@
             {
                 HttpClient client = new HttpClient();
                 client.BaseAddress = new Uri(IPLocal);
-                url = string.Format("/api/get/login/ID_User-Name_User-Correo-Password-User_Type/?w=Correo:%27{0}%27 AND Password:%27{1}%27", this.email, this.password);
+                url = string.Format("/apiRest/public/api/deviceuser/{0}/{1}", this.email, this.password);
                 var response = await client.GetAsync(url);
                 result = response.Content.ReadAsStringAsync().Result;
 
@@ -127,7 +128,7 @@
             this.IsRunning = false;
             this.IsEnabled = true;
 
-            if (result.Contains("errors"))
+            if (result.Contains("error"))
             {
                 await Application.Current.MainPage.DisplayAlert(
                         "Error",
@@ -137,13 +138,10 @@
             }
             if (result.Contains("Name_User"))
             {
-                var deviceUser = JsonConvert.DeserializeObject<DeviceUser>(result);
+                var listdeviceUser = JsonConvert.DeserializeObject<List<DeviceUser>>(result);
+                var deviceUser = listdeviceUser[0];
                 var mainViewModel = MainViewModel.GetInstance();
-                mainViewModel.LocalUser = deviceUser;
-                await Application.Current.MainPage.DisplayAlert(
-                        "aver",
-                        string.Format("esto el :{0},", result),
-                        "Aceptar");
+                mainViewModel.deviceUser = deviceUser;
                 mainViewModel.Principal = new PrincipalViewModel();
                 await Application.Current.MainPage.Navigation.PushAsync(new PrincipalPage());
             }

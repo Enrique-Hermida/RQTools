@@ -22,7 +22,7 @@
         #region Constructores
         public PrincipalViewModel()
         {
-            this.LocalUser = MainViewModel.GetInstance().LocalUser;
+            this.LocalUser = MainViewModel.GetInstance().deviceUser;
             this.User = LocalUser.Name_User;
         }
         #endregion
