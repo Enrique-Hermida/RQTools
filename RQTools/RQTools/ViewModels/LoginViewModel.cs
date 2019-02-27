@@ -2,6 +2,7 @@
 {
     using GalaSoft.MvvmLight.Command;
     using Newtonsoft.Json;
+    using RQTools.Helpers;
     using RQTools.Models;
     using RQTools.Views;
     using System;
@@ -142,6 +143,17 @@
                 var deviceUser = listdeviceUser[0];
                 var mainViewModel = MainViewModel.GetInstance();
                 mainViewModel.deviceUser = deviceUser;
+
+                if (this.IsRemembered)
+                {
+                    Settings.IsRemembered = "true";
+                }
+                else
+                {
+                    Settings.IsRemembered = "false";
+                }
+
+
                 mainViewModel.Principal = new PrincipalViewModel();
                 await Application.Current.MainPage.Navigation.PushAsync(new PrincipalPage());
             }
