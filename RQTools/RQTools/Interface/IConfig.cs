@@ -1,9 +1,9 @@
 ﻿namespace RQTools.Interface
 {
-   using SQLite.Net.Interop;
-   public interface IConfig
+    using SQLite.Net.Interop;
+    public interface IConfig
     {
-        string DirectorioDB { get; }
-        ISQLitePlatform Plataforma { get; }
+        string DirectoryDB { get; }
+        ISQLitePlatform Platform { get; }
     }
 }

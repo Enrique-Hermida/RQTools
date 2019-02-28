@@ -4,6 +4,7 @@
     using Newtonsoft.Json;
     using RQTools.Helpers;
     using RQTools.Models;
+    using RQTools.Services;
     using RQTools.Views;
     using System;
     using System.Collections.Generic;
@@ -15,9 +16,11 @@
 
     class LoginViewModel : BaseViewModel
     {
-
+        #region Services
+        private DataService dataService;
+        #endregion
         #region Atributos
-        private string IPLocal = "http://192.168.15.14:80";
+        private string IPLocal = "http://192.168.1.38:80";
         private string url;
         private string password;
         private string email;
@@ -59,9 +62,9 @@
         #region Constructores
         public LoginViewModel()
         {
+            this.dataService = new DataService();
             this.Email = "enriqueh.cehd@gmail.com";
             this.Password = "1234";
-            this.IsRemembered = true;
             this.isEnabled = true;
         }
         #endregion
@@ -147,10 +150,7 @@
                 if (this.IsRemembered)
                 {
                     Settings.IsRemembered = "true";
-                    using (var datos = new DataAccess())
-                    {
-                        datos.InsertDeviceUser(deviceUser);
-                    }
+                    this.dataService.DeleteAllAndInsert(deviceUser);
                 }
                 else
                 {
