@@ -1,9 +1,8 @@
 ﻿namespace RQTools.Models
 {
-    using SQLite.Net.Attributes;
+
     public class DeviceUser
     {
-        [PrimaryKey, AutoIncrement]
         public int ID_User { get; set; }
         public string Name_User { get; set; }
         public string Correo { get; set; }

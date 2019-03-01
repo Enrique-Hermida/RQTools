@@ -2,8 +2,6 @@
 using Xamarin.Forms.Xaml;
 using RQTools.Helpers;
 using RQTools.Views;
-using RQTools.Services;
-using RQTools.Models;
 using RQTools.ViewModels;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
@@ -21,17 +19,7 @@ namespace RQTools
             var mainViewModel = MainViewModel.GetInstance();
             if (Settings.IsRemembered == "true")
             {
-                var dataService = new DataService();
-                var user = dataService.First<DeviceUser>(false);
-                if (user!= null)
-                {
-                    mainViewModel.deviceUser = user;
-                    Application.Current.MainPage = new PrincipalPage();
-                }
-                else
-                {
-                    this.MainPage = new NavigationPage(new LoginPage());
-                }      
+             Application.Current.MainPage = new PrincipalPage();
             }
             else
             {
