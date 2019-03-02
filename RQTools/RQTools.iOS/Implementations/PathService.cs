@@ -9,12 +9,12 @@ namespace RQTools.iOS.Implementations
         public string GetDatabasePath()
         {
             string docFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            string libFolder = Path.Combine(docFolder, "Library", "Databases");
+            string libFolder = Path.Combine(docFolder,"..", "Library", "Databases");
             if (!Directory.Exists(libFolder))
             {
                 Directory.CreateDirectory(libFolder);
             }
-            return Path.Combine(libFolder, "RQTools");
+            return Path.Combine(libFolder, "RQTools.db3");
         }
     }
 }
