@@ -21,7 +21,7 @@
 
         private async Task OpenOrCreateDB()
         {
-            var databasePath = DependencyService.Get<IPathService>.GetDatabasePath();
+            var databasePath = DependencyService.Get<IPathService>().GetDatabasePath();
             this.connection = new SQLiteAsyncConnection(databasePath);
             await connection.CreateTableAsync<DeviceUser>().ConfigureAwait(false);
         }
