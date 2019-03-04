@@ -3,6 +3,9 @@ using Xamarin.Forms.Xaml;
 using RQTools.Helpers;
 using RQTools.Views;
 using RQTools.ViewModels;
+using RQTools.Services;
+using RQTools.Models;
+using System;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace RQTools
@@ -16,15 +19,7 @@ namespace RQTools
         public App()
         {
             InitializeComponent();
-            var mainViewModel = MainViewModel.GetInstance();
-            if (Settings.IsRemembered == "true")
-            {
-             Application.Current.MainPage = new PrincipalPage();
-            }
-            else
-            {
-                this.MainPage = new NavigationPage(new LoginPage());
-            }
+            this.MainPage = new NavigationPage(new LoginPage());
         }
 
         #endregion

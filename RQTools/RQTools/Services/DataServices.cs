@@ -25,9 +25,13 @@
             this.connection = new SQLiteAsyncConnection(databasePath);
             await connection.CreateTableAsync<DeviceUser>().ConfigureAwait(false);
         }
-        public async Task  Insert<T>(T model)
+        public async Task<DeviceUser> GetFirstUser()
         {
-           await this.connection.InsertAsync(model);
+            return await connection.Table<DeviceUser>().FirstOrDefaultAsync();
+        }
+        public async Task Insert<T>(T model)
+        {
+            await this.connection.InsertAsync(model);
         }
         public async Task Insert<T>(List<T> models)
         {

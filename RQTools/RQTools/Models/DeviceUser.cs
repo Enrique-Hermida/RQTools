@@ -1,8 +1,10 @@
 ﻿namespace RQTools.Models
 {
+    using SQLite;
 
     public class DeviceUser
     {
+        [PrimaryKey]
         public int ID_User { get; set; }
         public string Name_User { get; set; }
         public string Correo { get; set; }

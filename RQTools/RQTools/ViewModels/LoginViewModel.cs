@@ -10,15 +10,17 @@
     using System.Linq;
     using System.Net.Http;
     using System.Windows.Input;
-   
+    using Services;
     using Xamarin.Forms;
+    using System.Threading.Tasks;
 
     class LoginViewModel : BaseViewModel
     {
         #region Services
+        private DataServices dataService;
         #endregion
         #region Atributos
-        private string IPLocal = "http://192.168.1.38:80";
+        private string IPLocal = "http://192.168.31.1:80";
         private string url;
         private string password;
         private string email;
@@ -60,13 +62,22 @@
         #region Constructores
         public LoginViewModel()
         {
+            this.dataService = new DataServices();
+
             this.Email = "enriqueh.cehd@gmail.com";
             this.Password = "1234";
             this.isEnabled = true;
+            if (Settings.IsRemembered == "true")
+            {
+                MainViewModel.GetInstance().Principal = new PrincipalViewModel();
+                Application.Current.MainPage.Navigation.PushAsync(new PrincipalPage());
+                CargarUsuario();
+            }
         }
         #endregion
         #region Comandos
-        public ICommand LoginCommand {
+        public ICommand LoginCommand
+        {
             get
             {
                 return new RelayCommand(Login);
@@ -113,11 +124,12 @@
                     this.IsEnabled = true;
                     return;
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 await Application.Current.MainPage.DisplayAlert(
                         "Error",
-                        string.Format("Ocurrio el Error :{0},",ex.Message),
+                        string.Format("Ocurrio el Error :{0},", ex.Message),
                         "Aceptar");
 
                 this.IsRunning = false;
@@ -147,6 +159,7 @@
                 if (this.IsRemembered)
                 {
                     Settings.IsRemembered = "true";
+                    DeleteandInsertUser(deviceUser);
                 }
                 else
                 {
@@ -157,8 +170,23 @@
                 mainViewModel.Principal = new PrincipalViewModel();
                 await Application.Current.MainPage.Navigation.PushAsync(new PrincipalPage());
             }
-           
+
         }
         #endregion
+        #region Metodos
+        private async Task DeleteandInsertUser(DeviceUser deviceUser)
+        {
+            await this.dataService.DelleteAllUsers();
+            this.dataService.Insert(deviceUser);
+        }
+
+        private async Task CargarUsuario()
+        {
+          var use = await this.dataService.GetFirstUser();
+          var mainViewModel = MainViewModel.GetInstance();
+          mainViewModel.deviceUser = use;
+        }
+        #endregion
+
     }
 }
