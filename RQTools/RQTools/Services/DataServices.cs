@@ -25,9 +25,20 @@
             this.connection = new SQLiteAsyncConnection(databasePath);
             await connection.CreateTableAsync<DeviceUser>().ConfigureAwait(false);
         }
-        public async Task<DeviceUser> GetFirstUser()
+        public async Task<List<DeviceUser>> GetAllUsers()
         {
-            return await connection.Table<DeviceUser>().FirstOrDefaultAsync();
+            var query = await this.connection.QueryAsync<DeviceUser>("select * from [DeviceUser]");
+            var array = query.ToArray();
+            var list = array.Select(u => new DeviceUser
+            {
+                ID_User = u.ID_User,
+                Name_User = u.Name_User,
+                Correo = u.Correo,
+                Password = u.Password,
+                User_Type = u.User_Type
+            }).ToList();
+            return list;
+
         }
         public async Task Insert<T>(T model)
         {

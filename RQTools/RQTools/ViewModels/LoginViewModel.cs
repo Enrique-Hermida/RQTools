@@ -20,13 +20,14 @@
         private DataServices dataService;
         #endregion
         #region Atributos
-        private string IPLocal = "http://192.168.31.1:80";
+        private string IPLocal = "http://192.168.1.38:80";
         private string url;
         private string password;
         private string email;
         private string result;
         private bool isRunning;
         private bool isEnabled;
+        private DeviceUser deviceUser;
         #endregion
         #region Properties
         public string Email
@@ -63,16 +64,14 @@
         public LoginViewModel()
         {
             this.dataService = new DataServices();
-
+            if (Settings.IsRemembered == "true")
+            {
+                CargarUsuario();             
+            }
             this.Email = "enriqueh.cehd@gmail.com";
             this.Password = "1234";
             this.isEnabled = true;
-            if (Settings.IsRemembered == "true")
-            {
-                MainViewModel.GetInstance().Principal = new PrincipalViewModel();
-                Application.Current.MainPage.Navigation.PushAsync(new PrincipalPage());
-                CargarUsuario();
-            }
+
         }
         #endregion
         #region Comandos
@@ -85,6 +84,7 @@
         }
         private async void Login()
         {
+           
             if (string.IsNullOrEmpty(this.Email))
             {
                 await Application.Current.MainPage.DisplayAlert(
@@ -152,21 +152,19 @@
             if (result.Contains("Name_User"))
             {
                 var listdeviceUser = JsonConvert.DeserializeObject<List<DeviceUser>>(result);
-                var deviceUser = listdeviceUser[0];
+                deviceUser = listdeviceUser[0];
                 var mainViewModel = MainViewModel.GetInstance();
                 mainViewModel.deviceUser = deviceUser;
 
                 if (this.IsRemembered)
                 {
                     Settings.IsRemembered = "true";
-                    DeleteandInsertUser(deviceUser);
+                    DeleteandInsertUser();
                 }
                 else
                 {
                     Settings.IsRemembered = "false";
                 }
-
-
                 mainViewModel.Principal = new PrincipalViewModel();
                 await Application.Current.MainPage.Navigation.PushAsync(new PrincipalPage());
             }
@@ -174,7 +172,7 @@
         }
         #endregion
         #region Metodos
-        private async Task DeleteandInsertUser(DeviceUser deviceUser)
+        private async Task DeleteandInsertUser()
         {
             await this.dataService.DelleteAllUsers();
             this.dataService.Insert(deviceUser);
@@ -182,9 +180,12 @@
 
         private async Task CargarUsuario()
         {
-          var use = await this.dataService.GetFirstUser();
-          var mainViewModel = MainViewModel.GetInstance();
-          mainViewModel.deviceUser = use;
+            var mainViewModel = MainViewModel.GetInstance();
+            var listusers = await this.dataService.GetAllUsers();
+            deviceUser = listusers[0];
+            mainViewModel.deviceUser = deviceUser;
+            mainViewModel.Principal = new PrincipalViewModel();
+            await Application.Current.MainPage.Navigation.PushAsync(new PrincipalPage());
         }
         #endregion
 
