@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace RQTools.Models
+﻿namespace RQTools.Models
 {
-    class HospitalModel
+    using SQLite;
+    public class HospitalModel
     {
+        [PrimaryKey]
+        public int ID_Hospital { get; set; }
+        public string Nombre_Hospital { get; set; }
+        public string Codigo_Hospital { get; set; }
+        public int Activo { get; set; }
     }
 }

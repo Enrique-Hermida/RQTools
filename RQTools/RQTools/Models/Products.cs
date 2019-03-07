@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace RQTools.Models
+﻿namespace RQTools.Models
 {
+    using SQLite;
     class Products
     {
+        [PrimaryKey]
         public string ID_Producro { get; set; }
         public string Nombre_Producro { get; set; }
         public string Clave { get; set; }

@@ -81,6 +81,9 @@
                     "OK :(");
                 return;
             }
+            var mainViewModel = MainViewModel.GetInstance();
+            mainViewModel.HospitalList = new HospitalListViewModel();
+            await Application.Current.MainPage.Navigation.PushAsync(new HospitalListPage());
         }
 
         #endregion
