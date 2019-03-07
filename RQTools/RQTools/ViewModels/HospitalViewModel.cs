@@ -6,7 +6,7 @@
     using System.Windows.Input;
     using Xamarin.Forms;
 
-    class HospitalViewModel : BaseViewModel
+    public class HospitalViewModel : BaseViewModel
     {
         #region Atributos
         private string hospitalseleccionado;
