@@ -4,10 +4,10 @@
     class Products
     {
         [PrimaryKey]
-        public string ID_Producro { get; set; }
+        public int ID_Producro { get; set; }
         public string Nombre_Producro { get; set; }
         public string Clave { get; set; }
-        public string Tipo_Producto { get; set; }
+        public int Tipo_Producto { get; set; }
         public string Scanbar { get; set; }
         public string Fecha_Modificacion { get; set; }
     }

@@ -4,6 +4,7 @@
     using RQTools.Models;
     using RQTools.Views;
     using System.Windows.Input;
+    using Xamarin.Forms;
 
     public class HospitalItemViewModel : HospitalModel
     {
@@ -18,8 +19,8 @@
 
         private async void SelectHospital()
         {
-            MainViewModel.GetInstance().Hospital = new HospitalViewModel();
-            await App.Navigator.PushAsync(new HospitalPage());
+            MainViewModel.GetInstance().Hospital = new HospitalViewModel(this);
+            await Application.Current.MainPage.Navigation.PushAsync(new HospitalPage());
         }
         #endregion
     }

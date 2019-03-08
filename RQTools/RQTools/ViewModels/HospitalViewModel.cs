@@ -1,6 +1,7 @@
 ﻿namespace RQTools.ViewModels
 {
     using GalaSoft.MvvmLight.Command;
+    using RQTools.Models;
     using RQTools.Views;
     using System;
     using System.Windows.Input;
@@ -30,12 +31,17 @@
             get { return this.validacionhospital; }
             set { SetValue(ref this.validacionhospital, value); }
         }
+        public HospitalModel Hospital { get; set; }
+
         #endregion
+
         #region Constructors
-        public HospitalViewModel()
+
+        public HospitalViewModel(HospitalModel hospital)
         {
+            this.Hospital = hospital;
             this.ValidacionHospital = false;
-            this.HospitalSeleccionado = "No hay Hospital Seleccionado :(";
+            this.HospitalSeleccionado = Hospital.Nombre_Hospital;
         }
         #endregion
         #region Comandos

@@ -6,17 +6,20 @@
     using System.Windows.Input;
     using Xamarin.Forms;
 
-    class PrincipalViewModel:BaseViewModel
+    public class PrincipalViewModel:BaseViewModel
     {
         #region Atributos
         private string user;
+
         #endregion
 
         #region Properties   
-        public string User {
+        public string User
+        {
             get { return this.user; }
             set { SetValue(ref this.user, value); }
         }
+        public HospitalModel Hospital { get; set; }
         public DeviceUser LocalUser { get; set; }
         #endregion
         #region Constructores
@@ -35,9 +38,17 @@
             }
         }
 
+       
+
         private async void Shospital()
         {
-            MainViewModel.GetInstance().Hospital = new HospitalViewModel();
+            Hospital = new HospitalModel();
+            Hospital.Nombre_Hospital = "Hospital no seleccionado";
+            Hospital.Activo = 0;
+            Hospital.Codigo_Hospital = "n/a";
+            Hospital.ID_Hospital = 0;
+
+            MainViewModel.GetInstance().Hospital = new HospitalViewModel(Hospital);
             await Application.Current.MainPage.Navigation.PushAsync(new HospitalPage());
         }
 
