@@ -40,8 +40,18 @@
         public HospitalViewModel(HospitalModel hospital)
         {
             this.Hospital = hospital;
-            this.ValidacionHospital = false;
             this.HospitalSeleccionado = Hospital.Nombre_Hospital;
+            if (Hospital.ID_Hospital==0)
+            {
+                //obvi que es porque no hay hospital seleccionado
+                this.ValidacionHospital = false;
+            }
+            if (Hospital.ID_Hospital != 0)
+            {
+                //obvi que es porque si hay hospital seleccionado
+                this.ValidacionHospital = true;
+            }
+            
         }
         #endregion
         #region Comandos

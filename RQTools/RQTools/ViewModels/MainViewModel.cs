@@ -18,6 +18,7 @@
         public PrincipalViewModel Principal { get; set; }
         public HospitalViewModel Hospital { get; set; }
         public HospitalListViewModel HospitalList { get; set; }
+        public InventarioViewModel Inventario { get; set; }
         #endregion
         #region Constructors
         public MainViewModel()

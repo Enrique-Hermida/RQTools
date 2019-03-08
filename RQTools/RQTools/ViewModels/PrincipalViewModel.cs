@@ -42,11 +42,13 @@
 
         private async void Shospital()
         {
+            #region Modelo Vacio
             Hospital = new HospitalModel();
             Hospital.Nombre_Hospital = "Hospital no seleccionado";
             Hospital.Activo = 0;
             Hospital.Codigo_Hospital = "n/a";
-            Hospital.ID_Hospital = 0;
+            Hospital.ID_Hospital = 0; 
+            #endregion
 
             MainViewModel.GetInstance().Hospital = new HospitalViewModel(Hospital);
             await Application.Current.MainPage.Navigation.PushAsync(new HospitalPage());
