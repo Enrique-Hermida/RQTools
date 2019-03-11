@@ -13,6 +13,7 @@
         private string hospitalseleccionado;
         private string motivonocamara;
         private bool validacionhospital;
+        private MainViewModel mainViewModel = MainViewModel.GetInstance();
         #endregion
 
         #region Propiedades
@@ -65,19 +66,20 @@
 
         private async void IniciarInventario()
         {
-            if (ValidacionHospital==true) {
-
-                await Application.Current.MainPage.DisplayAlert(
-                           "SALU2",
-                           "AVER AL CINE PVTO",
-                           "OKTL");
-                return;
+            if (ValidacionHospital==true)
+            {
+                mainViewModel.Inventario = new InventarioViewModel(Hospital);
+                await Application.Current.MainPage.Navigation.PushAsync(new InventarioTabbedPage());
             }
-            await Application.Current.MainPage.DisplayAlert(
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert(
                           "Error",
                           "Selecciona un Hospital",
                           "Aceptar");
-            return;
+                return;
+            }
+            
         }
         public ICommand BuscarHospitalCommand
         {
@@ -94,10 +96,9 @@
                 await Application.Current.MainPage.DisplayAlert(
                     "Error",
                     "Debes ingresar el Motivo de porque no usas la camara",
-                    "OK :(");
+                    "Aceptar");
                 return;
             }
-            var mainViewModel = MainViewModel.GetInstance();
             mainViewModel.HospitalList = new HospitalListViewModel();
             await Application.Current.MainPage.Navigation.PushAsync(new HospitalListPage());
         }
