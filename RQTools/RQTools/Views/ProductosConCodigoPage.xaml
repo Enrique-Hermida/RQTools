@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              Title="Escanear"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             x:Class="RQTools.Views.ProductosConCodigoPage">
+             x:Class="RQTools.Views.ProductosConCodigoPage"
+             Icon="ic_scan">
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Welcome to codigos!"

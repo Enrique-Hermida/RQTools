@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              Title="Detalles"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             x:Class="RQTools.Views.InventarioPage">
+             x:Class="RQTools.Views.InventarioPage"
+             Icon="ic_list">
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Welcome to lista de inventarios es la principal!"

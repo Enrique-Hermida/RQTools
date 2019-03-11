@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              Title="Buscar"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             x:Class="RQTools.Views.ProductosSinCodigoPage">
+             x:Class="RQTools.Views.ProductosSinCodigoPage"
+             Icon="ic_find">
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Welcome to BUscar!"
