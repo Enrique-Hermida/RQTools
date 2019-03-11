@@ -68,8 +68,6 @@
             {
                 CargarUsuario();             
             }
-            this.Email = "enriqueh.cehd@gmail.com";
-            this.Password = "1234";
             this.isEnabled = true;
 
         }
