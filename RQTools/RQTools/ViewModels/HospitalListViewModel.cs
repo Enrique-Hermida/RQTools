@@ -69,7 +69,7 @@
             }
 
             var response = await this.apiService.GetList<HospitalModel>(
-               "http://192.168.1.38:80",
+               "http://ryqmty.dyndns.org:8181",
                 "/apiRest",
                 "/public/api/hospitales");
 

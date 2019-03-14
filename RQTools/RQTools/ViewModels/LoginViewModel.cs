@@ -20,7 +20,7 @@
         private DataServices dataService;
         #endregion
         #region Atributos
-        private string IPLocal = "http://192.168.1.38:80";
+        private string ryqdns = "http://ryqmty.dyndns.org:8181";
         private string url;
         private string password;
         private string email;
@@ -106,7 +106,7 @@
             try
             {
                 HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri(IPLocal);
+                client.BaseAddress = new Uri(ryqdns);
                 url = string.Format("/apiRest/public/api/deviceuser/{0}/{1}", this.email, this.password);
                 var response = await client.GetAsync(url);
                 result = response.Content.ReadAsStringAsync().Result;
