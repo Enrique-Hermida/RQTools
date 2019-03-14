@@ -11,6 +11,8 @@
         #region Properties
         public DeviceUser deviceUser { get; set; }
         public List<HospitalModel> HospitalListlist { get; set; }
+        public List<Products> ProductsNoCode { get; set; }
+        public List<Products> ProductsWithCode { get; set; }
 
         #endregion
         #region ViewModels
