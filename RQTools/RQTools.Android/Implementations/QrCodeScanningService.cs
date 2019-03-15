@@ -1,4 +1,5 @@
-﻿namespace RQTools.Droid.Implementations
+﻿[assembly: Xamarin.Forms.Dependency(typeof(RQTools.Droid.Implementations.QrCodeScanningService))]
+namespace RQTools.Droid.Implementations
 {
     using System.Threading.Tasks;
     using RQTools.Interface;

@@ -1,9 +1,11 @@
 ﻿namespace RQTools.ViewModels
 {
     using GalaSoft.MvvmLight.Command;
+    using RQTools.Interface;
     using RQTools.Models;
     using RQTools.Views;
     using System;
+    using System.Threading.Tasks;
     using System.Windows.Input;
     using Xamarin.Forms;
 
@@ -13,10 +15,16 @@
         private string hospitalseleccionado;
         private string motivonocamara;
         private bool validacionhospital;
+        private string barCode;
         private MainViewModel mainViewModel = MainViewModel.GetInstance();
         #endregion
 
         #region Propiedades
+        public string Barcode
+        {
+            get { return this.barCode; }
+            set { SetValue(ref this.barCode, value); }
+        }
         public string HospitalSeleccionado
         {
             get{ return this.hospitalseleccionado; }
@@ -63,24 +71,7 @@
                 return new RelayCommand(IniciarInventario);
             }
         }
-
-        private async void IniciarInventario()
-        {
-            if (ValidacionHospital==true)
-            {
-                mainViewModel.Inventario = new InventarioViewModel(Hospital);
-                await Application.Current.MainPage.Navigation.PushAsync(new InventarioTabbedPage());
-            }
-            else
-            {
-                await Application.Current.MainPage.DisplayAlert(
-                          "Error",
-                          "Selecciona un Hospital",
-                          "Aceptar");
-                return;
-            }
-            
-        }
+        
         public ICommand BuscarHospitalCommand
         {
             get
@@ -88,6 +79,17 @@
                 return new RelayCommand(BuscarHospital);
             }
         }
+
+        public ICommand ScanCommand
+        {
+            get
+            {
+                return new RelayCommand(Scan);
+            }
+        }
+
+        #endregion
+        #region Methods
 
         private async void BuscarHospital()
         {
@@ -101,6 +103,45 @@
             }
             mainViewModel.HospitalList = new HospitalListViewModel();
             await Application.Current.MainPage.Navigation.PushAsync(new HospitalListPage());
+        }
+
+        private async void IniciarInventario()
+        {
+            if (ValidacionHospital == true)
+            {
+                mainViewModel.Inventario = new InventarioViewModel(Hospital);
+                await Application.Current.MainPage.Navigation.PushAsync(new InventarioTabbedPage());
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                          "Error",
+                          "Selecciona un Hospital",
+                          "Aceptar");
+                return;
+            }
+
+        }
+
+        private async void Scan()
+        {
+            Barcode = await ScannerSKU();
+        }
+        #endregion
+        #region Scanner
+        public async Task<string> ScannerSKU()
+        {
+            try
+            {
+                var scanner = DependencyService.Get<IQrCodeScanningService>();
+                var result = await scanner.ScanAsync();
+                return result.ToString();
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+                return string.Empty;
+            }
         }
 
         #endregion

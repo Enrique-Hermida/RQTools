@@ -2018,6 +2018,9 @@ namespace RQTools.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.ViewStubCompat_android_id = global::RQTools.Droid.Resource.Styleable.ViewStubCompat_android_id;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.ViewStubCompat_android_inflatedId = global::RQTools.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.ViewStubCompat_android_layout = global::RQTools.Droid.Resource.Styleable.ViewStubCompat_android_layout;
+			global::ZXing.Mobile.Resource.Id.contentFrame = global::RQTools.Droid.Resource.Id.contentFrame;
+			global::ZXing.Mobile.Resource.Layout.zxingscanneractivitylayout = global::RQTools.Droid.Resource.Layout.zxingscanneractivitylayout;
+			global::ZXing.Mobile.Resource.Layout.zxingscannerfragmentlayout = global::RQTools.Droid.Resource.Layout.zxingscannerfragmentlayout;
 		}
 		
 		public partial class Animation
@@ -5195,6 +5198,9 @@ namespace RQTools.Droid
 			// aapt resource value: 0x7f09008f
 			public const int container = 2131296399;
 			
+			// aapt resource value: 0x7f0900d4
+			public const int contentFrame = 2131296468;
+			
 			// aapt resource value: 0x7f090066
 			public const int contentPanel = 2131296358;
 			
@@ -5336,8 +5342,8 @@ namespace RQTools.Droid
 			// aapt resource value: 0x7f0900cb
 			public const int main_toolbar = 2131296459;
 			
-			// aapt resource value: 0x7f0900d5
-			public const int masked = 2131296469;
+			// aapt resource value: 0x7f0900d6
+			public const int masked = 2131296470;
 			
 			// aapt resource value: 0x7f0900bd
 			public const int media_actions = 2131296445;
@@ -5681,8 +5687,8 @@ namespace RQTools.Droid
 			// aapt resource value: 0x7f090016
 			public const int view_offset_helper = 2131296278;
 			
-			// aapt resource value: 0x7f0900d4
-			public const int visible = 2131296468;
+			// aapt resource value: 0x7f0900d5
+			public const int visible = 2131296469;
 			
 			// aapt resource value: 0x7f0900af
 			public const int volume_item_container = 2131296431;
@@ -5992,6 +5998,12 @@ namespace RQTools.Droid
 			
 			// aapt resource value: 0x7f040047
 			public const int tooltip = 2130968647;
+			
+			// aapt resource value: 0x7f040048
+			public const int zxingscanneractivitylayout = 2130968648;
+			
+			// aapt resource value: 0x7f040049
+			public const int zxingscannerfragmentlayout = 2130968649;
 			
 			static Layout()
 			{
