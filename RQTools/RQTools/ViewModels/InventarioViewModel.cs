@@ -47,6 +47,7 @@
         #region Constructors
         public InventarioViewModel(HospitalModel hospital)
         {
+            this.apiService = new ApiService();
             this.Hospital = hospital;
             this.LoadProductsNoCode();
         }

@@ -6,10 +6,58 @@
              x:Class="RQTools.Views.ProductosSinCodigoPage"
              Icon="ic_find">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to BUscar!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout
+            BindingContext="{Binding Inventario}">
+            <SearchBar
+                HeightRequest="46"
+                Text="{Binding Filter, Mode=TwoWay}"
+                Placeholder="Buscar Producto"
+                SearchCommand="{Binding SearchCommand}">
+            </SearchBar>
+            <ListView 
+                HasUnevenRows="true" 
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+                ItemsSource="{Binding ProductsNocode}"
+                SeparatorVisibility="None"
+                RefreshCommand="{Binding RefreshCommand}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame
+                                CornerRadius="20"
+                                HasShadow="true"
+                                Margin="5">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SelectProductCommand}"/>
+                                </Frame.GestureRecognizers>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout 
+                                        Grid.Column="1"
+                                        VerticalOptions="Center">
+                                        <Label 
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="{Binding Nombre_Producto}"
+                                            TextColor="Black">
+                                        </Label>
+                                    </StackLayout>
+                                    <Image 
+                                        Grid.Column="2"
+                                        HorizontalOptions="End" 
+                                        Source="ic_chevron_right">
+                                    </Image>
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
