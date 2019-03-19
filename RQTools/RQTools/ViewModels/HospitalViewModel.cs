@@ -102,7 +102,7 @@
                 return;
             }
             mainViewModel.HospitalList = new HospitalListViewModel();
-            await Application.Current.MainPage.Navigation.PushAsync(new HospitalListPage());
+            await App.Navigator.PushAsync(new HospitalListPage());
         }
 
         private async void IniciarInventario()
@@ -110,7 +110,7 @@
             if (ValidacionHospital == true)
             {
                 mainViewModel.Inventario = new InventarioViewModel(Hospital);
-                await Application.Current.MainPage.Navigation.PushAsync(new InventarioTabbedPage());
+                await App.Navigator.PushAsync(new InventarioTabbedPage());
             }
             else
             {
