@@ -15,7 +15,7 @@
     {
         #region Services
         private ApiService apiService;
-
+        private DataServices dataService;
         #endregion
         #region Atributtes
         private ObservableCollection<HospitalItemViewModel> hospital;
@@ -48,6 +48,7 @@
         public HospitalListViewModel()
         {
             this.apiService = new ApiService();
+            this.dataService = new DataServices();
             this.LoadHospitals();
         }
         #endregion

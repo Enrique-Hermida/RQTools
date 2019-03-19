@@ -16,16 +16,16 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <Image Grid.Row="0" Source="LOGO.png" WidthRequest="100" HeightRequest="100" Margin="0,30,0,10"/>
-                    <StackLayout Grid.Row="1" Padding="20,20">
-                        <Label Text="Bienvenido al sistema de registro de Inventarios !"  HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="20" Margin="10,10" />
-                        <StackLayout Padding="20">
+                    <Image Grid.Row="0" Source="LOGO.png" WidthRequest="100" HeightRequest="100" Margin="0,0,0,10"/>
+                    <StackLayout Grid.Row="1" Padding="20,10">
+                        <Label Text="Bienvenido al sistema de registro de Inventarios !"  HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="20" Margin="10,0" />
+                        <StackLayout Padding="20,10">
                             <Label Text="Bienvenido :" TextColor="Black" FontSize="17"/>
                             <Label Text="{Binding User, Mode=TwoWay}" TextColor="Black" FontSize="17"/>
                         </StackLayout>
                         <StackLayout Padding="20" VerticalOptions="EndAndExpand" >
                             <Label Text="Realizar un Inventario"  HorizontalOptions="EndAndExpand" VerticalOptions="Center" TextColor="Black"/>
-                            <Button Text="  +  " BackgroundColor="White" BorderRadius="20" TextColor="Red" HorizontalOptions="EndAndExpand" VerticalOptions="Center" FontSize="20" FontAttributes="Bold" Command="{Binding Shospiltalcommand}"/>
+                            <Button Text="  +  " BackgroundColor="White" BorderRadius="15" TextColor="Red" HorizontalOptions="EndAndExpand" VerticalOptions="Center" FontSize="20" FontAttributes="Bold" Command="{Binding Shospiltalcommand}"/>
                         </StackLayout>
                     </StackLayout>
                 </Grid>

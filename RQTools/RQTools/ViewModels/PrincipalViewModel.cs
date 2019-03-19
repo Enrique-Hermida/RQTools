@@ -2,17 +2,19 @@
 {
     using GalaSoft.MvvmLight.Command;
     using RQTools.Models;
+    using RQTools.Services;
     using RQTools.Views;
     using System.Windows.Input;
     using Xamarin.Forms;
 
     public class PrincipalViewModel:BaseViewModel
     {
+        #region Services
+        private DataServices dataService;
+        #endregion
         #region Atributos
         private string user;
-
         #endregion
-
         #region Properties   
         public string User
         {
@@ -25,6 +27,7 @@
         #region Constructores
         public PrincipalViewModel()
         {
+            this.dataService = new DataServices();
             this.LocalUser = MainViewModel.GetInstance().deviceUser;
             this.User = LocalUser.Name_User;
         }
