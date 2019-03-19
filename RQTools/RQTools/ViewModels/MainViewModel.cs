@@ -2,6 +2,7 @@
 {
     using RQTools.Models;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
 
     class MainViewModel : BaseViewModel
     {
@@ -13,6 +14,8 @@
         public List<HospitalModel> HospitalListlist { get; set; }
         public List<Products> ProductsNoCode { get; set; }
         public List<Products> ProductsWithCode { get; set; }
+        public ObservableCollection<MenuItemViewModel> Menus { get; set; }
+
 
         #endregion
         #region ViewModels
@@ -27,6 +30,7 @@
         {
             instance = this;
             this.Login = new LoginViewModel();
+            this.LoadMenu();
         }
         #endregion
         #region Singleton
@@ -41,6 +45,28 @@
             return instance;
         }
 
+        #endregion
+        #region Methods
+
+        private void LoadMenu()
+        {
+            this.Menus = new ObservableCollection<MenuItemViewModel>();
+
+            this.Menus.Add(new MenuItemViewModel
+            {
+                Icon = "ic_exit_to_app",
+                PageName = "LoginPage",
+                Title = "Cerrar Sesion",
+            });
+
+            this.Menus.Add(new MenuItemViewModel
+            {
+                Icon = "ic_bar_chart",
+                PageName = "StaticsPage",
+                Title ="Estadisticas",
+            });
+
+        }
         #endregion
     }
 }

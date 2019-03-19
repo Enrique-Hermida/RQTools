@@ -203,4 +203,10 @@
   <ItemGroup>
     <BundleResource Include="Resources\ic_find.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_exit_to_app.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_bar_chart.png" />
+  </ItemGroup>
 </Project>

@@ -164,7 +164,8 @@
                     Settings.IsRemembered = "false";
                 }
                 mainViewModel.Principal = new PrincipalViewModel();
-                await Application.Current.MainPage.Navigation.PushAsync(new PrincipalPage());
+                // await Application.Current.MainPage.Navigation.PushAsync(new PrincipalPage());
+                Application.Current.MainPage = new MasterPage();
             }
 
         }
@@ -183,7 +184,8 @@
             deviceUser = listusers[0];
             mainViewModel.deviceUser = deviceUser;
             mainViewModel.Principal = new PrincipalViewModel();
-            await Application.Current.MainPage.Navigation.PushAsync(new PrincipalPage());
+            // await Application.Current.MainPage.Navigation.PushAsync(new PrincipalPage());
+            Application.Current.MainPage = new MasterPage();
         }
         #endregion
 

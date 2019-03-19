@@ -51,7 +51,7 @@
             #endregion
 
             MainViewModel.GetInstance().Hospital = new HospitalViewModel(Hospital);
-            await Application.Current.MainPage.Navigation.PushAsync(new HospitalPage());
+            await App.Navigator.PushAsync(new HospitalPage());
         }
 
         #endregion
