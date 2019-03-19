@@ -7,7 +7,6 @@
     using RQTools.Views;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Net.Http;
     using System.Windows.Input;
     using Services;
@@ -166,6 +165,8 @@
                 mainViewModel.Principal = new PrincipalViewModel();
                 // await Application.Current.MainPage.Navigation.PushAsync(new PrincipalPage());
                 Application.Current.MainPage = new MasterPage();
+                this.Password = string.Empty;
+
             }
 
         }

@@ -1,11 +1,6 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using RQTools.Helpers;
 using RQTools.Views;
-using RQTools.ViewModels;
-using RQTools.Services;
-using RQTools.Models;
-using System;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace RQTools

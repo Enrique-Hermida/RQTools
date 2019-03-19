@@ -3,14 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              Title="Menu"
-             BackgroundColor="Navy"
+             BackgroundColor="White"
              x:Class="RQTools.Views.MenuPage">
     <ContentPage.Content>
         <StackLayout Padding="5,20,5,5">
             <Image Source="LOGO.png"
-                   WidthRequest="100"></Image>
+                   WidthRequest="200"></Image>
             <ListView 
-                BackgroundColor="Navy"
+                BackgroundColor="White"
                 ItemsSource="{Binding Menus}"
                 HasUnevenRows="True"
                 SeparatorVisibility="None">
@@ -33,7 +33,7 @@
                                 <Label 
                                     Grid.Column="1"
                                     VerticalOptions="Center"
-                                    TextColor="White"
+                                    TextColor="Black"
                                     Text="{Binding Title}">
                                 </Label>
                             </Grid>

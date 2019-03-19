@@ -54,17 +54,19 @@
 
             this.Menus.Add(new MenuItemViewModel
             {
+                Icon = "ic_bar_chart",
+                PageName = "StaticsPage",
+                Title = "Estadisticas",
+            });
+
+            this.Menus.Add(new MenuItemViewModel
+            {
                 Icon = "ic_exit_to_app",
                 PageName = "LoginPage",
                 Title = "Cerrar Sesion",
             });
 
-            this.Menus.Add(new MenuItemViewModel
-            {
-                Icon = "ic_bar_chart",
-                PageName = "StaticsPage",
-                Title ="Estadisticas",
-            });
+            
 
         }
         #endregion

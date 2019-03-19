@@ -5,5 +5,10 @@
              x:Class="RQTools.App">
     <Application.Resources>
         <infra:InstanceLocator x:Key="Locator"/>
+        <Style TargetType="NavigationPage">
+            <Setter Property="BarBackgroundColor" Value="#DFDFE2"></Setter>
+            <Setter Property="BarTextColor" Value="Black"></Setter>
+        </Style>
+        
     </Application.Resources>
 </Application>

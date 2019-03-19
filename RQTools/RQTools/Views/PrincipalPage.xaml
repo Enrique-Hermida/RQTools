@@ -4,6 +4,7 @@
              Title="Principal"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              x:Class="RQTools.Views.PrincipalPage">
+
     <ContentPage.Content>
         <Grid BindingContext="{Binding Principal}">
             <Image Source="fondo.jpg" Aspect="AspectFill" />
