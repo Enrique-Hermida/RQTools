@@ -1,9 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             Title="Añadir Producto"
              x:Class="RQTools.Views.AddInventarioPage">
     <ContentPage.Content>
-        <Grid BindingContext="{Binding }">
+        <Grid BindingContext="{Binding AddProduct}">
             <Image Source="fondo.jpg" Aspect="AspectFill" />
             <BoxView Color="WhiteSmoke" Opacity="0.9" />
             <ScrollView>
@@ -17,11 +19,11 @@
                     <StackLayout Grid.Row="1" Padding="20,20">
                         <Label Text="Añadir Producto" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="25" Margin="0,15,0,15"  />
                         <StackLayout Padding="10">
-                            <Label Text="Ejemplo Quabic Pieza" TextColor="DarkRed" HorizontalOptions="Center" VerticalOptions="Center" FontSize="20"/>
+                            <Label  Text="{Binding NombreProducto, Mode=TwoWay}" TextColor="DarkRed" HorizontalOptions="Center" VerticalOptions="Center" FontSize="20"/>
                         </StackLayout>
                         <StackLayout Padding="10">
                             <Label Text="Cantidad" TextColor="Black" />
-                            <Entry Placeholder="Ejemplo: 80" PlaceholderColor="Black" Keyboard="Numeric"  Text="{Binding Cantidad, Mode=TwoWay}"/>
+                            <Entry Placeholder="Ejemplo: 80" PlaceholderColor="Black" Keyboard="Numeric" Text="{Binding Cantidad, Mode=TwoWay}"/>
                         </StackLayout>
                         <StackLayout Padding="10">
                             <Label Text="Lote"  TextColor="Black" />

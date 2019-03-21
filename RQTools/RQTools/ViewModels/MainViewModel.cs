@@ -24,6 +24,7 @@
         public HospitalViewModel Hospital { get; set; }
         public HospitalListViewModel HospitalList { get; set; }
         public InventarioViewModel Inventario { get; set; }
+        public AddProductViewModel AddProduct { get; set; }
         #endregion
         #region Constructors
         public MainViewModel()

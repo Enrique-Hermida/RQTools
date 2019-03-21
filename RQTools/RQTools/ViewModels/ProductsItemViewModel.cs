@@ -17,9 +17,10 @@
             }
         }
 
-        private  void SelectProduct()
+        private async void SelectProduct()
         {
-            
+            MainViewModel.GetInstance().AddProduct = new AddProductViewModel(this);
+            await App.Navigator.PushAsync(new AddInventarioPage());
         }
         #endregion
     }
