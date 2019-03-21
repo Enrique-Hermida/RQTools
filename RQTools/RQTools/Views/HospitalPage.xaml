@@ -21,11 +21,13 @@
                             <Label Text="Hospital:" TextColor="Black" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" FontSize="Medium" FontAttributes="Bold"/>
                             <Label Text="{Binding HospitalSeleccionado, Mode=TwoWay}" TextColor="Red" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" FontSize="Medium" FontAttributes="Bold"/>
                         </StackLayout>
+                        <ActivityIndicator IsRunning="{Binding IsRunning, Mode=TwoWay}">
+                        </ActivityIndicator>
                         <StackLayout Padding="15,0">
                             <Label Text="Selecciona la opcion que deseas para poder realizar un inventario"  HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="Medium" FontAttributes="Bold" Margin="0,0,0,10" />
                             <Label Text="Selecciona esta opcion para escanear " TextColor="Black" FontSize="Medium"/>
                             <Button Text="Scanear Hospital" BackgroundColor="White" BorderRadius="10" TextColor="Red" VerticalOptions="Center" FontSize="Medium" FontAttributes="Bold" Command="{Binding ScanCommand}"/>
-                            <Entry Placeholder="código de barras" Text="{Binding BarCode, Mode=TwoWay}"/>
+                            <Entry Placeholder="código de barras" Text="{Binding Barcode, Mode=TwoWay}"/>
                         </StackLayout>
                         <StackLayout Padding="15,0">
                             <Label Text="Selecciona esta opcion si tu camara no funciona" TextColor="Black" FontSize="Medium"/>

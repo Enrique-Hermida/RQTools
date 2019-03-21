@@ -1,21 +1,35 @@
 ﻿namespace RQTools.ViewModels
 {
     using GalaSoft.MvvmLight.Command;
+    using Newtonsoft.Json;
     using RQTools.Interface;
     using RQTools.Models;
+    using RQTools.Services;
     using RQTools.Views;
     using System;
+    using System.Collections.Generic;
+    using System.Net.Http;
     using System.Threading.Tasks;
     using System.Windows.Input;
     using Xamarin.Forms;
 
     public class HospitalViewModel : BaseViewModel
     {
+        #region Services
+        private DataServices dataService;
+        #endregion
         #region Atributos
+        private string ryqdns = "http://ryqmty.dyndns.org:8181";
+        private string url;
+        private string result;
         private string hospitalseleccionado;
         private string motivonocamara;
-        private bool validacionhospital;
         private string barCode;
+        private string scanResult;
+        private bool validacionhospital;
+        private bool isRunning;
+        private bool isEnabled;
+        private HospitalModel scanHospital;
         private MainViewModel mainViewModel = MainViewModel.GetInstance();
         #endregion
 
@@ -24,6 +38,11 @@
         {
             get { return this.barCode; }
             set { SetValue(ref this.barCode, value); }
+        }
+        public string ScanResult
+        {
+            get { return this.scanResult; }
+            set { SetValue(ref this.scanResult, value); }
         }
         public string HospitalSeleccionado
         {
@@ -40,14 +59,25 @@
             get { return this.validacionhospital; }
             set { SetValue(ref this.validacionhospital, value); }
         }
+
         public HospitalModel Hospital { get; set; }
 
+        public bool IsRunning
+        {
+            get { return this.isRunning; }
+            set { SetValue(ref this.isRunning, value); }
+        }
+        public bool IsEnabled
+        {
+            get { return this.isEnabled; }
+            set { SetValue(ref this.isEnabled, value); }
+        }
         #endregion
 
         #region Constructors
-
         public HospitalViewModel(HospitalModel hospital)
         {
+            this.dataService = new DataServices();
             this.Hospital = hospital;
             this.HospitalSeleccionado = Hospital.Nombre_Hospital;
             if (Hospital.ID_Hospital==0)
@@ -125,17 +155,76 @@
 
         private async void Scan()
         {
-            Barcode = await ScannerSKU();
+            Barcode = await ScannerSKU(); 
+        }
+
+        private async void FindScanHospital()
+        {
+            try
+            {
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(ryqdns);
+                url = string.Format("/apiRest/public/api/hospital/{0}",this.ScanResult);
+                var response = await client.GetAsync(url);
+                result = response.Content.ReadAsStringAsync().Result;
+
+                if (string.IsNullOrEmpty(result))
+                {
+                    await Application.Current.MainPage.DisplayAlert(
+                        "Error",
+                        "No hay respuesta en el servido, intenta mas tarde",
+                        "Aceptar");
+
+                    this.IsRunning = false;
+                    this.IsEnabled = true;
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                        "Error",
+                        string.Format("Ocurrio el Error :{0},", ex.Message),
+                        "Aceptar");
+
+                this.IsRunning = false;
+                this.IsEnabled = true;
+
+                return;
+            }
+            this.IsRunning = false;
+            this.IsEnabled = true;
+
+            if (result.Contains("error"))
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                        "Error",
+                        "Codigo inexitente",
+                        "Aceptar");
+                return;
+            }
+            if (result.Contains("ID_Hospital"))
+            {
+                var listhospitals = JsonConvert.DeserializeObject<List<HospitalModel>>(result);
+                scanHospital = listhospitals[0];
+                this.HospitalSeleccionado = scanHospital.Nombre_Hospital.ToString();
+                this.ValidacionHospital = true;
+
+            }
         }
         #endregion
+
         #region Scanner
         public async Task<string> ScannerSKU()
         {
             try
             {
                 var scanner = DependencyService.Get<IQrCodeScanningService>();
-                var result = await scanner.ScanAsync();
-                return result.ToString();
+                this.ScanResult = await scanner.ScanAsync();
+                this.ScanResult = ScanResult.ToString();
+                this.FindScanHospital();
+                return ScanResult;
+
             }
             catch (Exception ex)
             {
