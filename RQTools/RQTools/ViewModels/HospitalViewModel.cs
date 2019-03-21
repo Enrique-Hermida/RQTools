@@ -59,9 +59,6 @@
             get { return this.validacionhospital; }
             set { SetValue(ref this.validacionhospital, value); }
         }
-
-        public HospitalModel Hospital { get; set; }
-
         public bool IsRunning
         {
             get { return this.isRunning; }
@@ -72,6 +69,8 @@
             get { return this.isEnabled; }
             set { SetValue(ref this.isEnabled, value); }
         }
+
+        public HospitalModel Hospital { get; set; }
         #endregion
 
         #region Constructors

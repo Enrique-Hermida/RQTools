@@ -3,10 +3,34 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RQTools.Views.AddInventarioPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid BindingContext="{Binding }">
+            <Image Source="fondo.jpg" Aspect="AspectFill" />
+            <BoxView Color="WhiteSmoke" Opacity="0.9" />
+            <ScrollView>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0" Source="LOGO.png" WidthRequest="100" HeightRequest="100" Margin="0,20,0,10"/>
+                    <StackLayout Grid.Row="1" Padding="20,20">
+                        <Label Text="Añadir Producto" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="25" Margin="0,15,0,15"  />
+                        <StackLayout Padding="10">
+                            <Label Text="Ejemplo Quabic Pieza" TextColor="DarkRed" HorizontalOptions="Center" VerticalOptions="Center" FontSize="20"/>
+                        </StackLayout>
+                        <StackLayout Padding="10">
+                            <Label Text="Cantidad" TextColor="Black" />
+                            <Entry Placeholder="Ejemplo: 80" PlaceholderColor="Black" Keyboard="Numeric"  Text="{Binding Cantidad, Mode=TwoWay}"/>
+                        </StackLayout>
+                        <StackLayout Padding="10">
+                            <Label Text="Lote"  TextColor="Black" />
+                            <Entry Placeholder="Ejemplo: 20180502" PlaceholderColor="Black" Text="{Binding Lote, Mode=TwoWay}"/>
+                        </StackLayout>
+                        <Button Text="Añadir Producto" BackgroundColor="White" BorderRadius="20" TextColor="Red" Command="{Binding AddtoDBCommand}"  />
+                    </StackLayout>
+                </Grid>
+            </ScrollView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

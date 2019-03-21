@@ -1,13 +1,17 @@
 ﻿namespace RQTools.ViewModels
 {
     using GalaSoft.MvvmLight.Command;
+    using Newtonsoft.Json;
+    using RQTools.Interface;
     using RQTools.Models;
     using RQTools.Services;
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
+    using System.Net.Http;
     using System.Text;
+    using System.Threading.Tasks;
     using System.Windows.Input;
     using Xamarin.Forms;
 
@@ -17,9 +21,17 @@
         private ApiService apiService;
         #endregion
         #region Atributtes
-        private ObservableCollection<ProductsItemViewModel> productsnoCode;
-        private bool isRefreshing;
+        private string ryqdns = "http://ryqmty.dyndns.org:8181";
+        private string url;
+        private string result;
         private string filter;
+        private string barCode;
+        private string scanResult;
+        private bool isRunning;
+        private bool isEnabled;
+        private bool isRefreshing;
+        private Products scanProduct;
+        private ObservableCollection<ProductsItemViewModel> productsnoCode;
         #endregion
         #region Properties
         public HospitalModel Hospital { get; set; }
@@ -42,6 +54,26 @@
                 SetValue(ref this.filter, value);
                 this.Search();
             }
+        }
+        public string Barcode
+        {
+            get { return this.barCode; }
+            set { SetValue(ref this.barCode, value); }
+        }
+        public string ScanResult
+        {
+            get { return this.scanResult; }
+            set { SetValue(ref this.scanResult, value); }
+        }
+        public bool IsRunning
+        {
+            get { return this.isRunning; }
+            set { SetValue(ref this.isRunning, value); }
+        }
+        public bool IsEnabled
+        {
+            get { return this.isEnabled; }
+            set { SetValue(ref this.isEnabled, value); }
         }
         #endregion
         #region Constructors
@@ -111,6 +143,77 @@
                 Fecha_Modificacion = p.Fecha_Modificacion,
             });
         }
+        private void Search()
+        {
+            if (string.IsNullOrEmpty(this.Filter))
+            {
+                this.ProductsNocode = new ObservableCollection<ProductsItemViewModel>(
+                    this.ToProductsNoCodeItemViewModel());
+            }
+            else
+            {
+                this.ProductsNocode = new ObservableCollection<ProductsItemViewModel>(
+                    this.ToProductsNoCodeItemViewModel().Where(
+                        p => p.Nombre_Producto.ToLower().Contains(this.Filter.ToLower())));
+            }
+        }
+        private async void Scan()
+        {
+            Barcode = await ScannerSKU();
+        }
+        private async void FindScanProdcuct()
+        {
+            try
+            {
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(ryqdns);
+                url = string.Format("/apiRest/public/api/products/{0}", this.ScanResult);
+                var response = await client.GetAsync(url);
+                result = response.Content.ReadAsStringAsync().Result;
+
+                if (string.IsNullOrEmpty(result))
+                {
+                    await Application.Current.MainPage.DisplayAlert(
+                        "Error",
+                        "No hay respuesta en el servido, intenta mas tarde",
+                        "Aceptar");
+
+                    this.IsRunning = false;
+                    this.IsEnabled = true;
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                        "Error",
+                        string.Format("Ocurrio el Error :{0},", ex.Message),
+                        "Aceptar");
+
+                this.IsRunning = false;
+                this.IsEnabled = true;
+
+                return;
+            }
+            this.IsRunning = false;
+            this.IsEnabled = true;
+
+            if (result.Contains("error"))
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                        "Error",
+                        "Codigo inexitente",
+                        "Aceptar");
+                return;
+            }
+            if (result.Contains("ID_Hospital"))
+            {
+                var listProducts = JsonConvert.DeserializeObject<List<Products>>(result);
+                scanProduct = listProducts[0];
+                
+
+            }
+        }
         #endregion
         #region Commands
         public ICommand RefreshCommand
@@ -127,18 +230,31 @@
                 return new RelayCommand(Search);
             }
         }
-        private void Search()
+        public ICommand ScanCommand
         {
-            if (string.IsNullOrEmpty(this.Filter))
+            get
             {
-                this.ProductsNocode = new ObservableCollection<ProductsItemViewModel>(
-                    this.ToProductsNoCodeItemViewModel());
+                return new RelayCommand(Scan);
             }
-            else
+        }
+
+        #endregion
+        #region Scanner
+        public async Task<string> ScannerSKU()
+        {
+            try
             {
-                this.ProductsNocode = new ObservableCollection<ProductsItemViewModel>(
-                    this.ToProductsNoCodeItemViewModel().Where(
-                        p => p.Nombre_Producto.ToLower().Contains(this.Filter.ToLower())));
+                var scanner = DependencyService.Get<IQrCodeScanningService>();
+                this.ScanResult = await scanner.ScanAsync();
+                this.ScanResult = ScanResult.ToString();
+                this.FindScanProdcuct();
+                return ScanResult;
+
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+                return string.Empty;
             }
         }
         #endregion
