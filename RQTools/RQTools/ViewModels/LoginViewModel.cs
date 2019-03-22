@@ -79,6 +79,9 @@
                 return new RelayCommand(Login);
             }
         }
+        #endregion
+
+        #region Metodos
         private async void Login()
         {
            
@@ -170,8 +173,7 @@
             }
 
         }
-        #endregion
-        #region Metodos
+
         private async Task DeleteandInsertUser()
         {
             await this.dataService.DelleteAllUsers();

@@ -1,7 +1,7 @@
 ﻿namespace RQTools.Models
 {
     using SQLite;
-    class InventarioModel
+    public class InventarioModel
     {
         [PrimaryKey]
         public int Id { get; set; }

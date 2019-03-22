@@ -16,7 +16,8 @@
                 return new RelayCommand(SelectProduct);
             }
         }
-
+        #endregion
+        #region Methods
         private async void SelectProduct()
         {
             MainViewModel.GetInstance().AddProduct = new AddProductViewModel(this);

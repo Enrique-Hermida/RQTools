@@ -29,7 +29,7 @@
                             <Label Text="Lote"  TextColor="Black" />
                             <Entry Placeholder="Ejemplo: 20180502" PlaceholderColor="Black" Text="{Binding Lote, Mode=TwoWay}"/>
                         </StackLayout>
-                        <Button Text="Añadir Producto" BackgroundColor="White" BorderRadius="20" TextColor="Red" Command="{Binding AddtoDBCommand}"  />
+                        <Button Text="Añadir Producto" BackgroundColor="White" BorderRadius="20" TextColor="Red" Command="{Binding AddtoDBCommand}" IsEnabled="{Binding isEnabled, Mode=TwoWay}" />
                     </StackLayout>
                 </Grid>
             </ScrollView>
