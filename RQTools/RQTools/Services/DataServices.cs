@@ -67,6 +67,8 @@
             var query = await this.connection.QueryAsync<HospitalModel>("delete from [HospitalModel]");
         }
         #endregion
+
+        #region Public Methods
         public async Task Insert<T>(T model)
         {
             await this.connection.InsertAsync(model);
@@ -82,7 +84,8 @@
         public async Task Delete<T>(T model)
         {
             await this.connection.DeleteAsync(model);
-        }
-        
+        } 
+        #endregion
+
     }
 }
