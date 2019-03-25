@@ -15,7 +15,7 @@
     using System.Windows.Input;
     using Xamarin.Forms;
 
-    public class InventarioViewModel:BaseViewModel
+    public class InventarioViewModel : BaseViewModel
     {
         #region Services
         private ApiService apiService;
@@ -27,25 +27,15 @@
         private string filter;
         private string barCode;
         private string scanResult;
+        private string hospitalseleccionado;
         private bool isRunning;
         private bool isEnabled;
         private bool isRefreshing;
         private Products scanProduct;
         private ObservableCollection<ProductsItemViewModel> productsnoCode;
+        private ObservableCollection<InventarioModel> inventarioActual;
         #endregion
         #region Properties
-        public HospitalModel Hospital { get; set; }
-        public ObservableCollection<ProductsItemViewModel> ProductsNocode
-        {
-            get { return this.productsnoCode; }
-            set { SetValue(ref this.productsnoCode, value); }
-        }
-        public bool IsRefreshing
-        {
-            get { return this.isRefreshing; }
-            set { SetValue(ref this.isRefreshing, value); }
-        }
-
         public string Filter
         {
             get { return this.filter; }
@@ -54,6 +44,11 @@
                 SetValue(ref this.filter, value);
                 this.Search();
             }
+        }
+        public string HospitalSeleccionado
+        {
+            get { return this.hospitalseleccionado; }
+            set { SetValue(ref this.hospitalseleccionado, value); }
         }
         public string Barcode
         {
@@ -65,6 +60,12 @@
             get { return this.scanResult; }
             set { SetValue(ref this.scanResult, value); }
         }
+        public bool IsRefreshing
+        {
+            get { return this.isRefreshing; }
+            set { SetValue(ref this.isRefreshing, value); }
+        }
+
         public bool IsRunning
         {
             get { return this.isRunning; }
@@ -75,16 +76,55 @@
             get { return this.isEnabled; }
             set { SetValue(ref this.isEnabled, value); }
         }
+        public HospitalModel Hospital
+        {
+            get;
+            set;
+        }
+        public ObservableCollection<ProductsItemViewModel> ProductsNocode
+        {
+            get { return this.productsnoCode; }
+            set { SetValue(ref this.productsnoCode, value); }
+        }
+        public ObservableCollection<InventarioModel> InventarioActual
+        {
+            get { return this.inventarioActual; }
+            set { SetValue(ref this.inventarioActual, value); }
+        }
+
         #endregion
         #region Constructors
         public InventarioViewModel(HospitalModel hospital)
         {
             this.apiService = new ApiService();
             this.Hospital = hospital;
+            this.HospitalSeleccionado = Hospital.Nombre_Hospital;
             this.LoadProductsNoCode();
+            this.LoadDemoList();
+
         }
         #endregion
         #region Methods
+        private void LoadDemoList()
+        {
+            this.InventarioActual = new ObservableCollection<InventarioModel>();
+            this.InventarioActual.Add(new InventarioModel
+            {
+                Id = 0,
+                Producto = "Dializador 2.10",
+                Id_Producto = 1,
+                Cantidad = 100,
+                Lote = "20180205",
+            });
+            this.InventarioActual.Add(new InventarioModel
+            {
+                Id = 1,
+                Producto = "Dializador 1.90",
+                Id_Producto = 2,
+                Cantidad = 150,
+                Lote = "20180205",
+            });
+        }
         private async void LoadProductsNoCode()
         {
             this.IsRefreshing = true;

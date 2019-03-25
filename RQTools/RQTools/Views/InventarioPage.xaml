@@ -5,11 +5,73 @@
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              x:Class="RQTools.Views.InventarioPage"
              Icon="ic_list">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to lista de inventarios es la principal!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+    <ContentPage.Content >
+        <StackLayout BindingContext="{Binding Inventario}">
+            <StackLayout>
+                <Label Text="Hospital:" TextColor="Black" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" FontSize="Medium" FontAttributes="Bold"/>
+                <Label Text="{Binding HospitalSeleccionado, Mode=TwoWay}" TextColor="Red" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" FontSize="Medium" FontAttributes="Bold"/>
+            </StackLayout>
+            <ListView 
+                HasUnevenRows="true" 
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+                ItemsSource="{Binding InventarioActual}"
+                SeparatorVisibility="None"
+                RefreshCommand="{Binding RefreshCommand}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame
+                                CornerRadius="20"
+                                HasShadow="true"
+                                Margin="5">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding EditCommand}"/>
+                                </Frame.GestureRecognizers>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout 
+                                        Grid.Column="1"
+                                        VerticalOptions="Center">
+                                        <Label 
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="{Binding Producto}"
+                                            TextColor="Black">
+                                        </Label>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label 
+                                             Text="Lote:" 
+                                             TextColor="Black"
+                                             VerticalOptions="Center" 
+                                             HorizontalOptions="Start">
+                                            </Label>
+                                            <Label 
+                                            Text="{Binding Lote}"
+                                            VerticalOptions="Center" 
+                                            HorizontalOptions="Start"
+                                            TextColor="Black">
+                                            </Label>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <Label
+                                        Grid.Column="2"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="End"
+                                        Text="{Binding Cantidad}"
+                                        FontSize="Large"
+                                        TextColor="Black">
+                                    </Label>
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
