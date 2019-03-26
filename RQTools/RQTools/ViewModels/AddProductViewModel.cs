@@ -3,28 +3,36 @@
     using GalaSoft.MvvmLight.Command;
     using RQTools.Models;
     using RQTools.Services;
+    using RQTools.Views;
     using System;
+    using System.Linq;
     using System.Windows.Input;
     using Xamarin.Forms;
 
-    class AddProductViewModel : BaseViewModel
+    public class AddProductViewModel : BaseViewModel
     {
         #region Services
         private DataServices dataService;
         #endregion
         #region Attributes
         private int cantidad;
+        private int idlist;
         private string lote;
         private string nombreProducto;
         private bool isEnabled;
+        private MainViewModel mainViewModel = MainViewModel.GetInstance();
         private InventarioModel itemInventario;
-        private Products product;
         #endregion
         #region Properties
         public int Cantidad
         {
             get { return this.cantidad; }
             set { SetValue(ref this.cantidad, value); }
+        }
+        public int IdList
+        {
+            get { return this.idlist; }
+            set { SetValue(ref this.idlist, value); }
         }
         public string Lote
         {
@@ -48,13 +56,14 @@
         }
         public Products Product
         {
-            get { return this.product; }
-            set { SetValue(ref this.product, value); }
+            get;
+            set;
         }
         #endregion
         #region Constructors
         public AddProductViewModel(Products products)
         {
+            this.Product = new Products();
             this.dataService = new DataServices();
             this.isEnabled = true;
             this.Product = products;
@@ -99,24 +108,39 @@
                     "Aceptar");
                 return;
             }
-            if (this.Cantidad > 4000)
+            if (this.Cantidad > 8000)
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "Debes ingresar cantidades menores a 4000",
+                    "Advertencia",
+                    "Estas Ingresando Cantidades Mayores a 8000 ,Estas seguro",
                     "Aceptar");
                 return;
             }
 
-            this.ItemInventario = new InventarioModel();
-            this.ItemInventario.Id_Producto = this.Product.ID_Producto;
-            this.ItemInventario.Producto = this.Product.Nombre_Producto;
-            this.ItemInventario.Cantidad = this.Cantidad;
-            this.ItemInventario.Lote = this.Lote;
+            #region BuscarID
+            if (mainViewModel.InventarioActualMWM!=null)
+            {
+                IdList = mainViewModel.InventarioActualMWM.Count;
+            }
+            else
+            {
+                IdList = 0;
+            }
             
-
+            #endregion
+            mainViewModel.InventarioActualMWM.Add(new InventarioModel
+            {
+                Id = this.IdList,
+                Producto = this.Product.Nombre_Producto,
+                Id_Producto = this.Product.ID_Producto,
+                Cantidad = this.Cantidad,
+                Lote = this.Lote,
+            });
+            mainViewModel.Inventario = new InventarioViewModel();
+            await App.Navigator.PushAsync(new InventarioTabbedPage());
 
         }
+
         #endregion
     }
 }

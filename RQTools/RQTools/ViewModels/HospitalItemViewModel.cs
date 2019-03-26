@@ -19,7 +19,8 @@
 
         private async void SelectHospital()
         {
-            MainViewModel.GetInstance().Hospital = new HospitalViewModel(this);
+            MainViewModel.GetInstance().HospitalActual = this;
+            MainViewModel.GetInstance().Hospital = new HospitalViewModel();
             await App.Navigator.PushAsync(new HospitalPage());
         }
         #endregion

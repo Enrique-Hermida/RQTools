@@ -31,6 +31,7 @@
         private bool isRunning;
         private bool isEnabled;
         private bool isRefreshing;
+        private MainViewModel mainViewModel = MainViewModel.GetInstance();
         private Products scanProduct;
         private ObservableCollection<ProductsItemViewModel> productsnoCode;
         private ObservableCollection<InventarioModel> inventarioActual;
@@ -94,37 +95,18 @@
 
         #endregion
         #region Constructors
-        public InventarioViewModel(HospitalModel hospital)
+        public InventarioViewModel()
         {
             this.apiService = new ApiService();
-            this.Hospital = hospital;
+            this.Hospital = mainViewModel.HospitalActual;
             this.HospitalSeleccionado = Hospital.Nombre_Hospital;
             this.LoadProductsNoCode();
-            this.LoadDemoList();
+            this.InventarioActual = new ObservableCollection<InventarioModel>();
+            this.InventarioActual = mainViewModel.InventarioActualMWM;
 
         }
         #endregion
         #region Methods
-        private void LoadDemoList()
-        {
-            this.InventarioActual = new ObservableCollection<InventarioModel>();
-            this.InventarioActual.Add(new InventarioModel
-            {
-                Id = 0,
-                Producto = "Dializador 2.10",
-                Id_Producto = 1,
-                Cantidad = 100,
-                Lote = "20180205",
-            });
-            this.InventarioActual.Add(new InventarioModel
-            {
-                Id = 1,
-                Producto = "Dializador 1.90",
-                Id_Producto = 2,
-                Cantidad = 150,
-                Lote = "20180205",
-            });
-        }
         private async void LoadProductsNoCode()
         {
             this.IsRefreshing = true;

@@ -74,10 +74,10 @@
         #endregion
 
         #region Constructors
-        public HospitalViewModel(HospitalModel hospital)
+        public HospitalViewModel()
         {
             this.dataService = new DataServices();
-            this.Hospital = hospital;
+            this.Hospital = mainViewModel.HospitalActual;
             this.HospitalSeleccionado = Hospital.Nombre_Hospital;
             if (Hospital.ID_Hospital==0)
             {
@@ -138,7 +138,7 @@
         {
             if (ValidacionHospital == true)
             {
-                mainViewModel.Inventario = new InventarioViewModel(Hospital);
+                mainViewModel.Inventario = new InventarioViewModel();
                 await App.Navigator.PushAsync(new InventarioTabbedPage());
             }
             else
@@ -207,6 +207,7 @@
                 var listhospitals = JsonConvert.DeserializeObject<List<HospitalModel>>(result);
                 scanHospital = listhospitals[0];
                 this.HospitalSeleccionado = scanHospital.Nombre_Hospital.ToString();
+                mainViewModel.HospitalActual = scanHospital;
                 this.ValidacionHospital = true;
 
             }
