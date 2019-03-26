@@ -6,9 +6,7 @@
 
     class MainViewModel : BaseViewModel
     {
-        #region Attibrutes
 
-        #endregion
         #region Properties
         public DeviceUser deviceUser { get; set; }
         public HospitalModel HospitalActual { get; set; }
@@ -27,6 +25,7 @@
         public HospitalListViewModel HospitalList { get; set; }
         public InventarioViewModel Inventario { get; set; }
         public AddProductViewModel AddProduct { get; set; }
+        public EditOrEliminateViewModel EditOrEliminate { get; set; }
         #endregion
         #region Constructors
         public MainViewModel()
