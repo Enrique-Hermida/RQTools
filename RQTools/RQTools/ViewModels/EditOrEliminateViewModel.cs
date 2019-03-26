@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace RQTools.ViewModels
+﻿namespace RQTools.ViewModels
 {
-    class EditOrEliminateViewModel
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    public class EditOrEliminateViewModel : BaseViewModel
     {
+
     }
 }

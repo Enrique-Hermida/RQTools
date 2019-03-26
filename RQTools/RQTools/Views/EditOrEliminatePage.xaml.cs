@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace RQTools.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class EditAndEliminatePage : ContentPage
+	public partial class EditOrEliminatePage : ContentPage
 	{
-		public EditAndEliminatePage ()
+		public EditOrEliminatePage ()
 		{
 			InitializeComponent ();
 		}
