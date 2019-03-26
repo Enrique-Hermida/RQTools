@@ -6,7 +6,11 @@
              x:Class="RQTools.Views.ProductosConCodigoPage"
              Icon="ic_scan">
     <ContentPage.Content>
-        <StackLayout Padding="20" VerticalOptions="CenterAndExpand" >
+        <StackLayout 
+        Padding="20" 
+        VerticalOptions="CenterAndExpand" 
+        BindingContext="{Binding Inventario}">
+            
             <Label Text="Escanea el codigo de barras del Producto"  HorizontalOptions="CenterAndExpand" VerticalOptions="Center" TextColor="Black" Margin="0,10"/>
             <Button Text="Escanear Producto" BackgroundColor="White" BorderRadius="15" TextColor="Red" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" FontSize="20" FontAttributes="Bold" Command="{Binding ScanCommand}"/>
             <Entry Placeholder="código de barras" Text="{Binding Barcode, Mode=TwoWay}"/>

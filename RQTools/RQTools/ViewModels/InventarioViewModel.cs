@@ -5,6 +5,7 @@
     using RQTools.Interface;
     using RQTools.Models;
     using RQTools.Services;
+    using RQTools.Views;
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
@@ -103,7 +104,6 @@
             this.LoadProductsNoCode();
             this.InventarioActual = new ObservableCollection<InventarioModel>();
             this.InventarioActual = mainViewModel.InventarioActualMWM;
-
         }
         #endregion
         #region Methods
@@ -228,11 +228,12 @@
                         "Aceptar");
                 return;
             }
-            if (result.Contains("ID_Hospital"))
+            if (result.Contains("ID_Producto"))
             {
                 var listProducts = JsonConvert.DeserializeObject<List<Products>>(result);
                 scanProduct = listProducts[0];
-                
+                MainViewModel.GetInstance().AddProduct = new AddProductViewModel(scanProduct);
+                await App.Navigator.PushAsync(new AddInventarioPage());
 
             }
         }
