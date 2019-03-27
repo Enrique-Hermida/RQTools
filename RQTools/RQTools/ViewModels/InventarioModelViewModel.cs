@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace RQTools.ViewModels
 {
-   public class InventarioModelViewModel:InventarioModel
+   public class InventarioModelViewModel : InventarioModel
     {
         #region Commands
         public ICommand EditCommand
