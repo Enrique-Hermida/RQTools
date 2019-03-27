@@ -21,7 +21,7 @@
         private string nombreProducto;
         private bool isEnabled;
         private MainViewModel mainViewModel = MainViewModel.GetInstance();
-        private InventarioModel itemInventario;
+        private InventarioModelViewModel itemInventario;
         #endregion
         #region Properties
         public int Cantidad
@@ -49,7 +49,7 @@
             get { return this.isEnabled; }
             set { SetValue(ref this.isEnabled, value); }
         }
-        public InventarioModel ItemInventario
+        public InventarioModelViewModel ItemInventario
         {
             get { return this.itemInventario; }
             set { SetValue(ref this.itemInventario, value); }
@@ -128,7 +128,7 @@
             }
             
             #endregion
-            mainViewModel.InventarioActualMWM.Add(new InventarioModel
+            mainViewModel.InventarioActualMWM.Add(new InventarioModelViewModel
             {
                 Id = this.IdList,
                 Producto = this.Product.Nombre_Producto,

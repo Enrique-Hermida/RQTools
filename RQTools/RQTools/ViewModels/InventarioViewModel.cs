@@ -11,7 +11,6 @@
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Net.Http;
-    using System.Text;
     using System.Threading.Tasks;
     using System.Windows.Input;
     using Xamarin.Forms;
@@ -35,7 +34,7 @@
         private MainViewModel mainViewModel = MainViewModel.GetInstance();
         private Products scanProduct;
         private ObservableCollection<ProductsItemViewModel> productsnoCode;
-        private ObservableCollection<InventarioModel> inventarioActual;
+        private ObservableCollection<InventarioModelViewModel> inventarioActual;
         #endregion
         #region Properties
         public string Filter
@@ -88,7 +87,7 @@
             get { return this.productsnoCode; }
             set { SetValue(ref this.productsnoCode, value); }
         }
-        public ObservableCollection<InventarioModel> InventarioActual
+        public ObservableCollection<InventarioModelViewModel> InventarioActual
         {
             get { return this.inventarioActual; }
             set { SetValue(ref this.inventarioActual, value); }
@@ -102,7 +101,7 @@
             this.Hospital = mainViewModel.HospitalActual;
             this.HospitalSeleccionado = Hospital.Nombre_Hospital;
             this.LoadProductsNoCode();
-            this.InventarioActual = new ObservableCollection<InventarioModel>();
+            this.InventarioActual = new ObservableCollection<InventarioModelViewModel>();
             this.InventarioActual = mainViewModel.InventarioActualMWM;
         }
         #endregion

@@ -14,7 +14,7 @@
         public List<Products> ProductsNoCode { get; set; }
         public List<Products> ProductsWithCode { get; set; }
         public ObservableCollection<MenuItemViewModel> Menus { get; set; }
-        public ObservableCollection<InventarioModel> InventarioActualMWM { get; set; }
+        public ObservableCollection<InventarioModelViewModel> InventarioActualMWM { get; set; }
 
 
         #endregion
@@ -32,7 +32,7 @@
         {
             instance = this;
             this.Login = new LoginViewModel();
-            this.InventarioActualMWM = new ObservableCollection<InventarioModel>();
+            this.InventarioActualMWM = new ObservableCollection<InventarioModelViewModel>();
             this.LoadMenu();
 
         }
