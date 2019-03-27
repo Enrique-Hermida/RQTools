@@ -118,13 +118,15 @@
             }
 
             #region BuscarID
-            if (mainViewModel.InventarioActualMWM!=null)
+            if (mainViewModel.InventarioActualMWM.Count==0)
             {
-                IdList = mainViewModel.InventarioActualMWM.Count;
+                IdList = 0;
             }
             else
             {
-                IdList = 0;
+                var ultimoitem = mainViewModel.InventarioActualMWM.AsQueryable().LastOrDefault();
+                var ultimoindex = ultimoitem.Id;
+                IdList = ultimoindex + 1;
             }
             
             #endregion

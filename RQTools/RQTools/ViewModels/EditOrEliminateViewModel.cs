@@ -1,9 +1,14 @@
 ﻿namespace RQTools.ViewModels
 {
+    using GalaSoft.MvvmLight.Command;
     using RQTools.Models;
+    using RQTools.Views;
     using System;
     using System.Collections.Generic;
     using System.Text;
+    using System.Windows.Input;
+    using Xamarin.Forms;
+
     public class EditOrEliminateViewModel : BaseViewModel
     {
         #region Atributtes
@@ -51,10 +56,39 @@
         {
             this.ItemActual = new InventarioModel();
             this.ItemActual = itemList;
-            this.NombreProducto = ItemActual.Producto;
+            this.IdList = ItemActual.Id;
+            this.NombreProducto = ItemActual.Id.ToString();
             this.Lote = ItemActual.Lote;
             this.Cantidad = ItemActual.Cantidad;
 
+        }
+        #endregion
+        #region Commands
+        public ICommand EliminateCommand
+        {
+            get
+            {
+                return new RelayCommand(Eliminate);
+            }
+        }
+        public ICommand EditCommand
+        {
+            get
+            {
+                return new RelayCommand(Edit);
+            }
+        }
+        #endregion
+        #region Methods
+        private void Edit()
+        {
+            throw new NotImplementedException();
+        }
+        private async void Eliminate()
+        {
+            mainViewModel.InventarioActualMWM.RemoveAt(IdList);
+            mainViewModel.Inventario = new InventarioViewModel();
+            await App.Navigator.PushAsync(new InventarioTabbedPage());
         }
         #endregion
     }
