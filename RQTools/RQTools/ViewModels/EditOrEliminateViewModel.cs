@@ -5,6 +5,7 @@
     using RQTools.Views;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Text;
     using System.Windows.Input;
     using Xamarin.Forms;
@@ -57,7 +58,7 @@
             this.ItemActual = new InventarioModel();
             this.ItemActual = itemList;
             this.IdList = ItemActual.Id;
-            this.NombreProducto = ItemActual.Id.ToString();
+            this.NombreProducto = ItemActual.Producto;
             this.Lote = ItemActual.Lote;
             this.Cantidad = ItemActual.Cantidad;
 
@@ -86,7 +87,8 @@
         }
         private async void Eliminate()
         {
-            mainViewModel.InventarioActualMWM.RemoveAt(IdList);
+            var itemtoremove =mainViewModel.InventarioActualMWM.SingleOrDefault(r => r.Id == ItemActual.Id);
+            mainViewModel.InventarioActualMWM.Remove(itemtoremove);
             mainViewModel.Inventario = new InventarioViewModel();
             await App.Navigator.PushAsync(new InventarioTabbedPage());
         }
