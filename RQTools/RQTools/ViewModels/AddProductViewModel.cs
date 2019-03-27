@@ -114,7 +114,7 @@
                     "Advertencia",
                     "Estas Ingresando Cantidades Mayores a 8000 ,Estas seguro",
                     "Aceptar");
-                return;
+                
             }
 
             #region BuscarID

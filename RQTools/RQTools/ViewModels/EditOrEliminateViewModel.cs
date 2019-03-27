@@ -83,8 +83,60 @@
         #region Methods
         private void Edit()
         {
-            throw new NotImplementedException();
+            this.ValidateProduct();
         }
+
+        private async void ValidateProduct()
+        {
+            if (string.IsNullOrEmpty(this.Lote))
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "Debes ingresar el lote del producto seleccionado",
+                    "Aceptar");
+                return;
+            }
+            if (string.IsNullOrEmpty(this.Cantidad.ToString()))
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "Debes ingresar la cantidad del producto seleccionado",
+                    "Aceptar");
+                return;
+            }
+            if (this.Cantidad <= 0)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "Debes ingresar cantidades mayores a 0",
+                    "Aceptar");
+                return;
+            }
+            if (this.Cantidad > 8000)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Advertencia",
+                    "Estas Ingresando Cantidades Mayores a 8000 ,Estas seguro",
+                    "Aceptar");
+            }
+            #region Eliminar modelo anterior
+            var itemtoremove = mainViewModel.InventarioActualMWM.SingleOrDefault(r => r.Id == ItemActual.Id);
+            mainViewModel.InventarioActualMWM.Remove(itemtoremove);
+            #endregion
+            #region construir el nuevo modelo
+            mainViewModel.InventarioActualMWM.Add(new InventarioModelViewModel
+            {
+                Id = this.ItemActual.Id,
+                Producto = this.ItemActual.Producto,
+                Id_Producto = this.ItemActual.Id_Producto,
+                Cantidad = this.Cantidad,
+                Lote = this.Lote,
+            });
+            #endregion
+            mainViewModel.Inventario = new InventarioViewModel();
+            await App.Navigator.PushAsync(new InventarioTabbedPage());
+        }
+
         private async void Eliminate()
         {
             var itemtoremove =mainViewModel.InventarioActualMWM.SingleOrDefault(r => r.Id == ItemActual.Id);
