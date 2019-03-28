@@ -8,6 +8,7 @@
     {
         #region Atributtes
         private bool isRunning;
+        private int CajaDializadores = 24;
         private MainViewModel mainViewModel = MainViewModel.GetInstance();
         private ProductsPiece prodcuts;
         #endregion
@@ -48,12 +49,43 @@
             {
                 foreach (var producto in result)
                 {
-                    this.Prodcuts.Dializadores2_10 = this.Prodcuts.Dializadores2_10 + producto.Cantidad;
-                    
+                    this.Prodcuts.Dializadores2_10 = (this.Prodcuts.Dializadores2_10) + (producto.Cantidad)* CajaDializadores;                 
                 }
-                Console.Write(this.Prodcuts.Dializadores2_10.ToString());
-            }            
+                
+            }
+            result = from producto in InventarioFinal where producto.Id_Producto == 24 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.Dializadores2_10 = this.Prodcuts.Dializadores2_10 + producto.Cantidad;
+                }
+
+            }
             #endregion
+            Console.Write(this.Prodcuts.Dializadores2_10.ToString());
+            #region Dialiozadores 1.90
+            this.Prodcuts.Dializadores1_90 = 0;
+            result = from producto in InventarioFinal where producto.Id_Producto == 2 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.Dializadores1_90 = (this.Prodcuts.Dializadores1_90) + (producto.Cantidad) * CajaDializadores;
+                }
+
+            }
+            result = from producto in InventarioFinal where producto.Id_Producto == 25 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.Dializadores1_90 = this.Prodcuts.Dializadores1_90 + producto.Cantidad;
+                }
+
+            }
+            #endregion
+            Console.Write(this.Prodcuts.Dializadores1_90.ToString());
         }
         #endregion
     }
