@@ -209,4 +209,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\ic_bar_chart.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_update.png" />
+  </ItemGroup>
 </Project>

@@ -66,6 +66,13 @@
 
             this.Menus.Add(new MenuItemViewModel
             {
+                Icon = "ic_update",
+                PageName = "DataBase",
+                Title = "Pendientes",
+            });
+
+            this.Menus.Add(new MenuItemViewModel
+            {
                 Icon = "ic_exit_to_app",
                 PageName = "LoginPage",
                 Title = "Cerrar Sesion",

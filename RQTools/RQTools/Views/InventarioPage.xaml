@@ -72,6 +72,9 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <StackLayout>
+                <Button Text="Termiar" BackgroundColor="White" BorderRadius="15" TextColor="Red" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" FontSize="Medium" FontAttributes="Bold" Command="{Binding GoToFinalCommand}"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
