@@ -8,12 +8,14 @@
         <StackLayout
             BindingContext="{Binding HospitalList}">
             <SearchBar
+                BackgroundColor="#DFDFE2"
                 HeightRequest="46"
                 Text="{Binding Filter, Mode=TwoWay}"
                 Placeholder="Buscar Hospital"
                 SearchCommand="{Binding SearchCommand}">
             </SearchBar>
             <ListView 
+                BackgroundColor="#DFDFE2"
                 HasUnevenRows="true" 
                 IsPullToRefreshEnabled="true"
                 IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"

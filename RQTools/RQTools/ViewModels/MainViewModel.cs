@@ -26,6 +26,7 @@
         public InventarioViewModel Inventario { get; set; }
         public AddProductViewModel AddProduct { get; set; }
         public EditOrEliminateViewModel EditOrEliminate { get; set; }
+        public InventarioFinalViewModel InventarioFinal { get; set; }
         #endregion
         #region Constructors
         public MainViewModel()

@@ -236,6 +236,19 @@
 
             }
         }
+        private async void GoToFinal()
+        {
+            if (mainViewModel.InventarioActualMWM.Count == 0)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                        "Error",
+                        "No tienes Articulos en tu lista",
+                        "Aceptar");
+                return;
+            }
+            MainViewModel.GetInstance().InventarioFinal = new InventarioFinalViewModel();
+            await App.Navigator.PushAsync(new InventarioFinalPage());
+        }
         #endregion
         #region Commands
         public ICommand RefreshCommand
@@ -259,7 +272,13 @@
                 return new RelayCommand(Scan);
             }
         }
-
+        public ICommand GoToFinalCommand
+        {
+            get
+            {
+                return new RelayCommand(GoToFinal);
+            }
+        }
         #endregion
         #region Scanner
         public async Task<string> ScannerSKU()
