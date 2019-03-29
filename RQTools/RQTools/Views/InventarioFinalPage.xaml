@@ -7,8 +7,10 @@
     <ContentPage.Content>
         <StackLayout
             BindingContext="{Binding InventarioFinal}"
+            BackgroundColor="#DFDFE2"
             Padding="5">
             <ListView
+                BackgroundColor="#DFDFE2"
                 HasUnevenRows="true"
                 ItemsSource="{Binding ListProductsPiece}">
                 <ListView.ItemTemplate>
@@ -23,6 +25,12 @@
                                 <StackLayout
                                     Grid.Column="1"
                                     VerticalOptions="Center">
+                                    <Label 
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="Producto:"
+                                            TextColor="Black">
+                                    </Label>
                                     <Label 
                                             FontAttributes="Bold"
                                             FontSize="Medium" 
@@ -155,6 +163,13 @@
                                 Grid.Column="2">
                                     <Label 
                                     FontSize="Medium"
+                                    FontAttributes="Bold"
+                                    Text="Cantidad:"
+                                    TextColor="Black"
+                                    VerticalOptions="Center">
+                                    </Label>
+                                    <Label 
+                                    FontSize="Medium"
                                     Text="{Binding Dializadores2_10}"
                                     TextColor="Black"
                                     VerticalOptions="Center">
@@ -285,6 +300,9 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Button
+            Text="Subir Inventario">
+            </Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
