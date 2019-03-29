@@ -47,6 +47,108 @@
                                             Text="Dializadores 1.50"
                                             TextColor="Black">
                                     </Label>
+                                    <Label 
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="Dializadores 1.30"
+                                            TextColor="Black">
+                                    </Label>
+                                    <Label 
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="Dializadores 1.10"
+                                            TextColor="Black">
+                                    </Label>
+                                    <Label 
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="Dializadores 0.90"
+                                            TextColor="Black">
+                                    </Label>
+                                    <Label 
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="Dializadores 0.50"
+                                            TextColor="Black">
+                                    </Label>
+                                    <Label 
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="Lineas A/V Adulto"
+                                            TextColor="Black">
+                                    </Label>
+                                    <Label 
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="Lineas A/V Pedriaticas"
+                                            TextColor="Black">
+                                    </Label>
+                                    <Label 
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="Aquacid 2K"
+                                            TextColor="Black">
+                                    </Label>
+                                    <Label 
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="Aquacid 0K"
+                                            TextColor="Black">
+                                    </Label>
+                                    <Label 
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="Aquacid 3.5 Calcio"
+                                            TextColor="Black">
+                                    </Label>
+                                    <Label 
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="Quabic"
+                                            TextColor="Black">
+                                    </Label>
+                                    <Label 
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="Niprokart 650"
+                                            TextColor="Black">
+                                    </Label>
+                                    <Label 
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="Fistulas 15"
+                                            TextColor="Black">
+                                    </Label>
+                                    <Label 
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="Fistulas 16"
+                                            TextColor="Black">
+                                    </Label>
+                                    <Label 
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="Fistulas 17"
+                                            TextColor="Black">
+                                    </Label>
+                                    <Label 
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="Aquacetic"
+                                            TextColor="Black">
+                                    </Label>
+                                    <Label 
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="Cloro"
+                                            TextColor="Black">
+                                    </Label>
+                                    <Label 
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="Sal"
+                                            TextColor="Black">
+                                    </Label>
                                 </StackLayout>
                                 <StackLayout
                                 VerticalOptions="Center"
@@ -75,8 +177,109 @@
                                     TextColor="Black"
                                     VerticalOptions="Center">
                                     </Label>
+                                    <Label 
+                                    FontSize="Medium"
+                                    Text="{Binding Dializadores1_30}"
+                                    TextColor="Black"
+                                    VerticalOptions="Center">
+                                    </Label>
+                                    <Label 
+                                    FontSize="Medium"
+                                    Text="{Binding Dializadores0_90}"
+                                    TextColor="Black"
+                                    VerticalOptions="Center">
+                                    </Label>
+                                    <Label 
+                                    FontSize="Medium"
+                                    Text="{Binding Dializadores0_50}"
+                                    TextColor="Black"
+                                    VerticalOptions="Center">
+                                    </Label>
+                                    <Label 
+                                    FontSize="Medium"
+                                    Text="{Binding Dializadores0_30}"
+                                    TextColor="Black"
+                                    VerticalOptions="Center">
+                                    </Label>
+                                    <Label 
+                                    FontSize="Medium"
+                                    Text="{Binding LineasAdulto}"
+                                    TextColor="Black"
+                                    VerticalOptions="Center">
+                                    </Label>
+                                    <Label 
+                                    FontSize="Medium"
+                                    Text="{Binding LineasPedriaticas}"
+                                    TextColor="Black"
+                                    VerticalOptions="Center">
+                                    </Label>
+                                    <Label 
+                                    FontSize="Medium"
+                                    Text="{Binding Aquacid2k}"
+                                    TextColor="Black"
+                                    VerticalOptions="Center">
+                                    </Label>
+                                    <Label 
+                                    FontSize="Medium"
+                                    Text="{Binding Aquacid0k}"
+                                    TextColor="Black"
+                                    VerticalOptions="Center">
+                                    </Label>
+                                    <Label 
+                                    FontSize="Medium"
+                                    Text="{Binding Aquacid35CA}"
+                                    TextColor="Black"
+                                    VerticalOptions="Center">
+                                    </Label>
+                                    <Label 
+                                    FontSize="Medium"
+                                    Text="{Binding Quabic}"
+                                    TextColor="Black"
+                                    VerticalOptions="Center">
+                                    </Label>
+                                    <Label 
+                                    FontSize="Medium"
+                                    Text="{Binding Niprokart650}"
+                                    TextColor="Black"
+                                    VerticalOptions="Center">
+                                    </Label>
+                                    <Label 
+                                    FontSize="Medium"
+                                    Text="{Binding fistula15}"
+                                    TextColor="Black"
+                                    VerticalOptions="Center">
+                                    </Label>
+                                    <Label 
+                                    FontSize="Medium"
+                                    Text="{Binding fistula16}"
+                                    TextColor="Black"
+                                    VerticalOptions="Center">
+                                    </Label>
+                                    <Label 
+                                    FontSize="Medium"
+                                    Text="{Binding fistula17}"
+                                    TextColor="Black"
+                                    VerticalOptions="Center">
+                                    </Label>
+                                    <Label 
+                                    FontSize="Medium"
+                                    Text="{Binding Aquacetic}"
+                                    TextColor="Black"
+                                    VerticalOptions="Center">
+                                    </Label>
+                                    <Label 
+                                    FontSize="Medium"
+                                    Text="{Binding Cloro}"
+                                    TextColor="Black"
+                                    VerticalOptions="Center">
+                                    </Label>
+                                    <Label 
+                                    FontSize="Medium"
+                                    Text="{Binding Sal}"
+                                    TextColor="Black"
+                                    VerticalOptions="Center">
+                                    </Label>
                                 </StackLayout>
-
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
