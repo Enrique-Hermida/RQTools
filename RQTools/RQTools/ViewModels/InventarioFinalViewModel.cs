@@ -2,6 +2,7 @@
 {
     using RQTools.Models;
     using System;
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
     public class InventarioFinalViewModel :BaseViewModel
@@ -28,11 +29,17 @@
             get;
             set;
         }
+        public ObservableCollection<ProductsPiece> ListProductsPiece
+        {
+            get;
+            set;
+        }
         #endregion
         #region Constructor
         public InventarioFinalViewModel()
         {
             this.Prodcuts = new ProductsPiece();
+            this.ListProductsPiece = new ObservableCollection<ProductsPiece>();
             this.InventarioFinal = mainViewModel.InventarioActualMWM;
             this.GenerateListWihtProducts();
         }
@@ -62,8 +69,7 @@
                 }
 
             }
-            #endregion
-            Console.Write(this.Prodcuts.Dializadores2_10.ToString());
+            #endregion           
             #region Dialiozadores 1.90
             this.Prodcuts.Dializadores1_90 = 0;
             result = from producto in InventarioFinal where producto.Id_Producto == 2 select producto;
@@ -85,7 +91,28 @@
 
             }
             #endregion
-            Console.Write(this.Prodcuts.Dializadores1_90.ToString());
+            #region Dialiozadores 1.70
+            this.Prodcuts.Dializadores1_70 = 0;
+            result = from producto in InventarioFinal where producto.Id_Producto == 3 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.Dializadores1_70 = (this.Prodcuts.Dializadores1_70) + (producto.Cantidad) * CajaDializadores;
+                }
+
+            }
+            result = from producto in InventarioFinal where producto.Id_Producto == 26 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.Dializadores1_70 = this.Prodcuts.Dializadores1_70 + producto.Cantidad;
+                }
+
+            }
+            #endregion
+            this.ListProductsPiece.Add(Prodcuts);
         }
         #endregion
     }

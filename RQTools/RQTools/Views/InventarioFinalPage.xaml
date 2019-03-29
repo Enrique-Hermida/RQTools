@@ -5,10 +5,83 @@
              Title="Inventario Final"
              x:Class="RQTools.Views.InventarioFinalPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout
+            BindingContext="{Binding InventarioFinal}"
+            Padding="5">
+            <ListView
+                HasUnevenRows="true"
+                ItemsSource="{Binding ListProductsPiece}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <StackLayout
+                                    Grid.Column="1"
+                                    VerticalOptions="Center">
+                                    <Label 
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="Dializadores 2.10"
+                                            TextColor="Black">
+                                    </Label>
+                                    <Label 
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="Dializadores 1.90"
+                                            TextColor="Black">
+                                    </Label>
+                                    <Label 
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="Dializadores 1.70"
+                                            TextColor="Black">
+                                    </Label>
+                                    <Label 
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="Dializadores 1.50"
+                                            TextColor="Black">
+                                    </Label>
+                                </StackLayout>
+                                <StackLayout
+                                VerticalOptions="Center"
+                                Grid.Column="2">
+                                    <Label 
+                                   
+                                    Text="{Binding Dializadores2_10}"
+                                    TextColor="Black"
+                                    VerticalOptions="Center">
+                                    </Label>
+                                    <Label 
+                                    
+                                    Text="{Binding Dializadores1_90}"
+                                    TextColor="Black"
+                                    VerticalOptions="Center">
+                                    </Label>
+                                    <Label 
+                                    
+                                    Text="{Binding Dializadores1_70}"
+                                    TextColor="Black"
+                                    VerticalOptions="Center">
+                                    </Label>
+                                    <Label 
+                                   
+                                    Text="{Binding Dializadores1_50}"
+                                    TextColor="Black"
+                                    VerticalOptions="Center">
+                                    </Label>
+                                </StackLayout>
+
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
