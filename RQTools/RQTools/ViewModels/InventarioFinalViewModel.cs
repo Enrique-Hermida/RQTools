@@ -1,8 +1,6 @@
 ﻿namespace RQTools.ViewModels
 {
     using RQTools.Models;
-    using System;
-    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
     public class InventarioFinalViewModel :BaseViewModel
@@ -50,7 +48,6 @@
             this.IsRunning = true;
 
             #region Dialiozadores2.10
-            this.Prodcuts.Dializadores2_10 = 0;
             var result = from producto in InventarioFinal where producto.Id_Producto == 1 select producto;
             if (result!=null)
             {
@@ -71,7 +68,6 @@
             }
             #endregion           
             #region Dialiozadores 1.90
-            this.Prodcuts.Dializadores1_90 = 0;
             result = from producto in InventarioFinal where producto.Id_Producto == 2 select producto;
             if (result != null)
             {
@@ -92,7 +88,6 @@
             }
             #endregion
             #region Dialiozadores 1.70
-            this.Prodcuts.Dializadores1_70 = 0;
             result = from producto in InventarioFinal where producto.Id_Producto == 3 select producto;
             if (result != null)
             {
@@ -112,7 +107,128 @@
 
             }
             #endregion
+            #region Dialiozadores 1.50
+            result = from producto in InventarioFinal where producto.Id_Producto == 4 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.Dializadores1_50 = (this.Prodcuts.Dializadores1_50) + (producto.Cantidad) * CajaDializadores;
+                }
+
+            }
+            result = from producto in InventarioFinal where producto.Id_Producto == 27 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.Dializadores1_50 = this.Prodcuts.Dializadores1_50 + producto.Cantidad;
+                }
+
+            }
+            #endregion
+            #region Dialiozadores 1.30
+            result = from producto in InventarioFinal where producto.Id_Producto == 5 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.Dializadores1_30 = (this.Prodcuts.Dializadores1_30) + (producto.Cantidad) * CajaDializadores;
+                }
+
+            }
+            result = from producto in InventarioFinal where producto.Id_Producto == 28 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.Dializadores1_30 = this.Prodcuts.Dializadores1_30 + producto.Cantidad;
+                }
+
+            }
+            #endregion
+            #region Dialiozadores 1.10
+            result = from producto in InventarioFinal where producto.Id_Producto == 6 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.Dializadores1_10 = (this.Prodcuts.Dializadores1_10) + (producto.Cantidad) * CajaDializadores;
+                }
+
+            }
+            result = from producto in InventarioFinal where producto.Id_Producto == 29 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.Dializadores1_10 = this.Prodcuts.Dializadores1_10 + producto.Cantidad;
+                }
+
+            }
+            #endregion
+            #region Dialiozadores 0.90
+            result = from producto in InventarioFinal where producto.Id_Producto == 7 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.Dializadores0_90 = (this.Prodcuts.Dializadores0_90) + (producto.Cantidad) * CajaDializadores;
+                }
+
+            }
+            result = from producto in InventarioFinal where producto.Id_Producto == 30 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.Dializadores0_90 = this.Prodcuts.Dializadores0_90 + producto.Cantidad;
+                }
+
+            }
+            #endregion
+            #region Dialiozadores 0.70
+            result = from producto in InventarioFinal where producto.Id_Producto == 8 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.Dializadores0_70 = (this.Prodcuts.Dializadores0_70) + (producto.Cantidad) * CajaDializadores;
+                }
+
+            }
+            result = from producto in InventarioFinal where producto.Id_Producto == 31 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.Dializadores0_70 = this.Prodcuts.Dializadores0_70 + producto.Cantidad;
+                }
+
+            }
+            #endregion
+            #region Dialiozadores 0.50
+            result = from producto in InventarioFinal where producto.Id_Producto == 9 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.Dializadores0_50 = (this.Prodcuts.Dializadores0_50) + (producto.Cantidad) * CajaDializadores;
+                }
+
+            }
+            result = from producto in InventarioFinal where producto.Id_Producto == 32 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.Dializadores0_50 = this.Prodcuts.Dializadores0_50 + producto.Cantidad;
+                }
+
+            }
+            #endregion
             this.ListProductsPiece.Add(Prodcuts);
+            this.IsRunning = false;
         }
         #endregion
     }

@@ -300,6 +300,8 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <ActivityIndicator IsRunning="{Binding IsRunning, Mode=TwoWay}">
+            </ActivityIndicator>
             <Button
             Text="Subir Inventario">
             </Button>

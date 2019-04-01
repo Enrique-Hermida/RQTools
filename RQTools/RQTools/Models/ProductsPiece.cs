@@ -12,6 +12,7 @@
         public int Dializadores1_30 { get; set; }
         public int Dializadores1_10 { get; set; }
         public int Dializadores0_90 { get; set; }
+        public int Dializadores0_70 { get; set; }
         public int Dializadores0_50 { get; set; }
         public int Dializadores0_30 { get; set; }
         public int LineasAdulto { get; set; }
