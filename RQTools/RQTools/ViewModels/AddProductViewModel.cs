@@ -111,10 +111,46 @@
             if (this.Cantidad > 8000)
             {
                 await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "Estas Ingresando Cantidades Mayores a 8000 ",
+                    "Aceptar");
+                return;
+            }
+            if (this.Cantidad > 4000)
+            {
+                await Application.Current.MainPage.DisplayAlert(
                     "Advertencia",
-                    "Estas Ingresando Cantidades Mayores a 8000 ,Estas seguro",
+                    "Estas Ingresando Cantidades Mayores a 4000 pza, estas seguro ",
                     "Aceptar");
                 
+            }
+            if (this.Product.ID_Producto<24)
+            {
+                //caja de cualquier producto
+                if (this.Product.ID_Producto <= 9 && this.Cantidad > 300)
+                {
+                    await Application.Current.MainPage.DisplayAlert(
+                              "Error",
+                              "Estas Ingresando Cantidades Mayores a 300 Cajas ",
+                              "Aceptar");
+                    return;
+                }
+                if (this.Product.ID_Producto == 14 && this.Cantidad > 222)
+                {
+                    await Application.Current.MainPage.DisplayAlert(
+                              "Error",
+                              "Estas Ingresando Cantidades Mayores a 222 Cajas ",
+                              "Aceptar");
+                    return;
+                }
+                if (Product.ID_Producto >= 18 && Product.ID_Producto<= 20 && this.Cantidad > 88)
+                {
+                    await Application.Current.MainPage.DisplayAlert(
+                              "Error",
+                              "Estas Ingresando Cantidades Mayores a 88 Cajas ",
+                              "Aceptar");
+                    return;
+                }
             }
 
             #region BuscarID
