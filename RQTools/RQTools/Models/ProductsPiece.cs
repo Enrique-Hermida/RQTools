@@ -17,6 +17,8 @@
         public int Dializadores0_30 { get; set; }
         public int LineasAdulto { get; set; }
         public int LineasPedriaticas { get; set; }
+        public int KitCateter { get; set; }
+        public int KitFistula { get; set; }
         public int Aquacid2k { get; set; }
         public int Aquacid0k { get; set; }
         public int Aquacid35CA { get; set; }

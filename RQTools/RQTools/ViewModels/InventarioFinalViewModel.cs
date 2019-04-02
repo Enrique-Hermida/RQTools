@@ -8,6 +8,8 @@
         #region Atributtes
         private bool isRunning;
         private int CajaDializadores = 24;
+        private int CajaLineas = 24;
+        private int CajaGalones = 24;
         private MainViewModel mainViewModel = MainViewModel.GetInstance();
         private ProductsPiece prodcuts;
         #endregion
@@ -223,6 +225,297 @@
                 foreach (var producto in result)
                 {
                     this.Prodcuts.Dializadores0_50 = this.Prodcuts.Dializadores0_50 + producto.Cantidad;
+                }
+
+            }
+            #endregion
+            #region Lineas Adulto
+            result = from producto in InventarioFinal where producto.Id_Producto == 10 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.LineasAdulto = (this.Prodcuts.LineasAdulto) + (producto.Cantidad) * CajaLineas;
+                }
+
+            }
+            result = from producto in InventarioFinal where producto.Id_Producto == 33 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.LineasAdulto = this.Prodcuts.LineasAdulto + producto.Cantidad;
+                }
+
+            }
+            #endregion
+            #region Lineas Pedriaticas
+            result = from producto in InventarioFinal where producto.Id_Producto == 11 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.LineasPedriaticas = (this.Prodcuts.LineasPedriaticas) + (producto.Cantidad * CajaLineas);
+                }
+
+            }
+            result = from producto in InventarioFinal where producto.Id_Producto == 34 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.LineasPedriaticas = this.Prodcuts.LineasPedriaticas + producto.Cantidad;
+                }
+
+            }
+            #endregion
+            #region Aquacid 120-2K
+            result = from producto in InventarioFinal where producto.Id_Producto == 12 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.Aquacid2k = (this.Prodcuts.Aquacid2k) + (producto.Cantidad * CajaGalones);
+                }
+
+            }
+            result = from producto in InventarioFinal where producto.Id_Producto == 35 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.Aquacid2k = this.Prodcuts.Aquacid2k + producto.Cantidad;
+                }
+
+            }
+            #endregion
+            #region Aquacid 220-0K
+            result = from producto in InventarioFinal where producto.Id_Producto == 13 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.Aquacid0k = (this.Prodcuts.Aquacid0k) + (producto.Cantidad * CajaGalones);
+                }
+
+            }
+            result = from producto in InventarioFinal where producto.Id_Producto == 36 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.Aquacid0k = this.Prodcuts.Aquacid0k + producto.Cantidad;
+                }
+
+            }
+            #endregion
+            #region Quabic
+            result = from producto in InventarioFinal where producto.Id_Producto == 14 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.Quabic = (this.Prodcuts.Quabic) + (producto.Cantidad * CajaGalones);
+                }
+
+            }
+            result = from producto in InventarioFinal where producto.Id_Producto == 37 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.Quabic = this.Prodcuts.Quabic + producto.Cantidad;
+                }
+
+            }
+            #endregion
+            #region Nipro Kart 650
+            result = from producto in InventarioFinal where producto.Id_Producto == 15 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.Niprokart650 = (this.Prodcuts.Niprokart650) + (producto.Cantidad * CajaGalones);
+                }
+
+            }
+            result = from producto in InventarioFinal where producto.Id_Producto == 38 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.Niprokart650 = this.Prodcuts.Niprokart650 + producto.Cantidad;
+                }
+
+            }
+            #endregion
+            #region  Kit CD Cateter
+            result = from producto in InventarioFinal where producto.Id_Producto == 16 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.KitCateter = (this.Prodcuts.KitCateter) + (producto.Cantidad * 75);
+                }
+
+            }
+            result = from producto in InventarioFinal where producto.Id_Producto == 39 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.KitCateter = this.Prodcuts.KitCateter + producto.Cantidad;
+                }
+
+            }
+            #endregion
+            #region  Kit CD Fistula
+            result = from producto in InventarioFinal where producto.Id_Producto == 17 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.KitFistula = (this.Prodcuts.KitFistula) + (producto.Cantidad * 90);
+                }
+
+            }
+            result = from producto in InventarioFinal where producto.Id_Producto == 40 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.KitFistula = this.Prodcuts.KitFistula + producto.Cantidad;
+                }
+
+            }
+            #endregion
+            #region Fistula 15
+            result = from producto in InventarioFinal where producto.Id_Producto == 18 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.fistula15 = (this.Prodcuts.fistula15) + (producto.Cantidad * 50);
+                }
+
+            }
+            result = from producto in InventarioFinal where producto.Id_Producto == 41 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.fistula15 = this.Prodcuts.fistula15 + producto.Cantidad;
+                }
+
+            }
+            #endregion
+            #region Fistula 16
+            result = from producto in InventarioFinal where producto.Id_Producto == 19 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.fistula16 = (this.Prodcuts.fistula16) + (producto.Cantidad * 50);
+                }
+
+            }
+            result = from producto in InventarioFinal where producto.Id_Producto == 42 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.fistula16 = this.Prodcuts.fistula16 + producto.Cantidad;
+                }
+
+            }
+            #endregion
+            #region Fistula 17
+            result = from producto in InventarioFinal where producto.Id_Producto == 20 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.fistula17 = (this.Prodcuts.fistula17) + (producto.Cantidad * 50);
+                }
+
+            }
+            result = from producto in InventarioFinal where producto.Id_Producto == 43 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.fistula17 = this.Prodcuts.fistula17 + producto.Cantidad;
+                }
+
+            }
+            #endregion
+            #region Aquacetic
+            result = from producto in InventarioFinal where producto.Id_Producto == 21 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.Aquacetic = (this.Prodcuts.Aquacetic) + (producto.Cantidad * CajaGalones);
+                }
+
+            }
+            result = from producto in InventarioFinal where producto.Id_Producto == 44 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.Aquacetic = this.Prodcuts.Aquacetic + producto.Cantidad;
+                }
+
+            }
+            #endregion
+            #region Cloro
+            result = from producto in InventarioFinal where producto.Id_Producto == 22 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.Aquacetic = (this.Prodcuts.Aquacetic) + (producto.Cantidad * 15);
+                }
+
+            }
+            result = from producto in InventarioFinal where producto.Id_Producto == 45 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.Aquacetic = this.Prodcuts.Aquacetic + producto.Cantidad;
+                }
+
+            }
+            #endregion
+            #region Sal
+            result = from producto in InventarioFinal where producto.Id_Producto == 46 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.Sal = (this.Prodcuts.Sal) + producto.Cantidad;
+                }
+
+            }
+            #endregion
+            #region Aquacid 3.5 ca
+            result = from producto in InventarioFinal where producto.Id_Producto == 23 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.Aquacid35CA = (this.Prodcuts.Aquacid35CA) + (producto.Cantidad * CajaGalones);
+                }
+
+            }
+            result = from producto in InventarioFinal where producto.Id_Producto == 47 select producto;
+            if (result != null)
+            {
+                foreach (var producto in result)
+                {
+                    this.Prodcuts.Aquacid35CA = this.Prodcuts.Aquacid35CA + producto.Cantidad;
                 }
 
             }
