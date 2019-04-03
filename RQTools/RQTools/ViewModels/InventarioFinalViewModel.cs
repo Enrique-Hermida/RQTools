@@ -1,8 +1,11 @@
 ﻿namespace RQTools.ViewModels
 {
+    using GalaSoft.MvvmLight.Command;
     using RQTools.Models;
     using System.Collections.ObjectModel;
     using System.Linq;
+    using System.Windows.Input;
+
     public class InventarioFinalViewModel :BaseViewModel
     {
         #region Atributtes
@@ -522,6 +525,21 @@
             #endregion
             this.ListProductsPiece.Add(Prodcuts);
             this.IsRunning = false;
+        }
+        #endregion
+        #region Commands
+        public ICommand FinishCommand
+        {
+            get
+            {
+                return new RelayCommand(CargarWebServices);
+            }
+        }
+        #endregion
+        #region Methods
+        private async void CargarWebServices()
+        {
+
         }
         #endregion
     }

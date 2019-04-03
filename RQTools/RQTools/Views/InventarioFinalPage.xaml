@@ -303,7 +303,9 @@
             <ActivityIndicator IsRunning="{Binding IsRunning, Mode=TwoWay}">
             </ActivityIndicator>
             <Button
-            Text="Subir Inventario">
+            Text="Subir Inventario"
+            Command="{Binding FinishCommand}" 
+            IsEnabled="{Binding isEnabled, Mode=TwoWay}">
             </Button>
         </StackLayout>
     </ContentPage.Content>
