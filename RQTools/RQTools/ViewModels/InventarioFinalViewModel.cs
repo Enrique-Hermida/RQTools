@@ -573,29 +573,35 @@
                     "Aceptar"  );
                 return;
             }
-            var productWeb = new WebInvenatarioLote
+            for (int i = 0; i < mainViewModel.InventarioActualMWM.Count; i++)
             {
-                Producto = "Prueba2Celular",
-                Id_Inventario = "sininventario",
-                Id_Producto = 56,
-                Cantidad = 45,
-                Lote = "onlymetro",
-            };
-            var response = await this.apiService.Post(
-                "http://ryqmty.dyndns.org:8181", 
-                "/apiRest/public/api/Inventarios", 
-                "/nuevo", 
+                var itemActual = mainViewModel.InventarioActualMWM[i];
+                var productWeb = new WebInvenatarioLote
+                {
+                    
+                    Producto = itemActual.Producto,
+                    Id_Inventario = "sininventarioaun",
+                    Id_Producto = itemActual.Id_Producto,
+                    Cantidad = itemActual.Cantidad,
+                    Lote = itemActual.Lote,
+                };
+                var response = await this.apiService.Post(
+                "http://ryqmty.dyndns.org:8181",
+                "/apiRest/public/api/Inventarios",
+                "/nuevo",
                 productWeb);
-            if (!response.IsSuccess)
-            {
-                this.IsRunning = false;
-                this.IsEnabled = true;
-                await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    response.Message,
-                    "Aceptar");
-                return;
+                if (!response.IsSuccess)
+                {
+                    this.IsRunning = false;
+                    this.IsEnabled = true;
+                    await Application.Current.MainPage.DisplayAlert(
+                        "Error",
+                        response.Message,
+                        "Aceptar");
+                    return;
+                }
             }
+           
             this.IsRunning = false;
             this.IsEnabled = true;
             await App.Navigator.PopAsync();
