@@ -2,19 +2,26 @@
 {
     using GalaSoft.MvvmLight.Command;
     using RQTools.Models;
+    using RQTools.Services;
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows.Input;
+    using Xamarin.Forms;
 
     public class InventarioFinalViewModel :BaseViewModel
     {
+        #region Services
+        private ApiService apiService;
+        #endregion
         #region Atributtes
         private bool isRunning;
+        private bool isEnabled;
         private int CajaDializadores = 24;
         private int CajaLineas = 24;
         private int CajaGalones = 24;
         private MainViewModel mainViewModel = MainViewModel.GetInstance();
         private ProductsPiece prodcuts;
+        private WebInvenatarioLote webInvenatario;
         #endregion
         #region Popierties
         public bool IsRunning
@@ -22,6 +29,12 @@
             get { return this.isRunning; }
             set { SetValue(ref this.isRunning, value); }
         }
+        public bool IsEnabled
+        {
+            get { return this.isEnabled; }
+            set { this.SetValue(ref this.isEnabled, value); }
+        }
+
         public ProductsPiece Prodcuts
         {
             get { return this.prodcuts; }
@@ -37,11 +50,18 @@
             get;
             set;
         }
+        public WebInvenatarioLote WebInvenatario
+        {
+            get { return this.webInvenatario; }
+            set { SetValue(ref this.webInvenatario, value); }
+        }
         #endregion
         #region Constructor
         public InventarioFinalViewModel()
         {
+            this.apiService = new ApiService();
             this.Prodcuts = new ProductsPiece();
+            this.IsEnabled = true;
             this.ListProductsPiece = new ObservableCollection<ProductsPiece>();
             this.InventarioFinal = mainViewModel.InventarioActualMWM;
             this.GenerateListWihtProducts();
@@ -539,7 +559,46 @@
         #region Methods
         private async void CargarWebServices()
         {
+            this.IsRunning = true;
+            this.IsEnabled = false;
 
+            var connection = await this.apiService.CheckConnection();
+            if (!connection.IsSuccess)
+            {
+                this.IsRunning = false;
+                this.IsEnabled = true;
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "No hay conexion a Internet",
+                    "Aceptar"  );
+                return;
+            }
+            var productWeb = new WebInvenatarioLote
+            {
+                Producto = "Prueba2Celular",
+                Id_Inventario = "sininventario",
+                Id_Producto = 56,
+                Cantidad = 45,
+                Lote = "onlymetro",
+            };
+            var response = await this.apiService.Post(
+                "http://ryqmty.dyndns.org:8181", 
+                "/apiRest/public/api/Inventarios", 
+                "/nuevo", 
+                productWeb);
+            if (!response.IsSuccess)
+            {
+                this.IsRunning = false;
+                this.IsEnabled = true;
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    response.Message,
+                    "Aceptar");
+                return;
+            }
+            this.IsRunning = false;
+            this.IsEnabled = true;
+            await App.Navigator.PopAsync();
         }
         #endregion
     }
