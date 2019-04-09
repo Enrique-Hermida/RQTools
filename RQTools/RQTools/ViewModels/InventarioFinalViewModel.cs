@@ -1,8 +1,10 @@
 ﻿namespace RQTools.ViewModels
 {
     using GalaSoft.MvvmLight.Command;
+    using Plugin.Geolocator;
     using RQTools.Models;
     using RQTools.Services;
+    using System;
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows.Input;
@@ -14,8 +16,15 @@
         private ApiService apiService;
         #endregion
         #region Atributtes
+        private string idInventario;
+        private string fecha;
+        private string inventariador;
+        private string comentarios;
+        private string latitud;
+        private string longitud;
         private bool isRunning;
         private bool isEnabled;
+        private int idHospital;
         private int CajaDializadores = 24;
         private int CajaLineas = 24;
         private int CajaGalones = 24;
@@ -418,7 +427,7 @@
             {
                 foreach (var producto in result)
                 {
-                    this.Prodcuts.fistula15 = (this.Prodcuts.fistula15) + (producto.Cantidad * 50);
+                    this.Prodcuts.Fistula15 = (this.Prodcuts.Fistula15) + (producto.Cantidad * 50);
                 }
 
             }
@@ -427,7 +436,7 @@
             {
                 foreach (var producto in result)
                 {
-                    this.Prodcuts.fistula15 = this.Prodcuts.fistula15 + producto.Cantidad;
+                    this.Prodcuts.Fistula15 = this.Prodcuts.Fistula15 + producto.Cantidad;
                 }
 
             }
@@ -438,7 +447,7 @@
             {
                 foreach (var producto in result)
                 {
-                    this.Prodcuts.fistula16 = (this.Prodcuts.fistula16) + (producto.Cantidad * 50);
+                    this.Prodcuts.Fistula16 = (this.Prodcuts.Fistula16) + (producto.Cantidad * 50);
                 }
 
             }
@@ -447,7 +456,7 @@
             {
                 foreach (var producto in result)
                 {
-                    this.Prodcuts.fistula16 = this.Prodcuts.fistula16 + producto.Cantidad;
+                    this.Prodcuts.Fistula16 = this.Prodcuts.Fistula16 + producto.Cantidad;
                 }
 
             }
@@ -458,7 +467,7 @@
             {
                 foreach (var producto in result)
                 {
-                    this.Prodcuts.fistula17 = (this.Prodcuts.fistula17) + (producto.Cantidad * 50);
+                    this.Prodcuts.Fistula17 = (this.Prodcuts.Fistula17) + (producto.Cantidad * 50);
                 }
 
             }
@@ -467,7 +476,7 @@
             {
                 foreach (var producto in result)
                 {
-                    this.Prodcuts.fistula17 = this.Prodcuts.fistula17 + producto.Cantidad;
+                    this.Prodcuts.Fistula17 = this.Prodcuts.Fistula17 + producto.Cantidad;
                 }
 
             }
@@ -559,6 +568,7 @@
         #region Methods
         private async void CargarWebServices()
         {
+            this.GenerateHeaders();
             this.IsRunning = true;
             this.IsEnabled = false;
 
@@ -580,7 +590,7 @@
                 {
                     
                     Producto = itemActual.Producto,
-                    Id_Inventario = "sininventarioaun",
+                    Id_Inventario = this.idInventario,
                     Id_Producto = itemActual.Id_Producto,
                     Cantidad = itemActual.Cantidad,
                     Lote = itemActual.Lote,
@@ -601,10 +611,76 @@
                     return;
                 }
             }
-           
+            await Application.Current.MainPage.DisplayAlert(
+                         "Exitoso",
+                         "Inventario realizado ",
+                         "Aceptar");
+            
             this.IsRunning = false;
             this.IsEnabled = true;
             await App.Navigator.PopAsync();
+        }
+
+        private void GenerateHeaders()
+        {
+            //codigo hospital mas fecha y hora
+            try
+            {
+                DateTime Hoy = DateTime.Today;
+                string fecha_actual = Hoy.ToString("yyyy-MM-dd");
+                string hora_actual = Hoy.ToString("hh-mm-ss");
+                string codehosp = mainViewModel.HospitalActual.Codigo_Hospital;
+                this.idInventario = codehosp + fecha_actual + "-" + hora_actual;
+                this.fecha = fecha_actual+" "+hora_actual;
+                this.inventariador = mainViewModel.deviceUser.Name_User;
+                this.idHospital = mainViewModel.HospitalActual.ID_Hospital;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            this.InitializePlugin();
+                    
+        }
+
+        private async void InitializePlugin()
+        {
+            if (!CrossGeolocator.IsSupported)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "No pudimos obtener tus posicion ",
+                    "Aceptar");
+                return;
+            }
+            if (!CrossGeolocator.Current.IsGeolocationEnabled || !CrossGeolocator.Current.IsGeolocationAvailable)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "Revisa la configuracion GPS de su dispositivo  ",
+                    "Aceptar");
+                return;
+            }
+
+            await CrossGeolocator.Current.StartListeningAsync(new TimeSpan(0, 0, 1), 0.5);
+
+            CrossGeolocator.Current.PositionChanged += Current_PositionChanged;
+        }
+
+        private void Current_PositionChanged(object sender, Plugin.Geolocator.Abstractions.PositionEventArgs e)
+        {
+            if (CrossGeolocator.Current.IsListening)
+            {
+                var position = CrossGeolocator.Current.GetPositionAsync();
+                this.latitud = position.Result.Latitude.ToString();
+                this.longitud = position.Result.Longitude.ToString();
+            }
+            else
+            {
+                this.latitud = "0";
+                this.longitud = "0";
+            }
         }
         #endregion
     }
