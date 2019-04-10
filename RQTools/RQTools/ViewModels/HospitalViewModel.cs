@@ -130,6 +130,7 @@
                     "Aceptar");
                 return;
             }
+            mainViewModel.ComentariosDelInventario = MotivoNoCamara;
             mainViewModel.HospitalList = new HospitalListViewModel();
             await App.Navigator.PushAsync(new HospitalListPage());
         }

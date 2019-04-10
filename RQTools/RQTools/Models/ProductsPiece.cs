@@ -34,8 +34,8 @@
         public string Fecha { get; set; }
         public string Inventariador { get; set; }
         public string Comentarios { get; set; }
-        public long Latitud { get; set; }
-        public long Longitud { get; set; }
+        public string Latitud { get; set; }
+        public string Longitud { get; set; }
         #endregion
 
     }

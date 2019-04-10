@@ -17,9 +17,6 @@
         #endregion
         #region Atributtes
         private string idInventario;
-        private string fecha;
-        private string inventariador;
-        private string comentarios;
         private string latitud;
         private string longitud;
         private bool isRunning;
@@ -583,6 +580,7 @@
                     "Aceptar"  );
                 return;
             }
+
             for (int i = 0; i < mainViewModel.InventarioActualMWM.Count; i++)
             {
                 var itemActual = mainViewModel.InventarioActualMWM[i];
@@ -631,9 +629,18 @@
                 string hora_actual = Hoy.ToString("hh-mm-ss");
                 string codehosp = mainViewModel.HospitalActual.Codigo_Hospital;
                 this.idInventario = codehosp + fecha_actual + "-" + hora_actual;
-                this.fecha = fecha_actual+" "+hora_actual;
-                this.inventariador = mainViewModel.deviceUser.Name_User;
-                this.idHospital = mainViewModel.HospitalActual.ID_Hospital;
+
+                this.Prodcuts.Id_Inventario = this.idInventario;
+                this.Prodcuts.Fecha = fecha_actual+" "+hora_actual;
+                this.Prodcuts.Inventariador = mainViewModel.deviceUser.Name_User;
+                this.Prodcuts.Id_Hospital = mainViewModel.HospitalActual.ID_Hospital;
+                if (string.IsNullOrEmpty(mainViewModel.ComentariosDelInventario))
+                {
+                    this.Prodcuts.Comentarios = "Inventario Completo";
+                }
+                this.Prodcuts.Comentarios = mainViewModel.ComentariosDelInventario;
+                
+            
             }
             catch (Exception)
             {
@@ -664,7 +671,6 @@
             }
 
             await CrossGeolocator.Current.StartListeningAsync(new TimeSpan(0, 0, 1), 0.5);
-
             CrossGeolocator.Current.PositionChanged += Current_PositionChanged;
         }
 
@@ -673,14 +679,18 @@
             if (CrossGeolocator.Current.IsListening)
             {
                 var position = CrossGeolocator.Current.GetPositionAsync();
-                this.latitud = position.Result.Latitude.ToString();
-                this.longitud = position.Result.Longitude.ToString();
+
+                var la = position.Result.Latitude;
+                var lo = position.Result.Longitude;
+                this.Prodcuts.Latitud = la.ToString();
+                this.Prodcuts.Longitud = lo.ToString();
             }
             else
             {
-                this.latitud = "0";
-                this.longitud = "0";
+                this.Prodcuts.Latitud = "0.00000";
+                this.Prodcuts.Longitud = "0.00000";
             }
+            
         }
         #endregion
     }

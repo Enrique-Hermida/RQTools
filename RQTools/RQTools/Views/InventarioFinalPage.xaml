@@ -260,19 +260,19 @@
                                     </Label>
                                     <Label 
                                     FontSize="Medium"
-                                    Text="{Binding fistula15}"
+                                    Text="{Binding Fistula15}"
                                     TextColor="Black"
                                     VerticalOptions="Center">
                                     </Label>
                                     <Label 
                                     FontSize="Medium"
-                                    Text="{Binding fistula16}"
+                                    Text="{Binding Fistula16}"
                                     TextColor="Black"
                                     VerticalOptions="Center">
                                     </Label>
                                     <Label 
                                     FontSize="Medium"
-                                    Text="{Binding fistula17}"
+                                    Text="{Binding Fistula17}"
                                     TextColor="Black"
                                     VerticalOptions="Center">
                                     </Label>

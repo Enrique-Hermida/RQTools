@@ -15,7 +15,7 @@
         public List<Products> ProductsWithCode { get; set; }
         public ObservableCollection<MenuItemViewModel> Menus { get; set; }
         public ObservableCollection<InventarioModelViewModel> InventarioActualMWM { get; set; }
-
+        public string ComentariosDelInventario { get; set; }
 
         #endregion
         #region ViewModels
