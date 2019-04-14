@@ -2,6 +2,7 @@
 {
     using GalaSoft.MvvmLight.Command;
     using Plugin.Geolocator;
+    using Plugin.Geolocator.Abstractions;
     using RQTools.Models;
     using RQTools.Services;
     using System;
@@ -580,7 +581,20 @@
                     "Aceptar"  );
                 return;
             }
-
+            var responseMaster = await this.apiService.Post("http://ryqmty.dyndns.org:8181",
+                "/apiRest/public/api/Inventarios",
+                "/Master",
+                Prodcuts);
+            if (!responseMaster.IsSuccess)
+            {
+                this.IsRunning = false;
+                this.IsEnabled = true;
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    responseMaster.Message,
+                    "Aceptar");
+                return;
+            }
             for (int i = 0; i < mainViewModel.InventarioActualMWM.Count; i++)
             {
                 var itemActual = mainViewModel.InventarioActualMWM[i];
@@ -619,7 +633,7 @@
             await App.Navigator.PopAsync();
         }
 
-        private void GenerateHeaders()
+        private async void GenerateHeaders()
         {
             //codigo hospital mas fecha y hora
             try
@@ -639,59 +653,22 @@
                     this.Prodcuts.Comentarios = "Inventario Completo";
                 }
                 this.Prodcuts.Comentarios = mainViewModel.ComentariosDelInventario;
-                
-            
+                var locator = CrossGeolocator.Current;
+                locator.DesiredAccuracy = 50;
+                var myPosition = await locator.GetPositionAsync();
+                var lo = myPosition.Longitude;
+                var la = myPosition.Latitude;
+                this.Prodcuts.Longitud = lo.ToString();
+                this.Prodcuts.Latitud = la.ToString();
             }
             catch (Exception)
             {
 
                 throw;
-            }
-            this.InitializePlugin();
-                    
+            }                      
         }
 
-        private async void InitializePlugin()
-        {
-            if (!CrossGeolocator.IsSupported)
-            {
-                await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "No pudimos obtener tus posicion ",
-                    "Aceptar");
-                return;
-            }
-            if (!CrossGeolocator.Current.IsGeolocationEnabled || !CrossGeolocator.Current.IsGeolocationAvailable)
-            {
-                await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "Revisa la configuracion GPS de su dispositivo  ",
-                    "Aceptar");
-                return;
-            }
-
-            await CrossGeolocator.Current.StartListeningAsync(new TimeSpan(0, 0, 1), 0.5);
-            CrossGeolocator.Current.PositionChanged += Current_PositionChanged;
-        }
-
-        private void Current_PositionChanged(object sender, Plugin.Geolocator.Abstractions.PositionEventArgs e)
-        {
-            if (CrossGeolocator.Current.IsListening)
-            {
-                var position = CrossGeolocator.Current.GetPositionAsync();
-
-                var la = position.Result.Latitude;
-                var lo = position.Result.Longitude;
-                this.Prodcuts.Latitud = la.ToString();
-                this.Prodcuts.Longitud = lo.ToString();
-            }
-            else
-            {
-                this.Prodcuts.Latitud = "0.00000";
-                this.Prodcuts.Longitud = "0.00000";
-            }
-            
-        }
+       
         #endregion
     }
 }

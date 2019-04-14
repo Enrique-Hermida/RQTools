@@ -200,6 +200,12 @@
                                     </Label>
                                     <Label 
                                     FontSize="Medium"
+                                    Text="{Binding Dializadores1_10}"
+                                    TextColor="Black"
+                                    VerticalOptions="Center">
+                                    </Label
+                                    <Label 
+                                    FontSize="Medium"
                                     Text="{Binding Dializadores0_90}"
                                     TextColor="Black"
                                     VerticalOptions="Center">
