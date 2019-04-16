@@ -638,9 +638,9 @@
             //codigo hospital mas fecha y hora
             try
             {
-                DateTime Hoy = DateTime.Today;
+                DateTime Hoy = DateTime.Now;
                 string fecha_actual = Hoy.ToString("yyyy-MM-dd");
-                string hora_actual = Hoy.ToString("hh:mm:ss");
+                string hora_actual = Hoy.ToString("HH:mm:ss");
                 string codehosp = mainViewModel.HospitalActual.Codigo_Hospital;
                 this.idInventario = codehosp + "-" + fecha_actual + "-" + hora_actual;
 
