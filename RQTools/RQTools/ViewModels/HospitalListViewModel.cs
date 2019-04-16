@@ -81,7 +81,7 @@
                     "Error",
                      "Error en el servidor",
                     "aceptar");
-                await Application.Current.MainPage.Navigation.PopAsync();
+                await App.Navigator.PopAsync();
                 return;
             }
             if (response == null)

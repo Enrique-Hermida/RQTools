@@ -212,13 +212,13 @@
                                     </Label>
                                     <Label 
                                     FontSize="Medium"
-                                    Text="{Binding Dializadores0_50}"
+                                    Text="{Binding Dializadores0_70}"
                                     TextColor="Black"
                                     VerticalOptions="Center">
                                     </Label>
                                     <Label 
                                     FontSize="Medium"
-                                    Text="{Binding Dializadores0_30}"
+                                    Text="{Binding Dializadores0_50}"
                                     TextColor="Black"
                                     VerticalOptions="Center">
                                     </Label>

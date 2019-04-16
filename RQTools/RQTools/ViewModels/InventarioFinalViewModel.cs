@@ -640,14 +640,14 @@
             {
                 DateTime Hoy = DateTime.Today;
                 string fecha_actual = Hoy.ToString("yyyy-MM-dd");
-                string hora_actual = Hoy.ToString("hh-mm-ss");
+                string hora_actual = Hoy.ToString("hh:mm:ss");
                 string codehosp = mainViewModel.HospitalActual.Codigo_Hospital;
-                this.idInventario = codehosp + fecha_actual + "-" + hora_actual;
+                this.idInventario = codehosp + "-" + fecha_actual + "-" + hora_actual;
 
                 this.Prodcuts.Id_Inventario = this.idInventario;
                 this.Prodcuts.Fecha = fecha_actual+" "+hora_actual;
                 this.Prodcuts.Inventariador = mainViewModel.deviceUser.Name_User;
-                this.Prodcuts.Id_Hospital = mainViewModel.HospitalActual.ID_Hospital;
+                this.Prodcuts.Id_Hospital = mainViewModel.HospitalActual.Codigo_Hospital;
                 if (string.IsNullOrEmpty(mainViewModel.ComentariosDelInventario))
                 {
                     this.Prodcuts.Comentarios = "Inventario Completo";
