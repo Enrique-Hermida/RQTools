@@ -5,6 +5,7 @@
     using Plugin.Geolocator.Abstractions;
     using RQTools.Models;
     using RQTools.Services;
+    using RQTools.Views;
     using System;
     using System.Collections.ObjectModel;
     using System.Linq;
@@ -630,7 +631,11 @@
             
             this.IsRunning = false;
             this.IsEnabled = true;
-            await App.Navigator.PopAsync();
+            mainViewModel.InventarioActualMWM.Clear();
+            mainViewModel.ComentariosDelInventario = "";
+            mainViewModel.Principal = new PrincipalViewModel();
+            Application.Current.MainPage = new MasterPage();
+
         }
 
         private async void GenerateHeaders()
