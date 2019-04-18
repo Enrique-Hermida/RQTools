@@ -67,7 +67,27 @@
             var query = await this.connection.QueryAsync<HospitalModel>("delete from [HospitalModel]");
         }
         #endregion
-
+        #region Modelo Productos
+        public async Task<List<Products>> GetallProducts()
+        {
+            var query = await this.connection.QueryAsync<Products>("select * from [Products]");
+            var array = query.ToArray();
+            var list = array.Select(p => new Products
+            {
+                ID_Producto = p.ID_Producto,
+                Nombre_Producto = p.Nombre_Producto,
+                Clave = p.Clave,
+                Tipo_Producto = p.Tipo_Producto,
+                Scanbar = p.Scanbar,
+                Fecha_Modificacion = p.Fecha_Modificacion, 
+            }).ToList();
+            return list;
+        }
+        public async Task DelleteAllProducts()
+        {
+            var query = await this.connection.QueryAsync<Products>("delete from [Products]");
+        }
+        #endregion
         #region Public Methods
         public async Task Insert<T>(T model)
         {

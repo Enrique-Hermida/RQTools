@@ -166,7 +166,6 @@
                     Settings.IsRemembered = "false";
                 }
                 mainViewModel.Principal = new PrincipalViewModel();
-                // await Application.Current.MainPage.Navigation.PushAsync(new PrincipalPage());
                 Application.Current.MainPage = new MasterPage();
                 this.Password = string.Empty;
 
