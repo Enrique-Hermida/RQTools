@@ -19,11 +19,8 @@
         #endregion
         #region Atributtes
         private string idInventario;
-        private string latitud;
-        private string longitud;
         private bool isRunning;
         private bool isEnabled;
-        private int idHospital;
         private int CajaDializadores = 24;
         private int CajaLineas = 24;
         private int CajaGalones = 24;
@@ -591,7 +588,7 @@
                 this.IsRunning = false;
                 this.IsEnabled = true;
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
+                    "Error MasterService",
                     responseMaster.Message,
                     "Aceptar");
                 return;
@@ -663,8 +660,13 @@
                 var myPosition = await locator.GetPositionAsync();
                 var lo = myPosition.Longitude;
                 var la = myPosition.Latitude;
-                this.Prodcuts.Longitud = lo.ToString();
-                this.Prodcuts.Latitud = la.ToString();
+                this.Prodcuts.Longitud = lo;
+                this.Prodcuts.Latitud = la;
+                if (string.IsNullOrEmpty(this.Prodcuts.Longitud.ToString()) && string.IsNullOrEmpty(this.Prodcuts.Longitud.ToString()))
+                {
+                    this.Prodcuts.Longitud = 0.00000;
+                    this.Prodcuts.Latitud = 0.00000;
+                }
             }
             catch (Exception)
             {
