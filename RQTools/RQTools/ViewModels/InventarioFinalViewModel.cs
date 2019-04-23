@@ -24,6 +24,7 @@
         private int CajaDializadores = 24;
         private int CajaLineas = 24;
         private int CajaGalones = 24;
+        private IGeolocator locator;
         private MainViewModel mainViewModel = MainViewModel.GetInstance();
         private ProductsPiece prodcuts;
         private WebInvenatarioLote webInvenatario;
@@ -655,7 +656,7 @@
                     this.Prodcuts.Comentarios = "Inventario Completo";
                 }
                 this.Prodcuts.Comentarios = mainViewModel.ComentariosDelInventario;
-                var locator = CrossGeolocator.Current;
+                this.locator = CrossGeolocator.Current;
                 locator.DesiredAccuracy = 50;
                 var myPosition = await locator.GetPositionAsync();
                 var lo = myPosition.Longitude;
