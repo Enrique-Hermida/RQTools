@@ -34,6 +34,7 @@
             instance = this;
             this.Login = new LoginViewModel();
             this.InventarioActualMWM = new ObservableCollection<InventarioModelViewModel>();
+            this.HospitalListlist = new List<HospitalModel>();
             this.LoadMenu();
 
         }

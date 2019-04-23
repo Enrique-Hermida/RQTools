@@ -21,6 +21,7 @@
         private ObservableCollection<HospitalItemViewModel> hospital;
         private bool isRefreshing;
         private string filter;
+        private MainViewModel mainViewModel = MainViewModel.GetInstance();
         #endregion
         #region Properties
         public ObservableCollection<HospitalItemViewModel> Hospital
@@ -49,10 +50,28 @@
         {
             this.apiService = new ApiService();
             this.dataService = new DataServices();
-            this.LoadHospitals();
+            this.CheckDataOfViewModel();
+            
         }
+
+
         #endregion
+
         #region Methods
+        private void CheckDataOfViewModel()
+        {
+            if (mainViewModel.HospitalListlist.Count==0)
+            {
+                this.LoadHospitals();
+            }
+            else
+            {
+                this.isRefreshing = true;
+                this.Hospital = new ObservableCollection<HospitalItemViewModel>(
+                this.ToHospitalItemViewModel());
+                this.IsRefreshing = false;
+            }
+        }
         private async void LoadHospitals()
         {
             this.IsRefreshing = true;
@@ -79,7 +98,7 @@
                 this.IsRefreshing = false;
                 await Application.Current.MainPage.DisplayAlert(
                     "Error",
-                     "Error en el servidor",
+                     response.Message,
                     "aceptar");
                 await App.Navigator.PopAsync();
                 return;
