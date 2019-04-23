@@ -100,12 +100,28 @@
             this.apiService = new ApiService();
             this.Hospital = mainViewModel.HospitalActual;
             this.HospitalSeleccionado = Hospital.Nombre_Hospital;
-            this.LoadProductsNoCode();
+            this.CheckDataViewModel();
+            
             this.InventarioActual = new ObservableCollection<InventarioModelViewModel>();
             this.InventarioActual = mainViewModel.InventarioActualMWM;
         }
         #endregion
         #region Methods
+        private void CheckDataViewModel()
+        {
+            if (mainViewModel.ProductsNoCode.Count == 0)
+            {
+                this.LoadProductsNoCode();
+            }
+            else
+            {
+                this.isRefreshing = true;
+                this.ProductsNocode = new ObservableCollection<ProductsItemViewModel>(
+                this.ToProductsNoCodeItemViewModel());
+                this.IsRefreshing = false;
+            }
+
+        }
         private async void LoadProductsNoCode()
         {
             this.IsRefreshing = true;

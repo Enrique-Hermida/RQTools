@@ -12,7 +12,6 @@
         public HospitalModel HospitalActual { get; set; }
         public List<HospitalModel> HospitalListlist { get; set; }
         public List<Products> ProductsNoCode { get; set; }
-        public List<Products> ProductsWithCode { get; set; }
         public ObservableCollection<MenuItemViewModel> Menus { get; set; }
         public ObservableCollection<InventarioModelViewModel> InventarioActualMWM { get; set; }
         public string ComentariosDelInventario { get; set; }
@@ -34,6 +33,7 @@
             instance = this;
             this.Login = new LoginViewModel();
             this.InventarioActualMWM = new ObservableCollection<InventarioModelViewModel>();
+            this.ProductsNoCode = new List<Products>();
             this.HospitalListlist = new List<HospitalModel>();
             this.LoadMenu();
 
