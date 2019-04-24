@@ -9,8 +9,14 @@
             BindingContext="{Binding InventarioFinal}"
             BackgroundColor="#DFDFE2"
             Padding="5">
+            <ActivityIndicator 
+                Color="Red"
+                IsVisible="{Binding IsVisible, Mode=TwoWay}"
+                IsRunning="{Binding IsRunning, Mode=TwoWay}">
+            </ActivityIndicator>
             <ListView
                 BackgroundColor="#DFDFE2"
+                RowHeight="80"
                 HasUnevenRows="true"
                 ItemsSource="{Binding ListProductsPiece}">
                 <ListView.ItemTemplate>
@@ -19,12 +25,13 @@
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
                                 <StackLayout
                                     Grid.Column="1"
-                                    VerticalOptions="Center">
+                                    VerticalOptions="StartAndExpand"
+                                    HorizontalOptions="StartAndExpand">
+                                    
                                     <Label 
                                             FontAttributes="Bold"
                                             FontSize="Medium" 
@@ -159,7 +166,8 @@
                                     </Label>
                                 </StackLayout>
                                 <StackLayout
-                                VerticalOptions="Center"
+                                VerticalOptions="StartAndExpand"
+                                HorizontalOptions="End"
                                 Grid.Column="2">
                                     <Label 
                                     FontSize="Medium"
@@ -306,12 +314,15 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <ActivityIndicator IsRunning="{Binding IsRunning, Mode=TwoWay}">
-            </ActivityIndicator>
             <Button
-            Text="Subir Inventario"
-            Command="{Binding FinishCommand}" 
-            IsEnabled="{Binding isEnabled, Mode=TwoWay}">
+                VerticalOptions="End"
+                Text="Subir Inventario"
+                Command="{Binding FinishCommand}" 
+                IsEnabled="{Binding isEnabled, Mode=TwoWay}"
+                BackgroundColor="White"
+                BorderColor="Black"
+                BorderRadius="20" 
+                TextColor="Red">
             </Button>
         </StackLayout>
     </ContentPage.Content>

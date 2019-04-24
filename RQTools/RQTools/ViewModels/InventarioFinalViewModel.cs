@@ -21,6 +21,7 @@
         private string idInventario;
         private bool isRunning;
         private bool isEnabled;
+        public bool isVisible;
         private int CajaDializadores = 24;
         private int CajaLineas = 24;
         private int CajaGalones = 24;
@@ -40,7 +41,11 @@
             get { return this.isEnabled; }
             set { this.SetValue(ref this.isEnabled, value); }
         }
-
+        public bool IsVisible
+        {
+            get { return this.isVisible; }
+            set { this.SetValue(ref this.isVisible, value); }
+        }
         public ProductsPiece Prodcuts
         {
             get { return this.prodcuts; }
@@ -67,7 +72,8 @@
         {
             this.apiService = new ApiService();
             this.Prodcuts = new ProductsPiece();
-            this.IsEnabled = true;
+            this.IsEnabled = false;
+            this.IsVisible = true;
             this.ListProductsPiece = new ObservableCollection<ProductsPiece>();
             this.InventarioFinal = mainViewModel.InventarioActualMWM;
             this.GenerateListWihtProducts();
@@ -551,6 +557,8 @@
             #endregion
             this.ListProductsPiece.Add(Prodcuts);
             this.IsRunning = false;
+            this.IsVisible = false;
+            this.isEnabled = true;
         }
         #endregion
         #region Commands
