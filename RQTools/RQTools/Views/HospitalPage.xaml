@@ -8,12 +8,12 @@
         <Grid BindingContext="{Binding Hospital}">
             <Image Source="fondo.jpg" Aspect="AspectFill" />
             <BoxView Color="WhiteSmoke" Opacity="0.9" />
-            <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand">
+            <ScrollView Orientation="Vertical" VerticalOptions="StartAndExpand">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <Image Grid.Row="0" Source="LOGO.png" WidthRequest="100" HeightRequest="100" Margin="0,5,0,0"/>
                     <StackLayout Grid.Row="1" Padding="5,5" Orientation="Vertical" VerticalOptions="FillAndExpand">
@@ -33,7 +33,7 @@
                             <Button Text="Buscar Hospital" BackgroundColor="White" BorderRadius="10" TextColor="Red" VerticalOptions="Center" FontSize="Medium" FontAttributes="Bold" Command="{Binding BuscarHospitalCommand}"/>
                             <Entry Placeholder=" Introduce aqui el motivo por el cual no puedes hacer uso de la camara " PlaceholderColor="Black" Text="{Binding MotivoNoCamara, Mode=TwoWay}"/>
                         </StackLayout>
-                        <StackLayout Padding="0,0,0,10">
+                        <StackLayout Grid.Row="2" Padding="0,0,0,10">
                             <Button Text="Iniciar Inventario" BackgroundColor="White" BorderRadius="10" TextColor="Red" VerticalOptions="Center" FontSize="Medium" FontAttributes="Bold" Command="{Binding InciarInventariocommand}"/>
                         </StackLayout>
                         <StackLayout Padding="0,10,0,0"></StackLayout>

@@ -24,7 +24,7 @@
         public bool isVisible;
         private int CajaDializadores = 24;
         private int CajaLineas = 24;
-        private int CajaGalones = 24;
+        private int CajaGalones = 4;
         private IGeolocator locator;
         private MainViewModel mainViewModel = MainViewModel.GetInstance();
         private ProductsPiece prodcuts;

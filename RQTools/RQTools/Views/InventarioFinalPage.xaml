@@ -83,7 +83,25 @@
                                     <Label 
                                             FontAttributes="Bold"
                                             FontSize="Medium" 
+                                            Text="Dializadores 0.70"
+                                            TextColor="Black">
+                                    </Label>
+                                    <Label 
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
                                             Text="Dializadores 0.50"
+                                            TextColor="Black">
+                                    </Label>
+                                    <Label 
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="Kit C/D Cateter"
+                                            TextColor="Black">
+                                    </Label>
+                                    <Label 
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="Kit C/D Fistula"
                                             TextColor="Black">
                                     </Label>
                                     <Label 
@@ -227,6 +245,18 @@
                                     <Label 
                                     FontSize="Medium"
                                     Text="{Binding Dializadores0_50}"
+                                    TextColor="Black"
+                                    VerticalOptions="Center">
+                                    </Label>
+                                    <Label 
+                                    FontSize="Medium"
+                                    Text="{Binding KitCateter}"
+                                    TextColor="Black"
+                                    VerticalOptions="Center">
+                                    </Label>
+                                    <Label 
+                                    FontSize="Medium"
+                                    Text="{Binding KitFistula}"
                                     TextColor="Black"
                                     VerticalOptions="Center">
                                     </Label>
