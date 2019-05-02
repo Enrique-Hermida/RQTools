@@ -1,6 +1,7 @@
 ﻿namespace RQTools.ViewModels
 {
     using GalaSoft.MvvmLight.Command;
+    using Plugin.Geolocator;
     using RQTools.Models;
     using RQTools.Services;
     using RQTools.Views;
@@ -31,10 +32,9 @@
             this.dataService = new DataServices();
             this.LocalUser = MainViewModel.GetInstance().deviceUser;
             this.User = LocalUser.Name_User;
+            this.LoadGPSModule();
             
         }
-
-       
         #endregion
         #region Comandos
         public ICommand Shospiltalcommand
@@ -60,6 +60,28 @@
             MainViewModel.GetInstance().Hospital = new HospitalViewModel();
             await App.Navigator.PushAsync(new HospitalPage());
         }
+        private async void LoadGPSModule()
+        {
+            var locator = CrossGeolocator.Current;
+            locator.DesiredAccuracy = 50;
+            if (locator.IsGeolocationAvailable)
+            {
+                if (locator.IsGeolocationEnabled)
+                {
+                    if (!locator.IsListening)
+                    {
+
+                        await locator.StartListeningAsync(TimeSpan.FromSeconds(5), 10, true);
+                    }
+
+                    var myPosition = await locator.GetPositionAsync();
+                    var lo = myPosition.Longitude;
+                    var la = myPosition.Latitude;
+                    
+                }
+            }
+        }
+
         #endregion
     }
 }
