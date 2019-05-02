@@ -12,9 +12,6 @@
     using Services;
     using Xamarin.Forms;
     using System.Threading.Tasks;
-    using Android;
-    
-    using Android.Content.PM;
 
     class LoginViewModel : BaseViewModel
     {
