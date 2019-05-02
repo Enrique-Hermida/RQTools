@@ -664,13 +664,27 @@
                     this.Prodcuts.Comentarios = "Inventario Completo";
                 }
                 this.Prodcuts.Comentarios = mainViewModel.ComentariosDelInventario;
+
                 this.locator = CrossGeolocator.Current;
                 locator.DesiredAccuracy = 50;
-                var myPosition = await locator.GetPositionAsync();
-                var lo = myPosition.Longitude;
-                var la = myPosition.Latitude;
-                this.Prodcuts.Longitud = lo;
-                this.Prodcuts.Latitud = la;
+                if (locator.IsGeolocationAvailable)
+                {
+                    if (locator.IsGeolocationEnabled)
+                    {
+                        if (!locator.IsListening)
+                        {
+                            
+                            await locator.StartListeningAsync(TimeSpan.FromSeconds(5), 10, true);
+                        }
+
+                        var myPosition = await locator.GetPositionAsync();
+                        var lo = myPosition.Longitude;
+                        var la = myPosition.Latitude;
+                        this.Prodcuts.Longitud = lo;
+                        this.Prodcuts.Latitud = la;
+                    }
+                }
+                
                 if (string.IsNullOrEmpty(this.Prodcuts.Longitud.ToString()) && string.IsNullOrEmpty(this.Prodcuts.Longitud.ToString()))
                 {
                     this.Prodcuts.Longitud = 0.00000;

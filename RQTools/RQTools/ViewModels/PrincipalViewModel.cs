@@ -4,6 +4,7 @@
     using RQTools.Models;
     using RQTools.Services;
     using RQTools.Views;
+    using System;
     using System.Windows.Input;
     using Xamarin.Forms;
 
@@ -30,7 +31,10 @@
             this.dataService = new DataServices();
             this.LocalUser = MainViewModel.GetInstance().deviceUser;
             this.User = LocalUser.Name_User;
+            
         }
+
+       
         #endregion
         #region Comandos
         public ICommand Shospiltalcommand
@@ -40,9 +44,9 @@
                 return new RelayCommand(Shospital);
             }
         }
-
-       
-
+        
+        #endregion
+        #region Methods
         private async void Shospital()
         {
             #region Modelo Hospital Vacio
@@ -56,7 +60,6 @@
             MainViewModel.GetInstance().Hospital = new HospitalViewModel();
             await App.Navigator.PushAsync(new HospitalPage());
         }
-
         #endregion
     }
 }
