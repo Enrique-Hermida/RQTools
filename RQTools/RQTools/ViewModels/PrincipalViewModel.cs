@@ -77,7 +77,13 @@
                     var myPosition = await locator.GetPositionAsync();
                     var lo = myPosition.Longitude;
                     var la = myPosition.Latitude;
-                    
+                    if (string.IsNullOrEmpty(lo.ToString()))
+                    {
+                        await Application.Current.MainPage.DisplayAlert(
+                           "Error",
+                           "No se obtuvo la posicion",
+                           "Aceptar");
+                    }
                 }
             }
         }

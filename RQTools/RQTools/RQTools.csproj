@@ -2,6 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Enrique Hermida</Authors>
+    <Company>Reacticos y Quimicos S.A de C.V.</Company>
+    <Description>Aplicacion de invenatarios</Description>
+    <RepositoryUrl>https://gitlab.com/EnriqueHermida/rqtools.git</RepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

@@ -3,10 +3,7 @@
     using GalaSoft.MvvmLight.Command;
     using RQTools.Models;
     using RQTools.Views;
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using System.Windows.Input;
     using Xamarin.Forms;
 
@@ -118,6 +115,42 @@
                     "Advertencia",
                     "Estas Ingresando Cantidades Mayores a 8000 ,Estas seguro",
                     "Aceptar");
+            }
+            if (this.Cantidad > 4000)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Advertencia",
+                    "Estas Ingresando Cantidades Mayores a 4000 pza, estas seguro ",
+                    "Aceptar");
+
+            }
+            if (this.ItemActual.Id_Producto < 24)
+            {
+                //caja de cualquier producto
+                if (this.ItemActual.Id_Producto <= 9 && this.Cantidad > 300)
+                {
+                    await Application.Current.MainPage.DisplayAlert(
+                              "Error",
+                              "Estas Ingresando Cantidades Mayores a 300 Cajas ",
+                              "Aceptar");
+                    return;
+                }
+                if (this.ItemActual.Id_Producto == 14 && this.Cantidad > 222)
+                {
+                    await Application.Current.MainPage.DisplayAlert(
+                              "Error",
+                              "Estas Ingresando Cantidades Mayores a 222 Cajas ",
+                              "Aceptar");
+                    return;
+                }
+                if (ItemActual.Id_Producto >= 18 && ItemActual.Id_Producto <= 20 && this.Cantidad > 88)
+                {
+                    await Application.Current.MainPage.DisplayAlert(
+                              "Error",
+                              "Estas Ingresando Cantidades Mayores a 88 Cajas ",
+                              "Aceptar");
+                    return;
+                }
             }
             #region Eliminar modelo anterior
             var itemtoremove = mainViewModel.InventarioActualMWM.SingleOrDefault(r => r.Id == ItemActual.Id);
