@@ -89,6 +89,12 @@
     <CodesignKey>iPhone Distribution</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
+    <AppExtensionDebugBundleId />
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>LOGO.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="Implementations\PathService.cs" />
     <Compile Include="Implementations\QrCodeScanningService.cs" />
@@ -214,5 +220,9 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_update.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LOGO.ico" />
+    <BundleResource Include="Resources\Logo_App.png" />
   </ItemGroup>
 </Project>

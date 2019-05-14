@@ -6,6 +6,7 @@
     <Company>Reacticos y Quimicos S.A de C.V.</Company>
     <Description>Aplicacion de invenatarios</Description>
     <RepositoryUrl>https://gitlab.com/EnriqueHermida/rqtools.git</RepositoryUrl>
+    <ApplicationIcon>LOGO.ico</ApplicationIcon>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
