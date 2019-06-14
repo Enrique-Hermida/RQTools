@@ -28,9 +28,8 @@
                         </ActivityIndicator>
                         <Button Text="Iniciar Sesión" BackgroundColor="White" BorderRadius="20" TextColor="Red" Command="{Binding LoginCommand}" IsEnabled="{Binding isEnabled, Mode=TwoWay}" />
                     <StackLayout Orientation="Horizontal" Padding="10">
-                        <Label Text="Recuperar contraseña" TextColor="Black"/>
-                        <Label Text="Registrarse" HorizontalOptions="EndAndExpand" FontAttributes="Bold" TextColor="Black"/>
-                    </StackLayout>
+                            <Label Text="Recuperar contraseña" TextColor="Black"/>
+                        </StackLayout>
                 </StackLayout>
             </Grid>
             </ScrollView>
