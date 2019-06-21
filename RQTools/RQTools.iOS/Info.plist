@@ -57,5 +57,9 @@
 	<array>
 		<string>location</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>RQTools need access to camera.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>RQTools wants to access your gallery</string>
 </dict>
 </plist>
