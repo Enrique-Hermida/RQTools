@@ -6,12 +6,15 @@
              x:Class="RQTools.Views.InventarioPage"
              Icon="ic_list">
     <ContentPage.Content >
-        <StackLayout BindingContext="{Binding Inventario}">
+        <StackLayout
+            BindingContext="{Binding Inventario}"
+            BackgroundColor="#DFDFE2">
             <StackLayout>
                 <Label Text="Hospital:" TextColor="Black" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" FontSize="Medium" FontAttributes="Bold"/>
                 <Label Text="{Binding HospitalSeleccionado, Mode=TwoWay}" TextColor="Red" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" FontSize="Medium" FontAttributes="Bold"/>
             </StackLayout>
             <ListView 
+                BackgroundColor="#DFDFE2"
                 HasUnevenRows="true" 
                 IsPullToRefreshEnabled="true"
                 IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
@@ -73,7 +76,18 @@
                 </ListView.ItemTemplate>
             </ListView>
             <StackLayout>
-                <Button Text="Termiar Inventario" BackgroundColor="White" BorderRadius="15" BorderColor="Black" TextColor="Red" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" FontSize="Medium" FontAttributes="Bold" Command="{Binding GoToFinalCommand}"/>
+                <Button 
+                    Text="Terminar Inventario" 
+                    BackgroundColor="White" 
+                    BorderRadius="15" 
+                    BorderWidth="1"
+                    BorderColor="Black" 
+                    TextColor="Red" 
+                    HorizontalOptions="FillAndExpand" 
+                    VerticalOptions="Center" 
+                    FontSize="Medium" 
+                    FontAttributes="Bold" 
+                    Command="{Binding GoToFinalCommand}"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

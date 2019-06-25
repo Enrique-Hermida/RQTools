@@ -345,12 +345,14 @@
                 </ListView.ItemTemplate>
             </ListView>
             <Button
+                BorderWidth="1"
+                BorderColor="Black" 
                 VerticalOptions="End"
+                HorizontalOptions="FillAndExpand"
                 Text="Subir Inventario"
                 Command="{Binding FinishCommand}" 
                 IsEnabled="{Binding isEnabled, Mode=TwoWay}"
                 BackgroundColor="White"
-                BorderColor="Black"
                 BorderRadius="20" 
                 TextColor="Red">
             </Button>

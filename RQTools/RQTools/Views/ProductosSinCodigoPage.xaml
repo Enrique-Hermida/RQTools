@@ -15,6 +15,7 @@
                 SearchCommand="{Binding SearchCommand}">
             </SearchBar>
             <ListView 
+                BackgroundColor="#DFDFE2"
                 HasUnevenRows="true" 
                 IsPullToRefreshEnabled="true"
                 IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"

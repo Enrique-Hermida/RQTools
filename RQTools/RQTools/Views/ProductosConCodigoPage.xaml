@@ -1,17 +1,26 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             Title="Escanear"
-             BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             x:Class="RQTools.Views.ProductosConCodigoPage"
-             Icon="ic_scan">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" Title="Escanear" BindingContext="{Binding Main, Source={StaticResource Locator}}" x:Class="RQTools.Views.ProductosConCodigoPage" Icon="ic_scan">
     <ContentPage.Content>
-        <StackLayout 
-        Padding="20" 
-        VerticalOptions="CenterAndExpand" 
-        BindingContext="{Binding Inventario}">
-            <Label Text="Escanea el codigo de barras del Producto"  HorizontalOptions="CenterAndExpand" VerticalOptions="Center" TextColor="Black" Margin="0,10"/>
-            <Button Text="Escanear Producto" BackgroundColor="White" BorderRadius="15" TextColor="Red" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" FontSize="20" FontAttributes="Bold" Command="{Binding ScanCommand}"/>
+        <StackLayout Padding="5" BindingContext="{Binding Inventario}" BackgroundColor="#DFDFE2">
+            <StackLayout
+                 HorizontalOptions="FillAndExpand" 
+                 VerticalOptions="CenterAndExpand">
+                <Label 
+                Text="Escanea el codigo de barras del Producto" 
+                HorizontalOptions="CenterAndExpand" 
+                VerticalOptions="Center" 
+                TextColor="Black" 
+                Margin="0,10" />
+                <Button 
+                    Text="Escanear Producto" 
+                    BorderWidth="1" 
+                    BorderColor="Black" 
+                    BackgroundColor="White" 
+                    BorderRadius="15" 
+                    TextColor="Red"                    
+                    FontSize="20" FontAttributes="Bold"
+                Command="{Binding ScanCommand}" />         
+            </StackLayout>                
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
