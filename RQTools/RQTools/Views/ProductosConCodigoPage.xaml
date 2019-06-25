@@ -19,8 +19,8 @@
                     BorderRadius="15" 
                     TextColor="Red"                    
                     FontSize="20" FontAttributes="Bold"
-                Command="{Binding ScanCommand}" />         
-            </StackLayout>                
+                Command="{Binding ScanCommand}" />
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

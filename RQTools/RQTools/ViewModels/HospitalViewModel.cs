@@ -17,6 +17,7 @@
     {
         #region Services
         private DataServices dataService;
+        private ApiService apiService;
         #endregion
         #region Atributos
         private string ryqdns = "http://ryqmty.dyndns.org:8181";
@@ -69,14 +70,19 @@
             get { return this.isEnabled; }
             set { SetValue(ref this.isEnabled, value); }
         }
-
-        public HospitalModel Hospital { get; set; }
+        public HospitalModel Hospital
+        {
+            get;
+            set;
+        }
         #endregion
 
         #region Constructors
         public HospitalViewModel()
         {
             this.dataService = new DataServices();
+            this.apiService = new ApiService();
+
             this.Hospital = mainViewModel.HospitalActual;
             this.HospitalSeleccionado = Hospital.Nombre_Hospital;
             if (Hospital.ID_Hospital==0)
@@ -92,7 +98,7 @@
             
         }
         #endregion
-        #region Comandos
+        #region Commands
         public ICommand InciarInventariocommand
         {
             get
@@ -160,11 +166,27 @@
 
         private async void FindScanHospital()
         {
+            this.IsRunning = true;
+            this.IsEnabled = false;
+            var connection = await this.apiService.CheckConnection();
+            if (connection.IsSuccess)
+            {
+                this.FindCodeFromAPI();
+            }
+            else
+            {
+                //aqui va el metodo comprobar la bd y luego comprobar el codigo
+            }
+            
+        }
+
+        private async void FindCodeFromAPI()
+        {
             try
             {
                 HttpClient client = new HttpClient();
                 client.BaseAddress = new Uri(ryqdns);
-                url = string.Format("/apiRest/public/api/hospital/{0}",this.ScanResult);
+                url = string.Format("/apiRest/public/api/hospital/{0}", this.ScanResult);
                 var response = await client.GetAsync(url);
                 result = response.Content.ReadAsStringAsync().Result;
 
