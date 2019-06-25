@@ -31,7 +31,7 @@
                         <StackLayout Padding="15,0">
                             <Label Text="Selecciona esta opcion si tu camara no funciona" TextColor="Black" FontSize="Medium"/>
                             <Button Text="Buscar Hospital" BackgroundColor="White" BorderRadius="10" TextColor="Red" VerticalOptions="Center" FontSize="Medium" FontAttributes="Bold" Command="{Binding BuscarHospitalCommand}"/>
-                            <Entry Placeholder=" Introduce aqui el motivo por el cual no puedes hacer uso de la camara " PlaceholderColor="Black" Text="{Binding MotivoNoCamara, Mode=TwoWay}"/>
+                            <Editor Placeholder="Introduce aqui el motivo por el cual no puedes hacer uso de la camara " FontSize="Medium" PlaceholderColor="Black" Text="{Binding MotivoNoCamara, Mode=TwoWay}" AutoSize="TextChanges"/>
                         </StackLayout>
                         <StackLayout Grid.Row="2" Padding="0,0,0,10">
                             <Button Text="Iniciar Inventario" BackgroundColor="White" BorderRadius="10" TextColor="Red" VerticalOptions="Center" FontSize="Medium" FontAttributes="Bold" Command="{Binding InciarInventariocommand}"/>
