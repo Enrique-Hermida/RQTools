@@ -190,7 +190,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\RQTools\RQTools.csproj">
-      <Project>{52AA9434-AB66-41BA-8040-DF32C94537F3}</Project>
+      <Project>{A1BD90F1-B6FC-4933-B634-C86A209836CC}</Project>
       <Name>RQTools</Name>
     </ProjectReference>
   </ItemGroup>
