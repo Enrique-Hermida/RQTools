@@ -8,6 +8,8 @@
     using RQTools.Views;
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Linq;
     using System.Net.Http;
     using System.Threading.Tasks;
     using System.Windows.Input;
@@ -30,6 +32,7 @@
         private bool validacionhospital;
         private bool isRunning;
         private bool isEnabled;
+        private ObservableCollection<HospitalItemViewModel> hospitales;
         private HospitalModel scanHospital;
         private MainViewModel mainViewModel = MainViewModel.GetInstance();
         #endregion
@@ -47,7 +50,7 @@
         }
         public string HospitalSeleccionado
         {
-            get{ return this.hospitalseleccionado; }
+            get { return this.hospitalseleccionado; }
             set { SetValue(ref this.hospitalseleccionado, value); }
         }
         public string MotivoNoCamara
@@ -70,10 +73,20 @@
             get { return this.isEnabled; }
             set { SetValue(ref this.isEnabled, value); }
         }
+        public List<HospitalModel> ListHospitalsBD
+        {
+            get;
+            set;
+        }
         public HospitalModel Hospital
         {
             get;
             set;
+        }
+        public ObservableCollection<HospitalItemViewModel> Hospitales
+        {
+            get { return this.hospitales; }
+            set { SetValue(ref this.hospitales, value); }
         }
         #endregion
 
@@ -85,7 +98,7 @@
 
             this.Hospital = mainViewModel.HospitalActual;
             this.HospitalSeleccionado = Hospital.Nombre_Hospital;
-            if (Hospital.ID_Hospital==0)
+            if (Hospital.ID_Hospital == 0)
             {
                 //obvi que es porque no hay hospital seleccionado
                 this.ValidacionHospital = false;
@@ -95,7 +108,7 @@
                 //obvi que es porque si hay hospital seleccionado
                 this.ValidacionHospital = true;
             }
-            
+
         }
         #endregion
         #region Commands
@@ -106,7 +119,7 @@
                 return new RelayCommand(IniciarInventario);
             }
         }
-        
+
         public ICommand BuscarHospitalCommand
         {
             get
@@ -161,7 +174,7 @@
 
         private async void Scan()
         {
-            Barcode = await ScannerSKU(); 
+            Barcode = await ScannerSKU();
         }
 
         private async void FindScanHospital()
@@ -172,12 +185,99 @@
             if (connection.IsSuccess)
             {
                 this.FindCodeFromAPI();
+                this.LoadHospitalsFromAPI();
             }
             else
             {
-                //aqui va el metodo comprobar la bd y luego comprobar el codigo
+                this.LoadHospitalsFromBD();
             }
-            
+
+        }
+
+        private async Task LoadHospitalsFromBD()
+        {
+            var listhosp = await this.dataService.GetAllHospitals();
+
+            if (listhosp.Count==0)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                     "Error",
+                     "Sin Datos en BD",
+                     "aceptar");
+               
+                this.IsRunning = false;
+                this.IsEnabled = true;
+
+                return;
+            }
+            mainViewModel.HospitalListlist = listhosp;
+            this.Hospitales = new ObservableCollection<HospitalItemViewModel>(
+                this.ToHospitalItemViewModel());
+            if (listhosp.Exists(x => x.Codigo_Hospital == this.ScanResult))
+            {
+                var temphosp = Hospitales.SingleOrDefault(r => r.Codigo_Hospital == this.ScanResult);
+                scanHospital = temphosp;
+                this.HospitalSeleccionado = scanHospital.Nombre_Hospital.ToString();
+                mainViewModel.HospitalActual = scanHospital;
+                this.ValidacionHospital = true;
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                     "Error",
+                     "Codigo Inexistente",
+                     "aceptar");
+
+                this.IsRunning = false;
+                this.IsEnabled = true;
+
+                return;
+            }
+
+            this.IsRunning = false;
+            this.IsEnabled = true;
+        }
+
+        private async void LoadHospitalsFromAPI()
+        {
+            this.IsRunning = true;
+            this.IsEnabled = false;
+
+            var response = await this.apiService.GetList<HospitalModel>(
+              "http://ryqmty.dyndns.org:8181",
+               "/apiRest",
+               "/public/api/hospitales");
+
+            if (!response.IsSuccess)
+            {
+                this.IsRunning = false;
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                     response.Message,
+                    "aceptar");
+                return;
+            }
+            if (response == null)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "No hay respuesta en el servido, intenta mas tarde",
+                    "Aceptar");
+                return;
+            }
+            this.ListHospitalsBD = (List<HospitalModel>)response.Result;
+            MainViewModel.GetInstance().HospitalListlist = (List<HospitalModel>)response.Result;
+            this.DeleteandSaveHospitalsFromDB();
+
+
+            this.IsRunning = false;
+            this.IsEnabled = true;
+        }
+
+        private async Task DeleteandSaveHospitalsFromDB()
+        {
+            await this.dataService.DelleteAllHospitals();
+            this.dataService.Insert(this.ListHospitalsBD);
         }
 
         private async void FindCodeFromAPI()
@@ -234,6 +334,16 @@
                 this.ValidacionHospital = true;
 
             }
+        }
+        private IEnumerable<HospitalItemViewModel> ToHospitalItemViewModel()
+        {
+            return MainViewModel.GetInstance().HospitalListlist.Select(h => new HospitalItemViewModel
+            {
+                ID_Hospital = h.ID_Hospital,
+                Nombre_Hospital = h.Nombre_Hospital,
+                Codigo_Hospital = h.Codigo_Hospital,
+                Activo = h.Activo,
+            });
         }
         #endregion
 

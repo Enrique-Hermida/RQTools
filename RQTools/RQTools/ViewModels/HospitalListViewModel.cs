@@ -2,6 +2,7 @@
 {
     using GalaSoft.MvvmLight.Command;
     using RQTools.Models;
+    using RQTools.Views;
     using RQTools.Services;
     using System;
     using System.Collections.Generic;
@@ -84,7 +85,8 @@
                     "Error",
                      "No hay Internet",
                     "aceptar");
-                await Application.Current.MainPage.Navigation.PopAsync();
+                mainViewModel.Hospital = new HospitalViewModel();
+                await App.Navigator.PushAsync(new HospitalPage());
                 return;
             }
 
