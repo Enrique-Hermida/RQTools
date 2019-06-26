@@ -11,6 +11,7 @@
     using System.Text;
     using System.Windows.Input;
     using Xamarin.Forms;
+    using System.Threading.Tasks;
 
     public class HospitalListViewModel : BaseViewModel
     {
@@ -77,23 +78,60 @@
         {
             this.IsRefreshing = true;
             var connection = await this.apiService.CheckConnection();
+            var listhosp = await this.dataService.GetAllHospitals();
 
-            if (!connection.IsSuccess)
+            if (!connection.IsSuccess && listhosp.Count==0)
             {
                 this.IsRefreshing = false;
                 await Application.Current.MainPage.DisplayAlert(
                     "Error",
-                     "No hay Internet",
+                     "No hay conexión a Intenet , Base de Datos vacía",
                     "aceptar");
+
                 mainViewModel.Hospital = new HospitalViewModel();
                 await App.Navigator.PushAsync(new HospitalPage());
                 return;
             }
 
+            if (connection.IsSuccess)
+            {
+                this.LoadDataFromAPI();
+            }
+            else
+            {
+                this.LoadDataFromDB();
+            }
+          
+        }
+
+        private async Task LoadDataFromDB()
+        {
+            var listhosp = await this.dataService.GetAllHospitals();
+
+            if (listhosp.Count == 0)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                     "Error",
+                     "Sin Datos en BD",
+                     "aceptar");
+
+                mainViewModel.Hospital = new HospitalViewModel();
+                await App.Navigator.PushAsync(new HospitalPage());
+
+                return;
+            }
+            mainViewModel.HospitalListlist = listhosp;
+            this.Hospital = new ObservableCollection<HospitalItemViewModel>(
+                this.ToHospitalItemViewModel());
+            this.IsRefreshing = false;
+        }
+
+        private async void LoadDataFromAPI()
+        {
             var response = await this.apiService.GetList<HospitalModel>(
-               "http://ryqmty.dyndns.org:8181",
-                "/apiRest",
-                "/public/api/hospitales");
+             "http://ryqmty.dyndns.org:8181",
+              "/apiRest",
+              "/public/api/hospitales");
 
             if (!response.IsSuccess)
             {
@@ -114,7 +152,7 @@
                 return;
             }
 
-            MainViewModel.GetInstance().HospitalListlist = (List<HospitalModel>)response.Result;
+           mainViewModel.HospitalListlist = (List<HospitalModel>)response.Result;
             this.Hospital = new ObservableCollection<HospitalItemViewModel>(
                 this.ToHospitalItemViewModel());
             this.IsRefreshing = false;
@@ -122,7 +160,7 @@
 
         private IEnumerable<HospitalItemViewModel> ToHospitalItemViewModel()
         {
-            return MainViewModel.GetInstance().HospitalListlist.Select(h => new HospitalItemViewModel
+            return mainViewModel.HospitalListlist.Select(h => new HospitalItemViewModel
             {
                 ID_Hospital = h.ID_Hospital,
                 Nombre_Hospital = h.Nombre_Hospital,
