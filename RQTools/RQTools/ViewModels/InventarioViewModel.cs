@@ -19,6 +19,7 @@
     {
         #region Services
         private ApiService apiService;
+        private DataServices dataService;
         #endregion
         #region Atributtes
         private string ryqdns = "http://ryqmty.dyndns.org:8181";
@@ -98,6 +99,7 @@
         public InventarioViewModel()
         {
             this.apiService = new ApiService();
+            this.dataService = new DataServices();
             this.Hospital = mainViewModel.HospitalActual;
             this.HospitalSeleccionado = Hospital.Nombre_Hospital;
             this.CheckDataViewModel();
@@ -126,18 +128,63 @@
         {
             this.IsRefreshing = true;
             var connection = await this.apiService.CheckConnection();
+            var listproducts = await this.dataService.GetallProducts();
 
-            if (!connection.IsSuccess)
+            if (!connection.IsSuccess && listproducts.Count==0 )
             {
                 this.IsRefreshing = false;
                 await Application.Current.MainPage.DisplayAlert(
                     "Error",
-                     "No hay Internet",
+                     "No hay Internet , No hay datos en BD",
                     "aceptar");
-                await Application.Current.MainPage.Navigation.PopAsync();
+
+                mainViewModel.Hospital = new HospitalViewModel();
+                await App.Navigator.PushAsync(new HospitalPage());
+
+                return;
+            }
+            if (connection.IsSuccess)
+            {
+                this.LoadDataFromAPI();
+                this.IsRunning = false;
+                this.IsEnabled = true;
+            }
+            else
+            {
+                this.LoadDataFromDB();
+                this.IsRunning = false;
+                this.IsEnabled = true;
+            }
+        }
+
+        private async Task LoadDataFromDB()
+        {
+            var listproducts = await this.dataService.GetallProducts();
+
+            if (listproducts.Count == 0)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                     "Error",
+                     "Sin Datos en BD",
+                     "aceptar");
+
+                mainViewModel.Hospital = new HospitalViewModel();
+                await App.Navigator.PushAsync(new HospitalPage());
+
+                this.IsRunning = false;
+                this.IsEnabled = true;
+
                 return;
             }
 
+            mainViewModel.ProductsNoCode = listproducts;
+            this.ProductsNocode = new ObservableCollection<ProductsItemViewModel>(
+                this.ToProductsNoCodeItemViewModel());
+            
+        }
+
+        private async void LoadDataFromAPI()
+        {
             var response = await this.apiService.GetList<Products>(
                "http://ryqmty.dyndns.org:8181",
                 "/apiRest",
@@ -162,10 +209,17 @@
                 return;
             }
 
-            MainViewModel.GetInstance().ProductsNoCode = (List<Products>)response.Result;
+            mainViewModel.ProductsNoCode = (List<Products>)response.Result;
             this.ProductsNocode = new ObservableCollection<ProductsItemViewModel>(
                 this.ToProductsNoCodeItemViewModel());
-            this.IsRefreshing = false;
+            this.DeleteAndInsertProducts();
+            
+        }
+
+        private async Task DeleteAndInsertProducts()
+        {
+            await this.dataService.DelleteAllProducts();
+            this.dataService.Insert(mainViewModel.ProductsNoCode);
         }
 
         private IEnumerable<ProductsItemViewModel> ToProductsNoCodeItemViewModel()
@@ -199,6 +253,51 @@
             Barcode = await ScannerSKU();
         }
         private async void FindScanProdcuct()
+        {
+            var connection = await this.apiService.CheckConnection();
+            var listproducts = await this.dataService.GetallProducts();
+
+            if (!connection.IsSuccess && listproducts.Count == 0)
+            {
+                this.IsRefreshing = false;
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                     "No hay Internet , No hay datos en BD",
+                    "aceptar");
+
+                mainViewModel.Hospital = new HospitalViewModel();
+                await App.Navigator.PushAsync(new HospitalPage());
+
+                return;
+            }
+            if (connection.IsSuccess)
+            {
+                this.FindCodeFromAPI();
+                this.IsRunning = false;
+                this.IsEnabled = true;
+            }
+            else
+            {
+                this.FindCodeFromDB();
+                this.IsRunning = false;
+                this.IsEnabled = true;
+            }
+           
+        }
+
+        private async Task FindCodeFromDB()
+        {
+            this.LoadDataFromDB();
+            if (mainViewModel.ProductsNoCode.Exists(x => x.Scanbar == this.ScanResult))
+            {
+                var tempproduct = this.ProductsNocode.SingleOrDefault(r => r.Scanbar == this.ScanResult);
+                scanProduct = tempproduct;
+                mainViewModel.AddProduct = new AddProductViewModel(scanProduct);
+                await App.Navigator.PushAsync(new AddInventarioPage());
+            }
+        }
+
+        private async void FindCodeFromAPI()
         {
             try
             {
@@ -247,11 +346,12 @@
             {
                 var listProducts = JsonConvert.DeserializeObject<List<Products>>(result);
                 scanProduct = listProducts[0];
-                MainViewModel.GetInstance().AddProduct = new AddProductViewModel(scanProduct);
+                mainViewModel.AddProduct = new AddProductViewModel(scanProduct);
                 await App.Navigator.PushAsync(new AddInventarioPage());
 
             }
         }
+
         private async void GoToFinal()
         {
             if (mainViewModel.InventarioActualMWM.Count == 0)
@@ -304,7 +404,19 @@
                 var scanner = DependencyService.Get<IQrCodeScanningService>();
                 this.ScanResult = await scanner.ScanAsync();
                 this.ScanResult = ScanResult.ToString();
-                this.FindScanProdcuct();
+                if (ScanResult.Equals("0"))
+                {
+                    await Application.Current.MainPage.DisplayAlert(
+                        "Error",
+                        "No tienes Articulos en tu lista",
+                        "Aceptar");
+                    return ScanResult;
+                }
+                else
+                {
+                    this.FindScanProdcuct();
+                }
+                
                 return ScanResult;
 
             }

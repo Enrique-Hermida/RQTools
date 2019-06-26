@@ -23,6 +23,7 @@
             this.connection = new SQLiteAsyncConnection(databasePath);
             await connection.CreateTableAsync<DeviceUser>().ConfigureAwait(false);
             await connection.CreateTableAsync<HospitalModel>().ConfigureAwait(false);
+            await connection.CreateTableAsync<Products>().ConfigureAwait(false);
         }
 
         #region Modelo Usuario
@@ -45,7 +46,6 @@
             var query = await this.connection.QueryAsync<DeviceUser>("delete from [DeviceUser]");
         }
         #endregion
-
         #region Modelo Hospitales
         public async Task<List<HospitalModel>> GetAllHospitals()
         {

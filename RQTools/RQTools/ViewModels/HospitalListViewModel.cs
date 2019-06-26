@@ -26,6 +26,11 @@
         private MainViewModel mainViewModel = MainViewModel.GetInstance();
         #endregion
         #region Properties
+        public List<HospitalModel> ListHospitalsBD
+        {
+            get;
+            set;
+        }
         public ObservableCollection<HospitalItemViewModel> Hospital
         {
             get { return this.hospital; }
@@ -151,13 +156,18 @@
                     "Aceptar");
                 return;
             }
-
-           mainViewModel.HospitalListlist = (List<HospitalModel>)response.Result;
+            this.ListHospitalsBD = (List<HospitalModel>)response.Result;
+            mainViewModel.HospitalListlist = (List<HospitalModel>)response.Result;
             this.Hospital = new ObservableCollection<HospitalItemViewModel>(
                 this.ToHospitalItemViewModel());
+            this.DeleteandSaveHospitalsFromDB();
             this.IsRefreshing = false;
         }
-
+        private async Task DeleteandSaveHospitalsFromDB()
+        {
+            await this.dataService.DelleteAllHospitals();
+            this.dataService.Insert(this.ListHospitalsBD);
+        }
         private IEnumerable<HospitalItemViewModel> ToHospitalItemViewModel()
         {
             return mainViewModel.HospitalListlist.Select(h => new HospitalItemViewModel
