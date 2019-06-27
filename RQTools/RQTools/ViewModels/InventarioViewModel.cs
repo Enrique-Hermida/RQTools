@@ -146,15 +146,16 @@
             if (connection.IsSuccess)
             {
                 this.LoadDataFromAPI();
-                this.IsRunning = false;
+                this.IsRefreshing = false;
                 this.IsEnabled = true;
             }
             else
             {
                 this.LoadDataFromDB();
-                this.IsRunning = false;
+                this.IsRefreshing = false;
                 this.IsEnabled = true;
             }
+
         }
 
         private async Task LoadDataFromDB()
@@ -171,7 +172,7 @@
                 mainViewModel.Hospital = new HospitalViewModel();
                 await App.Navigator.PushAsync(new HospitalPage());
 
-                this.IsRunning = false;
+                this.IsRefreshing = false;
                 this.IsEnabled = true;
 
                 return;
@@ -197,7 +198,10 @@
                     "Error",
                      "Error en el servidor",
                     "aceptar");
-                await Application.Current.MainPage.Navigation.PopAsync();
+
+                mainViewModel.Hospital = new HospitalViewModel();
+                await App.Navigator.PushAsync(new HospitalPage());
+
                 return;
             }
             if (response == null)
@@ -273,13 +277,13 @@
             if (connection.IsSuccess)
             {
                 this.FindCodeFromAPI();
-                this.IsRunning = false;
+                this.IsRefreshing = false;
                 this.IsEnabled = true;
             }
             else
             {
                 this.FindCodeFromDB();
-                this.IsRunning = false;
+                this.IsRefreshing = false;
                 this.IsEnabled = true;
             }
            
@@ -314,7 +318,7 @@
                         "No hay respuesta en el servido, intenta mas tarde",
                         "Aceptar");
 
-                    this.IsRunning = false;
+                    this.IsRefreshing = false;
                     this.IsEnabled = true;
                     return;
                 }
@@ -326,12 +330,12 @@
                         string.Format("Ocurrio el Error :{0},", ex.Message),
                         "Aceptar");
 
-                this.IsRunning = false;
+                this.IsRefreshing = false;
                 this.IsEnabled = true;
 
                 return;
             }
-            this.IsRunning = false;
+            this.IsRefreshing = false;
             this.IsEnabled = true;
 
             if (result.Contains("error"))
