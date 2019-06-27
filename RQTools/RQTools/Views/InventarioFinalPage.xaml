@@ -14,11 +14,24 @@
                 IsVisible="{Binding IsVisible, Mode=TwoWay}"
                 IsRunning="{Binding IsRunning, Mode=TwoWay}">
             </ActivityIndicator>
-            <ListView
-                BackgroundColor="#DFDFE2"
-                RowHeight="80"
+            <ListView 
+                SeparatorVisibility="None"
+                BackgroundColor="#DFDFE2"               
                 HasUnevenRows="true"
                 ItemsSource="{Binding ListProductsPiece}">
+                <ListView.Header>
+                    <StackLayout    
+                        Orientation="Horizontal"
+                        HorizontalOptions="CenterAndExpand">
+                        <Label
+                            HorizontalOptions="Center"
+                            Text="Revisa tu Inventario"
+                            TextColor="Black"
+                            FontAttributes="Bold">
+                            
+                        </Label>
+                    </StackLayout>
+                </ListView.Header>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
