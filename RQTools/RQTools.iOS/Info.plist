@@ -41,8 +41,6 @@
 	<string>com.reactivos.RQTools</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
 	<string>RQTools</string>
 	<key>XSAppIconAssets</key>
@@ -65,5 +63,9 @@
 	<string>1.0</string>
 	<key>MinimumOSVersion</key>
 	<string>7.0</string>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchS</string>
 </dict>
 </plist>

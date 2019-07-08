@@ -140,6 +140,7 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\l80.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\l120-2.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\l120.png" />
+    <InterfaceDefinition Include="LaunchS.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -183,6 +184,7 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\LOGO.png" />
+    <BundleResource Include="Resources\LogoRQT.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\fondo.jpg" />
@@ -211,5 +213,9 @@
   <ItemGroup>
     <Content Include="LOGO.ico" />
     <BundleResource Include="Resources\Logo_App.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="iTunesArtwork%402x" />
+    <ITunesArtwork Include="iTunesArtwork" />
   </ItemGroup>
 </Project>
