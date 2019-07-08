@@ -136,10 +136,10 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\l60.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\l58.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\l87.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\l 80.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\l120.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\l120-1.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\l180.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\l80.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\l120-2.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\l120.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
