@@ -132,14 +132,30 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\l40.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\l60.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\l58.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\l87.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\l180.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\l80.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\l120-2.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\l120.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\l40.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\l60.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\l58.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\l87.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\l180.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\l80.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\l120-2.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\l120.png">
+      <Visible>false</Visible>
+    </ImageAsset>
     <InterfaceDefinition Include="LaunchS.storyboard" />
   </ItemGroup>
   <ItemGroup>

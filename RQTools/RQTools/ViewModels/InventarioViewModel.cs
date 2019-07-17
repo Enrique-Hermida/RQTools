@@ -408,17 +408,32 @@
                 var scanner = DependencyService.Get<IQrCodeScanningService>();
                 this.ScanResult = await scanner.ScanAsync();
                 this.ScanResult = ScanResult.ToString();
+
+                await Application.Current.MainPage.DisplayAlert(
+                        "ASI ES",
+                        string.Format("Codigo:{0}", ScanResult),
+                        "Aceptar");
+
                 if (ScanResult.Equals("0"))
                 {
                     await Application.Current.MainPage.DisplayAlert(
                         "Error",
-                        "No tienes Articulos en tu lista",
+                        "No se acepta el valor",
                         "Aceptar");
                     return ScanResult;
                 }
                 else
-                {
-                    this.FindScanProdcuct();
+                {                  
+                    char[] codsc = this.ScanResult.ToCharArray();
+                    string Pef1 = codsc[0].ToString() + codsc[1].ToString(); 
+                    if (Pef1.Equals("01"))
+                    {
+                        await Application.Current.MainPage.DisplayAlert(
+                        "ASI ES",
+                        "PREFIJO 01",
+                        "Aceptar");
+                    }
+                    //this.FindScanProdcuct();
                 }
                 
                 return ScanResult;
