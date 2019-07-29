@@ -30,7 +30,7 @@
         #endregion
         #region otros
         public string Id_Inventario { get; set; }
-        public string Id_Hospital { get; set; }
+        public int Id_Hospital { get; set; }
         public string Fecha { get; set; }
         public string Inventariador { get; set; }
         public string Comentarios { get; set; }

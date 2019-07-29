@@ -23,6 +23,7 @@
         #endregion
         #region Atributtes
         private string ryqdns = "http://ryqmty.dyndns.org:8181";
+        private string tempcode128 = "";
         private string url;
         private string result;
         private string filter;
@@ -296,6 +297,10 @@
             {
                 var tempproduct = this.ProductsNocode.SingleOrDefault(r => r.Scanbar == this.ScanResult);
                 scanProduct = tempproduct;
+                if (!string.IsNullOrEmpty(this.tempcode128))
+                {
+                    scanProduct.Scanbar = tempcode128;
+                }
                 mainViewModel.AddProduct = new AddProductViewModel(scanProduct);
                 await App.Navigator.PushAsync(new AddInventarioPage());
             }
@@ -350,6 +355,10 @@
             {
                 var listProducts = JsonConvert.DeserializeObject<List<Products>>(result);
                 scanProduct = listProducts[0];
+                if (!string.IsNullOrEmpty(this.tempcode128))
+                {
+                    scanProduct.Scanbar = tempcode128;
+                }
                 mainViewModel.AddProduct = new AddProductViewModel(scanProduct);
                 await App.Navigator.PushAsync(new AddInventarioPage());
 
@@ -407,12 +416,7 @@
             {
                 var scanner = DependencyService.Get<IQrCodeScanningService>();
                 this.ScanResult = await scanner.ScanAsync();
-                this.ScanResult = ScanResult.ToString();
-
-                await Application.Current.MainPage.DisplayAlert(
-                        "ASI ES",
-                        string.Format("Codigo:{0}", ScanResult),
-                        "Aceptar");
+                this.ScanResult = ScanResult.ToString();            
 
                 if (ScanResult.Equals("0"))
                 {
@@ -423,17 +427,22 @@
                     return ScanResult;
                 }
                 else
-                {                  
+                {
+                    // hay que separar el codigo en secciones 
+                    tempcode128 = this.ScanResult;
+                    string cproducto = "";
                     char[] codsc = this.ScanResult.ToCharArray();
                     string Pef1 = codsc[0].ToString() + codsc[1].ToString(); 
                     if (Pef1.Equals("01"))
                     {
-                        await Application.Current.MainPage.DisplayAlert(
-                        "ASI ES",
-                        "PREFIJO 01",
-                        "Aceptar");
+                        for (int i = 2; i <= 15; i++)
+                        {
+                            cproducto = cproducto + codsc[i].ToString();                       
+                        }
+                        this.ScanResult = cproducto;
                     }
-                    //this.FindScanProdcuct();
+                    
+                    this.FindScanProdcuct();
                 }
                 
                 return ScanResult;

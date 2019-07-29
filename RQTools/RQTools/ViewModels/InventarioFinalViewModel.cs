@@ -610,7 +610,7 @@
                     
                     Producto = itemActual.Producto,
                     Id_Inventario = this.idInventario,
-                    Id_Producto = itemActual.Id_Producto,
+                    Id_Producto = itemActual.Clave,
                     Cantidad = itemActual.Cantidad,
                     Lote = itemActual.Lote,
                 };
@@ -658,7 +658,7 @@
                 this.Prodcuts.Id_Inventario = this.idInventario;
                 this.Prodcuts.Fecha = fecha_actual+" "+hora_actual;
                 this.Prodcuts.Inventariador = mainViewModel.deviceUser.Name_User;
-                this.Prodcuts.Id_Hospital = mainViewModel.HospitalActual.Codigo_Hospital;
+                this.Prodcuts.Id_Hospital = mainViewModel.HospitalActual.ID_Hospital;
                 if (string.IsNullOrEmpty(mainViewModel.ComentariosDelInventario))
                 {
                     this.Prodcuts.Comentarios = "Inventario Completo";

@@ -17,6 +17,7 @@
         #region Attributes
         private int cantidad;
         private int idlist;
+        private int clave;
         private string lote;
         private string nombreProducto;
         private bool isEnabled;
@@ -33,6 +34,11 @@
         {
             get { return this.idlist; }
             set { SetValue(ref this.idlist, value); }
+        }
+        public int Clave
+        {
+            get { return this.clave; }
+            set { SetValue(ref this.clave, value); }
         }
         public string Lote
         {
@@ -68,7 +74,64 @@
             this.isEnabled = true;
             this.Product = products;
             this.NombreProducto = this.Product.Nombre_Producto.ToString();
+            this.CheckOtherData();
 
+        }
+
+        private void CheckOtherData()
+        {
+            char[] codsc = this.Product.Scanbar.ToCharArray();
+            string cproducto = "";
+            string cfechaex = "";
+            string clote = "";
+            string Pef1 = codsc[0].ToString() + codsc[1].ToString();
+            if (Pef1.Equals("01"))
+            {
+
+
+                for (int i = 2; i <= 15; i++)
+                {
+                    cproducto = cproducto + codsc[i].ToString();
+
+                }
+                for (int i = 18; i <= 23; i++)
+                {
+                    cfechaex = cfechaex + codsc[i].ToString();
+                }
+                string Pef2 = codsc[24].ToString() + codsc[25].ToString();
+                if (Pef2.Equals("30"))
+                {
+                    // tiene cantidad
+                    string Pef3 = codsc[28].ToString() + codsc[29].ToString();
+
+                    if (Pef3.Equals("10"))
+                    {
+                        
+                        for (int i = 30; i < codsc.Length; i++)
+                        {
+                            clote = clote + codsc[i].ToString();
+                        }
+                    }
+                    else
+                    {
+                       ;
+                        for (int i = 31; i < codsc.Length; i++)
+                        {
+                            clote = clote + codsc[i].ToString();
+                        }
+                    }
+                }
+                if (Pef2.Equals("10"))
+                {
+                    //pieza 
+                   
+                    for (int i = 26; i < codsc.Length; i++)
+                    {
+                        clote = clote + codsc[i].ToString();
+                    }
+                }
+            }
+            this.Lote = clote;
         }
         #endregion
         #region Commands
@@ -171,6 +234,7 @@
                 Id = this.IdList,
                 Producto = this.Product.Nombre_Producto,
                 Id_Producto = this.Product.ID_Producto,
+                Clave = Int32.Parse(this.Product.Clave),
                 Cantidad = this.Cantidad,
                 Lote = this.Lote,
             });
