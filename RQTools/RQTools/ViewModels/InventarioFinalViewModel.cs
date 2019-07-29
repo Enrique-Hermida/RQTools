@@ -657,7 +657,7 @@
 
                 this.Prodcuts.Id_Inventario = this.idInventario;
                 this.Prodcuts.Fecha = fecha_actual+" "+hora_actual;
-                this.Prodcuts.Inventariador = mainViewModel.deviceUser.Name_User;
+                this.Prodcuts.Usuario = mainViewModel.deviceUser.Name_User;
                 this.Prodcuts.Id_Hospital = mainViewModel.HospitalActual.ID_Hospital;
                 if (string.IsNullOrEmpty(mainViewModel.ComentariosDelInventario))
                 {

@@ -32,7 +32,7 @@
         public string Id_Inventario { get; set; }
         public int Id_Hospital { get; set; }
         public string Fecha { get; set; }
-        public string Inventariador { get; set; }
+        public string Usuario { get; set; }
         public string Comentarios { get; set; }
         public double Latitud { get; set; }
         public double Longitud { get; set; }
