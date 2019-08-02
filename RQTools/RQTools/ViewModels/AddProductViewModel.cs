@@ -74,7 +74,11 @@
             this.isEnabled = true;
             this.Product = products;
             this.NombreProducto = this.Product.Nombre_Producto.ToString();
-            this.CheckOtherData();
+            if (this.Product.Scanbar != "0")
+            {
+                this.CheckOtherData();
+            }
+            
 
         }
 

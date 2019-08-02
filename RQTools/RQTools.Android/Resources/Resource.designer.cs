@@ -4919,10 +4919,10 @@ namespace RQTools.Droid
 			public const int ic_vol_type_tv_light = 2131165465;
 			
 			// aapt resource value: 0x7F07011A
-			public const int LOGO = 2131165466;
+			public const int l120 = 2131165466;
 			
 			// aapt resource value: 0x7F07011B
-			public const int Logo_App = 2131165467;
+			public const int LOGO = 2131165467;
 			
 			// aapt resource value: 0x7F07011C
 			public const int mr_button_connected_dark = 2131165468;

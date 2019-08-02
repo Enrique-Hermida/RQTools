@@ -85,7 +85,7 @@
             this.IsRunning = true;
 
             #region Dialiozadores2.10
-            var result = from producto in InventarioFinal where producto.Id_Producto == 1 select producto;
+            var result = from producto in InventarioFinal where producto.Id_Producto == 1 || producto.Id_Producto == 48 select producto;
             if (result!=null)
             {
                 foreach (var producto in result)
@@ -103,9 +103,10 @@
                 }
 
             }
+
             #endregion           
             #region Dialiozadores 1.90
-            result = from producto in InventarioFinal where producto.Id_Producto == 2 select producto;
+            result = from producto in InventarioFinal where producto.Id_Producto == 2 || producto.Id_Producto == 49 select producto;
             if (result != null)
             {
                 foreach (var producto in result)
@@ -125,7 +126,7 @@
             }
             #endregion
             #region Dialiozadores 1.70
-            result = from producto in InventarioFinal where producto.Id_Producto == 3 select producto;
+            result = from producto in InventarioFinal where producto.Id_Producto == 3 || producto.Id_Producto == 50 select producto;
             if (result != null)
             {
                 foreach (var producto in result)
@@ -145,7 +146,7 @@
             }
             #endregion
             #region Dialiozadores 1.50
-            result = from producto in InventarioFinal where producto.Id_Producto == 4 select producto;
+            result = from producto in InventarioFinal where producto.Id_Producto == 4 || producto.Id_Producto == 51 select producto;
             if (result != null)
             {
                 foreach (var producto in result)
@@ -165,7 +166,7 @@
             }
             #endregion
             #region Dialiozadores 1.30
-            result = from producto in InventarioFinal where producto.Id_Producto == 5 select producto;
+            result = from producto in InventarioFinal where producto.Id_Producto == 5 || producto.Id_Producto == 52 select producto;
             if (result != null)
             {
                 foreach (var producto in result)
@@ -185,7 +186,7 @@
             }
             #endregion
             #region Dialiozadores 1.10
-            result = from producto in InventarioFinal where producto.Id_Producto == 6 select producto;
+            result = from producto in InventarioFinal where producto.Id_Producto == 6 || producto.Id_Producto == 53 select producto;
             if (result != null)
             {
                 foreach (var producto in result)
