@@ -19,7 +19,7 @@
         private DataServices dataService;
         #endregion
         #region Atributos
-        private string ryqdns = "http://ryqmty.dyndns.org:8181";
+        private string ryqdns = "http://ryqmty.dyndns.org:8181/";
         private string url;
         private string password;
         private string email;
@@ -109,7 +109,7 @@
             {
                 HttpClient client = new HttpClient();
                 client.BaseAddress = new Uri(ryqdns);
-                url = string.Format("/apiRest/public/api/deviceuser/{0}/{1}", this.email, this.password);
+                url = string.Format("apiRest/public/api/deviceuser/{0}/{1}", this.email, this.password);
                 var response = await client.GetAsync(url);
                 result = response.Content.ReadAsStringAsync().Result;
 

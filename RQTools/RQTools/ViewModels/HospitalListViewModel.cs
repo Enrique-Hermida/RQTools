@@ -134,8 +134,8 @@
         private async void LoadDataFromAPI()
         {
             var response = await this.apiService.GetList<HospitalModel>(
-             "http://ryqmty.dyndns.org:8181",
-              "/apiRest",
+             "http://ryqmty.dyndns.org:8181/",
+              "apiRest",
               "/public/api/hospitales");
 
             if (!response.IsSuccess)
