@@ -589,8 +589,8 @@
                     "Aceptar"  );
                 return;
             }
-            var responseMaster = await this.apiService.Post("http://ryqmty.dyndns.org:8181",
-                "/apiRest/public/api/Inventarios",
+            var responseMaster = await this.apiService.Post("http://ryqmty.dyndns.org:8181/",
+                "apiRest/public/api/Inventarios",
                 "/Master",
                 Prodcuts);
             if (!responseMaster.IsSuccess)
@@ -616,8 +616,8 @@
                     Lote = itemActual.Lote,
                 };
                 var response = await this.apiService.Post(
-                "http://ryqmty.dyndns.org:8181",
-                "/apiRest/public/api/Inventarios",
+                "http://ryqmty.dyndns.org:8181/",
+                "apiRest/public/api/Inventarios",
                 "/nuevo",
                 productWeb);
                 if (!response.IsSuccess)

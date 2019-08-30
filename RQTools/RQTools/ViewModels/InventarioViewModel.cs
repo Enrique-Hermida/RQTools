@@ -22,7 +22,7 @@
         private DataServices dataService;
         #endregion
         #region Atributtes
-        private string ryqdns = "http://ryqmty.dyndns.org:8181";
+        private string ryqdns = "http://ryqmty.dyndns.org:8181/";
         private string tempcode128 = "";
         private string url;
         private string result;
@@ -188,8 +188,8 @@
         private async void LoadDataFromAPI()
         {
             var response = await this.apiService.GetList<Products>(
-               "http://ryqmty.dyndns.org:8181",
-                "/apiRest",
+                 ryqdns,
+                "apiRest",
                 "/public/api/productos/NoCode");
 
             if (!response.IsSuccess)
@@ -312,7 +312,7 @@
             {
                 HttpClient client = new HttpClient();
                 client.BaseAddress = new Uri(ryqdns);
-                url = string.Format("/apiRest/public/api/products/{0}", this.ScanResult);
+                url = string.Format("apiRest/public/api/products/{0}", this.ScanResult);
                 var response = await client.GetAsync(url);
                 result = response.Content.ReadAsStringAsync().Result;
 

@@ -22,7 +22,7 @@
         private ApiService apiService;
         #endregion
         #region Atributos
-        private string ryqdns = "http://ryqmty.dyndns.org:8181";
+        private string ryqdns = "http://ryqmty.dyndns.org:8181/";
         private string url;
         private string result;
         private string hospitalseleccionado;
@@ -244,8 +244,8 @@
             this.IsEnabled = false;
 
             var response = await this.apiService.GetList<HospitalModel>(
-              "http://ryqmty.dyndns.org:8181",
-               "/apiRest",
+                 ryqdns,
+               "apiRest",
                "/public/api/hospitales");
 
             if (!response.IsSuccess)
@@ -286,7 +286,7 @@
             {
                 HttpClient client = new HttpClient();
                 client.BaseAddress = new Uri(ryqdns);
-                url = string.Format("/apiRest/public/api/hospital/{0}", this.ScanResult);
+                url = string.Format("apiRest/public/api/hospital/{0}", this.ScanResult);
                 var response = await client.GetAsync(url);
                 result = response.Content.ReadAsStringAsync().Result;
 
