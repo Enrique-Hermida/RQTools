@@ -21,7 +21,7 @@
                     <Entry Placeholder="Correo Electronico" PlaceholderColor="Black" Text="{Binding Email, Mode=TwoWay}"/>
                         <Entry Placeholder="Contraseña" PlaceholderColor="Black" IsPassword="True" Text="{Binding Password, Mode=TwoWay}"/>
                     <StackLayout Orientation="Horizontal">
-                        <Label Text="Recuedame" TextColor="Black" VerticalOptions="Center" HorizontalOptions="StartAndExpand"/>
+                        <Label Text="Recuerdame" TextColor="Black" VerticalOptions="Center" HorizontalOptions="StartAndExpand"/>
                             <Switch HorizontalOptions="End" OnColor="Red" IsToggled="{Binding IsRemembered, Mode=TwoWay}"/>
                     </StackLayout>
                         <ActivityIndicator IsRunning="{Binding IsRunning, Mode=TwoWay}">

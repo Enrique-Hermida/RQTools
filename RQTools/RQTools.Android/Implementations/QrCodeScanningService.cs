@@ -18,6 +18,7 @@ namespace RQTools.Droid.Implementations
             options.PossibleFormats = new List<BarcodeFormat> {
                 BarcodeFormat.QR_CODE,
                 BarcodeFormat.CODE_128,
+                BarcodeFormat.ITF,
                 BarcodeFormat.EAN_13
             };
             

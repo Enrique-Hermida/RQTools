@@ -21,6 +21,7 @@ namespace RQTools.iOS.Implementations
             options.PossibleFormats = new List<BarcodeFormat> {
                 BarcodeFormat.QR_CODE,
                 BarcodeFormat.CODE_128,
+                BarcodeFormat.ITF,
                 BarcodeFormat.EAN_13
             };
             var scanResults = await scanner.Scan();
