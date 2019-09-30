@@ -115,6 +115,7 @@
             if (mainViewModel.ProductsNoCode.Count == 0)
             {
                 this.LoadProductsNoCode();
+                this.IsRefreshing = false;
             }
             else
             {
