@@ -20,7 +20,6 @@
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
-		<integer>2</integer>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
@@ -37,12 +36,8 @@
 	</array>
 	<key>CFBundleDisplayName</key>
 	<string>RQTools</string>
-	<key>CFBundleIdentifier</key>
-	<string>com.reactivos.RQTools</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
-	<key>CFBundleName</key>
-	<string>RQTools</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
@@ -62,10 +57,14 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>MinimumOSVersion</key>
-	<string>7.0</string>
+	<string>8.0</string>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchS</string>
+	<key>CFBundleName</key>
+	<string>RQTools</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.reactivos.rq</string>
 </dict>
 </plist>
