@@ -19,6 +19,9 @@
         #endregion
         #region Atributtes
         private string idInventario;
+        private string idInv;
+        private string fechainventario;
+        private string usuarioinventario;
         private bool isRunning;
         private bool isEnabled;
         public bool isVisible;
@@ -63,6 +66,21 @@
             get { return this.webInvenatario; }
             set { SetValue(ref this.webInvenatario, value); }
         }
+        public string IdInventario
+        {
+            get { return this.idInv; }
+            set { SetValue(ref this.idInv, value); }
+        }
+        public string FechaInventario
+        {
+            get { return this.fechainventario; }
+            set { SetValue(ref this.fechainventario, value); }
+        }
+        public string UsuarioInventario
+        {
+            get { return this.usuarioinventario; }
+            set { SetValue(ref this.usuarioinventario, value); }
+        }
         #endregion
         #region Constructor
         public InventarioFinalViewModel()
@@ -73,7 +91,7 @@
             this.IsVisible = true;
             this.ListProductsPiece = new ObservableCollection<ProductsPiece>();
             this.InventarioFinal = mainViewModel.InventarioActualMWM;
-            this.GenerateListWihtProducts();
+            this.GenerateInvMaster();
         }
         #endregion        
         #region Commands
@@ -92,6 +110,9 @@
             //datos para los inventarios master 
             try
             {
+                this.IsRunning = true;
+                this.IsEnabled = false;
+
                 DateTime Hoy = DateTime.Now;
                 string fecha_actual = Hoy.ToString("yyyy-MM-dd");
                 string hora_actual = Hoy.ToString("HH:mm:ss");
@@ -133,17 +154,25 @@
                     this.Prodcuts.Longitud = 0.00000;
                     this.Prodcuts.Latitud = 0.00000;
                 }
+
+                this.IdInventario = this.Prodcuts.Id_Inventario;
+                this.UsuarioInventario = mainViewModel.deviceUser.Name_User;
+                this.FechaInventario = Hoy.ToString("dd-MM-yyyy");
+
+                this.IsRunning = false;
+                this.IsEnabled = true;
             }
             catch (Exception)
             {
 
                 throw;
             }
+            
         }
 
         private async void CargarWebServices()
         {
-            this.GenerateInvMaster();
+            //la lista de inventarios master se crea desde el inicio
             this.IsRunning = true;
             this.IsEnabled = false;
 
@@ -185,7 +214,7 @@
                 var response = await this.apiService.Post(
                 "http://ryqmty.dyndns.org:8181/",
                 "apiRest/public/api/Inventarios",
-                "/nuevo",
+                "/data",
                 productWeb);
                 if (!response.IsSuccess)
                 {

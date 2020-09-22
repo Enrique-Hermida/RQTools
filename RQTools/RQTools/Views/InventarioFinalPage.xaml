@@ -5,370 +5,52 @@
              Title="Inventario Final"
              x:Class="RQTools.Views.InventarioFinalPage">
     <ContentPage.Content>
-        <StackLayout
-            BindingContext="{Binding InventarioFinal}"
-            BackgroundColor="#DFDFE2"
-            Padding="5">
-            <ActivityIndicator 
-                Color="Red"
-                IsVisible="{Binding IsVisible, Mode=TwoWay}"
-                IsRunning="{Binding IsRunning, Mode=TwoWay}">
-            </ActivityIndicator>
-            <ListView 
-                SeparatorVisibility="None"
-                BackgroundColor="#DFDFE2"               
-                HasUnevenRows="true"
-                ItemsSource="{Binding ListProductsPiece}">
-                <ListView.Header>
-                    <StackLayout    
-                        Orientation="Horizontal"
-                        HorizontalOptions="CenterAndExpand">
-                        <Label
-                            HorizontalOptions="Center"
-                            Text="Revisa tu Inventario"
-                            TextColor="Black"
-                            FontAttributes="Bold">
-                            
-                        </Label>
+        <Grid BindingContext="{Binding InventarioFinal}">
+            <Image Source="fondo.jpg" Aspect="AspectFill" />
+            <BoxView Color="WhiteSmoke" Opacity="0.9" />
+            <ScrollView Orientation="Vertical" VerticalOptions="StartAndExpand">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0" Source="LOGO.png" WidthRequest="100" HeightRequest="100" Margin="0,5,0,0"/>
+                    <StackLayout Grid.Row="1" Padding="5,5" Orientation="Vertical" VerticalOptions="FillAndExpand">
+                         <ActivityIndicator 
+                            Color="Red"
+                            IsVisible="{Binding IsVisible, Mode=TwoWay}"
+                            IsRunning="{Binding IsRunning, Mode=TwoWay}">
+                        </ActivityIndicator>
+                        <StackLayout Padding="15,20">
+                            <Label Text="Inventario:" TextColor="Black" VerticalOptions="Center" HorizontalOptions="FillAndExpand" FontSize="Medium" FontAttributes="Bold"/>
+                            <Label Text="{Binding IdInventario, Mode=TwoWay}" TextColor="Red" VerticalOptions="Center" HorizontalOptions="FillAndExpand" FontSize="Medium" FontAttributes="Bold"/>
+                        </StackLayout>
+                        <StackLayout Padding="15,20">
+                            <Label Text="Fecha:" TextColor="Black" VerticalOptions="Center" HorizontalOptions="FillAndExpand" FontSize="Medium" FontAttributes="Bold"/>
+                            <Label Text="{Binding FechaInventario, Mode=TwoWay}" TextColor="Red" VerticalOptions="Center" HorizontalOptions="FillAndExpand" FontSize="Medium" FontAttributes="Bold"/>
+                        </StackLayout>
+                        <StackLayout Padding="15,20">
+                            <Label Text="Usuario:" TextColor="Black" VerticalOptions="Center" HorizontalOptions="FillAndExpand" FontSize="Medium" FontAttributes="Bold"/>
+                            <Label Text="{Binding UsuarioInventario, Mode=TwoWay}" TextColor="Red" VerticalOptions="Center" HorizontalOptions="FillAndExpand" FontSize="Medium" FontAttributes="Bold"/>
+                        </StackLayout>
+                        <StackLayout Padding="15,40">
+                            <Button
+                                BorderWidth="1"
+                                BorderColor="Black" 
+                                VerticalOptions="End"
+                                HorizontalOptions="FillAndExpand"
+                                Text="Subir Inventario"
+                                Command="{Binding FinishCommand}" 
+                                IsEnabled="{Binding isEnabled, Mode=TwoWay}"
+                                BackgroundColor="White"
+                                BorderRadius="20" 
+                                TextColor="Red">
+                            </Button>
+                        </StackLayout>
                     </StackLayout>
-                </ListView.Header>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                <StackLayout
-                                    Grid.Column="1"
-                                    VerticalOptions="StartAndExpand"
-                                    HorizontalOptions="StartAndExpand">
-                                    
-                                    <Label 
-                                            FontAttributes="Bold"
-                                            FontSize="Medium" 
-                                            Text="Producto:"
-                                            TextColor="Black">
-                                    </Label>
-                                    <Label 
-                                            FontAttributes="Bold"
-                                            FontSize="Medium" 
-                                            Text="Dializadores 2.10"
-                                            TextColor="Black">
-                                    </Label>
-                                    <Label 
-                                            FontAttributes="Bold"
-                                            FontSize="Medium" 
-                                            Text="Dializadores 1.90"
-                                            TextColor="Black">
-                                    </Label>
-                                    <Label 
-                                            FontAttributes="Bold"
-                                            FontSize="Medium" 
-                                            Text="Dializadores 1.70"
-                                            TextColor="Black">
-                                    </Label>
-                                    <Label 
-                                            FontAttributes="Bold"
-                                            FontSize="Medium" 
-                                            Text="Dializadores 1.50"
-                                            TextColor="Black">
-                                    </Label>
-                                    <Label 
-                                            FontAttributes="Bold"
-                                            FontSize="Medium" 
-                                            Text="Dializadores 1.30"
-                                            TextColor="Black">
-                                    </Label>
-                                    <Label 
-                                            FontAttributes="Bold"
-                                            FontSize="Medium" 
-                                            Text="Dializadores 1.10"
-                                            TextColor="Black">
-                                    </Label>
-                                    <Label 
-                                            FontAttributes="Bold"
-                                            FontSize="Medium" 
-                                            Text="Dializadores 0.90"
-                                            TextColor="Black">
-                                    </Label>
-                                    <Label 
-                                            FontAttributes="Bold"
-                                            FontSize="Medium" 
-                                            Text="Dializadores 0.70"
-                                            TextColor="Black">
-                                    </Label>
-                                    <Label 
-                                            FontAttributes="Bold"
-                                            FontSize="Medium" 
-                                            Text="Dializadores 0.50"
-                                            TextColor="Black">
-                                    </Label>
-                                    <Label 
-                                            FontAttributes="Bold"
-                                            FontSize="Medium" 
-                                            Text="Kit C/D Cateter"
-                                            TextColor="Black">
-                                    </Label>
-                                    <Label 
-                                            FontAttributes="Bold"
-                                            FontSize="Medium" 
-                                            Text="Kit C/D Fistula"
-                                            TextColor="Black">
-                                    </Label>
-                                    <Label 
-                                            FontAttributes="Bold"
-                                            FontSize="Medium" 
-                                            Text="Lineas A/V Adulto"
-                                            TextColor="Black">
-                                    </Label>
-                                    <Label 
-                                            FontAttributes="Bold"
-                                            FontSize="Medium" 
-                                            Text="Lineas A/V Pedriaticas"
-                                            TextColor="Black">
-                                    </Label>
-                                    <Label 
-                                            FontAttributes="Bold"
-                                            FontSize="Medium" 
-                                            Text="Aquacid 2K"
-                                            TextColor="Black">
-                                    </Label>
-                                    <Label 
-                                            FontAttributes="Bold"
-                                            FontSize="Medium" 
-                                            Text="Aquacid 0K"
-                                            TextColor="Black">
-                                    </Label>
-                                    <Label 
-                                            FontAttributes="Bold"
-                                            FontSize="Medium" 
-                                            Text="Aquacid 3.5 Calcio"
-                                            TextColor="Black">
-                                    </Label>
-                                    <Label 
-                                            FontAttributes="Bold"
-                                            FontSize="Medium" 
-                                            Text="Quabic"
-                                            TextColor="Black">
-                                    </Label>
-                                    <Label 
-                                            FontAttributes="Bold"
-                                            FontSize="Medium" 
-                                            Text="Niprokart 650"
-                                            TextColor="Black">
-                                    </Label>
-                                    <Label 
-                                            FontAttributes="Bold"
-                                            FontSize="Medium" 
-                                            Text="Fistulas 15"
-                                            TextColor="Black">
-                                    </Label>
-                                    <Label 
-                                            FontAttributes="Bold"
-                                            FontSize="Medium" 
-                                            Text="Fistulas 16"
-                                            TextColor="Black">
-                                    </Label>
-                                    <Label 
-                                            FontAttributes="Bold"
-                                            FontSize="Medium" 
-                                            Text="Fistulas 17"
-                                            TextColor="Black">
-                                    </Label>
-                                    <Label 
-                                            FontAttributes="Bold"
-                                            FontSize="Medium" 
-                                            Text="Aquacetic"
-                                            TextColor="Black">
-                                    </Label>
-                                    <Label 
-                                            FontAttributes="Bold"
-                                            FontSize="Medium" 
-                                            Text="Cloro"
-                                            TextColor="Black">
-                                    </Label>
-                                    <Label 
-                                            FontAttributes="Bold"
-                                            FontSize="Medium" 
-                                            Text="Sal"
-                                            TextColor="Black">
-                                    </Label>
-                                </StackLayout>
-                                <StackLayout
-                                VerticalOptions="StartAndExpand"
-                                HorizontalOptions="End"
-                                Grid.Column="2">
-                                    <Label 
-                                    FontSize="Medium"
-                                    FontAttributes="Bold"
-                                    Text="Cantidad:"
-                                    TextColor="Black"
-                                    VerticalOptions="Center">
-                                    </Label>
-                                    <Label 
-                                    FontSize="Medium"
-                                    Text="{Binding Dializadores2_10}"
-                                    TextColor="Black"
-                                    VerticalOptions="Center">
-                                    </Label>
-                                    <Label 
-                                    FontSize="Medium"
-                                    Text="{Binding Dializadores1_90}"
-                                    TextColor="Black"
-                                    VerticalOptions="Center">
-                                    </Label>
-                                    <Label 
-                                    FontSize="Medium"
-                                    Text="{Binding Dializadores1_70}"
-                                    TextColor="Black"
-                                    VerticalOptions="Center">
-                                    </Label>
-                                    <Label 
-                                    FontSize="Medium"
-                                    Text="{Binding Dializadores1_50}"
-                                    TextColor="Black"
-                                    VerticalOptions="Center">
-                                    </Label>
-                                    <Label 
-                                    FontSize="Medium"
-                                    Text="{Binding Dializadores1_30}"
-                                    TextColor="Black"
-                                    VerticalOptions="Center">
-                                    </Label>
-                                    <Label 
-                                    FontSize="Medium"
-                                    Text="{Binding Dializadores1_10}"
-                                    TextColor="Black"
-                                    VerticalOptions="Center">
-                                    </Label>
-                                    <Label 
-                                    FontSize="Medium"
-                                    Text="{Binding Dializadores0_90}"
-                                    TextColor="Black"
-                                    VerticalOptions="Center">
-                                    </Label>
-                                    <Label 
-                                    FontSize="Medium"
-                                    Text="{Binding Dializadores0_70}"
-                                    TextColor="Black"
-                                    VerticalOptions="Center">
-                                    </Label>
-                                    <Label 
-                                    FontSize="Medium"
-                                    Text="{Binding Dializadores0_50}"
-                                    TextColor="Black"
-                                    VerticalOptions="Center">
-                                    </Label>
-                                    <Label 
-                                    FontSize="Medium"
-                                    Text="{Binding KitCateter}"
-                                    TextColor="Black"
-                                    VerticalOptions="Center">
-                                    </Label>
-                                    <Label 
-                                    FontSize="Medium"
-                                    Text="{Binding KitFistula}"
-                                    TextColor="Black"
-                                    VerticalOptions="Center">
-                                    </Label>
-                                    <Label 
-                                    FontSize="Medium"
-                                    Text="{Binding LineasAdulto}"
-                                    TextColor="Black"
-                                    VerticalOptions="Center">
-                                    </Label>
-                                    <Label 
-                                    FontSize="Medium"
-                                    Text="{Binding LineasPedriaticas}"
-                                    TextColor="Black"
-                                    VerticalOptions="Center">
-                                    </Label>
-                                    <Label 
-                                    FontSize="Medium"
-                                    Text="{Binding Aquacid2k}"
-                                    TextColor="Black"
-                                    VerticalOptions="Center">
-                                    </Label>
-                                    <Label 
-                                    FontSize="Medium"
-                                    Text="{Binding Aquacid0k}"
-                                    TextColor="Black"
-                                    VerticalOptions="Center">
-                                    </Label>
-                                    <Label 
-                                    FontSize="Medium"
-                                    Text="{Binding Aquacid35CA}"
-                                    TextColor="Black"
-                                    VerticalOptions="Center">
-                                    </Label>
-                                    <Label 
-                                    FontSize="Medium"
-                                    Text="{Binding Quabic}"
-                                    TextColor="Black"
-                                    VerticalOptions="Center">
-                                    </Label>
-                                    <Label 
-                                    FontSize="Medium"
-                                    Text="{Binding Niprokart650}"
-                                    TextColor="Black"
-                                    VerticalOptions="Center">
-                                    </Label>
-                                    <Label 
-                                    FontSize="Medium"
-                                    Text="{Binding Fistula15}"
-                                    TextColor="Black"
-                                    VerticalOptions="Center">
-                                    </Label>
-                                    <Label 
-                                    FontSize="Medium"
-                                    Text="{Binding Fistula16}"
-                                    TextColor="Black"
-                                    VerticalOptions="Center">
-                                    </Label>
-                                    <Label 
-                                    FontSize="Medium"
-                                    Text="{Binding Fistula17}"
-                                    TextColor="Black"
-                                    VerticalOptions="Center">
-                                    </Label>
-                                    <Label 
-                                    FontSize="Medium"
-                                    Text="{Binding Aquacetic}"
-                                    TextColor="Black"
-                                    VerticalOptions="Center">
-                                    </Label>
-                                    <Label 
-                                    FontSize="Medium"
-                                    Text="{Binding Cloro}"
-                                    TextColor="Black"
-                                    VerticalOptions="Center">
-                                    </Label>
-                                    <Label 
-                                    FontSize="Medium"
-                                    Text="{Binding Sal}"
-                                    TextColor="Black"
-                                    VerticalOptions="Center">
-                                    </Label>
-                                </StackLayout>
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <Button
-                BorderWidth="1"
-                BorderColor="Black" 
-                VerticalOptions="End"
-                HorizontalOptions="FillAndExpand"
-                Text="Subir Inventario"
-                Command="{Binding FinishCommand}" 
-                IsEnabled="{Binding isEnabled, Mode=TwoWay}"
-                BackgroundColor="White"
-                BorderRadius="20" 
-                TextColor="Red">
-            </Button>
-        </StackLayout>
+                </Grid>
+            </ScrollView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

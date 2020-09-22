@@ -151,8 +151,8 @@
             }
             if (result.Contains("Name_User"))
             {
-                var listdeviceUser = JsonConvert.DeserializeObject<List<DeviceUser>>(result);
-                deviceUser = listdeviceUser[0];
+                var devuserjs = JsonConvert.DeserializeObject<DeviceUser>(result);
+                deviceUser = devuserjs;
                 var mainViewModel = MainViewModel.GetInstance();
                 mainViewModel.deviceUser = deviceUser;
 
