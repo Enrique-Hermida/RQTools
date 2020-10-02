@@ -354,8 +354,8 @@
             }
             if (result.Contains("ID_Producto"))
             {
-                var listProducts = JsonConvert.DeserializeObject<List<Products>>(result);
-                scanProduct = listProducts[0];
+                var jsProducts = JsonConvert.DeserializeObject<Products>(result);
+                scanProduct = jsProducts; // redundancia por cambio de api
                 if (!string.IsNullOrEmpty(this.tempcode128))
                 {
                     scanProduct.Scanbar = tempcode128;
