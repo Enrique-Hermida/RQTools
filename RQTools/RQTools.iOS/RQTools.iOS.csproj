@@ -55,7 +55,7 @@
     <MtouchArch>ARM64</MtouchArch>
     <CodesignKey>Apple Development: Mario Saavedra (KM7V6V4XQ7)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignEntitlements>Info.plist</CodesignEntitlements>
     <MtouchLink>None</MtouchLink>
     <CodesignProvision>VS: WildCard Development</CodesignProvision>
     <MtouchInterpreter>-all</MtouchInterpreter>
@@ -68,10 +68,10 @@
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
-    <CodesignKey>Apple Development: Mario Saavedra (KM7V6V4XQ7)</CodesignKey>
+    <CodesignKey>Apple Distribution: Mario Saavedra (XB84QUPYH6)</CodesignKey>
     <CodesignEntitlements>Info.plist</CodesignEntitlements>
 <MtouchFloat32>true</MtouchFloat32>
-<CodesignProvision>VS: WildCard Development</CodesignProvision>
+<CodesignProvision>RQTools.IOS.app</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
     <DebugType>none</DebugType>
