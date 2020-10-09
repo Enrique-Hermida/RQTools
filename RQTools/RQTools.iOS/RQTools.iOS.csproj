@@ -71,7 +71,7 @@
     <CodesignKey>Apple Distribution: Mario Saavedra (XB84QUPYH6)</CodesignKey>
     <CodesignEntitlements>Info.plist</CodesignEntitlements>
 <MtouchFloat32>true</MtouchFloat32>
-<CodesignProvision>RQTools.IOS.app</CodesignProvision>
+<CodesignProvision>RQTools</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
     <DebugType>none</DebugType>
@@ -118,9 +118,6 @@
     <None Include="LOGO.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\LogoRQ.png">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\LaunchImages.launchimage\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -168,6 +165,7 @@
       <Visible>false</Visible>
     </ImageAsset>
     <InterfaceDefinition Include="LaunchS.storyboard" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\APP-LOGO.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
