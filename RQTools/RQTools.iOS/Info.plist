@@ -37,7 +37,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>RQTools</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>1.1</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
@@ -55,7 +55,7 @@
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>RQTools wants to access your gallery</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.1</string>
 	<key>MinimumOSVersion</key>
 	<string>10.0</string>
 	<key>UIStatusBarStyle</key>
