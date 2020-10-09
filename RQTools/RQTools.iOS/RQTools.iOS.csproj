@@ -69,7 +69,7 @@
     <MtouchArch>ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
     <CodesignKey>Apple Distribution: Mario Saavedra (XB84QUPYH6)</CodesignKey>
-    <CodesignEntitlements>Info.plist</CodesignEntitlements>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
 <MtouchFloat32>true</MtouchFloat32>
 <CodesignProvision>RQTools</CodesignProvision>
   </PropertyGroup>
