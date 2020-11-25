@@ -37,15 +37,15 @@
 	<key>CFBundleDisplayName</key>
 	<string>RQTools</string>
 	<key>CFBundleVersion</key>
-	<string>1.1.2</string>
+	<string>1.1.1</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This app needs access to location when open  to check the location where the information is sent.</string>
+	<string>This app needs access to location when open  to be shure where you send the information </string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>This app needs access to location when in the background to check the location where  the information is sent.</string>
+	<string>This app needs access to location when in the background.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>This app needs access to location when open and in the background, to be shure the location corresponds to a hospital . </string>
+	<string>This app needs access to location when open and in the background.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
@@ -55,7 +55,7 @@
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>RQTools wants to access your gallery</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1.2</string>
+	<string>1.1.1</string>
 	<key>MinimumOSVersion</key>
 	<string>10.0</string>
 	<key>UIStatusBarStyle</key>

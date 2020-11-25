@@ -116,6 +116,18 @@
     </None>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="LOGO.ico" />
+    <None Include="Info %28copia%29.plist">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Info %28otra copia%29.plist">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Info %283ª copia%29.plist">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Info %284ª copia%29.plist">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\LaunchImages.launchimage\Contents.json">
