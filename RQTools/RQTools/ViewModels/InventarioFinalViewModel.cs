@@ -7,6 +7,7 @@
     using RQTools.Services;
     using RQTools.Views;
     using System;
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows.Input;
@@ -29,6 +30,7 @@
         private MainViewModel mainViewModel = MainViewModel.GetInstance();
         private ProductsPiece prodcuts;
         private WebInvenatarioLote webInvenatario;
+        private List<InventarioModelViewModel> lists;
         #endregion
         #region Popierties
         public bool IsRunning
@@ -81,6 +83,12 @@
             get { return this.usuarioinventario; }
             set { SetValue(ref this.usuarioinventario, value); }
         }
+        public List<InventarioModelViewModel> ListS
+        {
+            get { return this.lists; }
+            set { SetValue(ref this.lists, value); }
+
+        }
         #endregion
         #region Constructor
         public InventarioFinalViewModel()
@@ -90,7 +98,8 @@
             this.IsEnabled = false;
             this.IsVisible = true;
             this.ListProductsPiece = new ObservableCollection<ProductsPiece>();
-            this.InventarioFinal = mainViewModel.InventarioActualMWM;
+            InventarioFinal = mainViewModel.InventarioActualMWM;
+            ListS = InventarioFinal.OrderBy(x => x.Clave).ThenBy(x => x.Id_Producto).ToList();
             this.GenerateInvMaster();
         }
         #endregion        
@@ -240,7 +249,6 @@
             Application.Current.MainPage = new MasterPage();
 
         }
-  
         #endregion
     }
 }

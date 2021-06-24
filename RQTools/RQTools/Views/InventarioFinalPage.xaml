@@ -5,52 +5,91 @@
              Title="Inventario Final"
              x:Class="RQTools.Views.InventarioFinalPage">
     <ContentPage.Content>
-        <Grid BindingContext="{Binding InventarioFinal}">
-            <Image Source="fondo.jpg" Aspect="AspectFill" />
-            <BoxView Color="WhiteSmoke" Opacity="0.9" />
-            <ScrollView Orientation="Vertical" VerticalOptions="StartAndExpand">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <Image Grid.Row="0" Source="LOGO.png" WidthRequest="100" HeightRequest="100" Margin="0,5,0,0"/>
-                    <StackLayout Grid.Row="1" Padding="5,5" Orientation="Vertical" VerticalOptions="FillAndExpand">
-                         <ActivityIndicator 
+        <StackLayout BackgroundColor="#DFDFE2" BindingContext="{Binding InventarioFinal}">
+            <StackLayout>
+                <Image Source="LOGO.png" WidthRequest="100" HeightRequest="100" Margin="0,0,0,5"/>
+            </StackLayout>
+            <StackLayout Padding="5">
+                <Label Text="ID Inventario:" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center" FontSize="Medium" FontAttributes="Bold"/>
+                <Label Text="{Binding IdInventario, Mode=TwoWay}" TextColor="Red" VerticalOptions="Center" HorizontalOptions="Center" FontSize="Medium" />
+            </StackLayout>
+            <StackLayout>
+                <ListView
+                    HasUnevenRows="True" 
+                    ItemsSource="{Binding ListS}">
+                    <ListView.Header>
+                        <StackLayout
+                            Orientation="Horizontal"
+                            HorizontalOptions="Center"
+                            Padding="5">
+                            <Label
+                                           HorizontalOptions="Center"
+                                           Text="Revisa tu Inventario"
+                                           FontSize="Medium"
+                                           TextColor="Black"
+                                           FontAttributes="Bold">
+                                       </Label>
+                                   </StackLayout>
+                               </ListView.Header>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+                                                <StackLayout
+                                                    Grid.Column="0"
+                                                    Grid.Row="0"
+                                                    VerticalOptions="StartAndExpand"
+                                                    HorizontalOptions="StartAndExpand"
+                                                    Padding="5">
+                                                    <Label
+                                                        FontSize="Small" 
+                                                        Text="{Binding Producto}"
+                                                        TextColor="Black">
+                                                    </Label>
+                                                </StackLayout>
+                                                <StackLayout
+                                                    Grid.Column="1"
+                                                    Grid.Row="0"
+                                                    VerticalOptions="End"
+                                                    HorizontalOptions="End"
+                                                    Padding="5">
+                                                    <Label
+                                                        FontSize="Small" 
+                                                        Text="{Binding Cantidad}"
+                                                        TextColor="Black">
+                                                     </Label>
+                                                 </StackLayout>   
+                                            </Grid>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+            </StackLayout>
+            <StackLayout Padding="5">
+                <ActivityIndicator 
                             Color="Red"
                             IsVisible="{Binding IsVisible, Mode=TwoWay}"
                             IsRunning="{Binding IsRunning, Mode=TwoWay}">
                         </ActivityIndicator>
-                        <StackLayout Padding="15,20">
-                            <Label Text="Inventario:" TextColor="Black" VerticalOptions="Center" HorizontalOptions="FillAndExpand" FontSize="Medium" FontAttributes="Bold"/>
-                            <Label Text="{Binding IdInventario, Mode=TwoWay}" TextColor="Red" VerticalOptions="Center" HorizontalOptions="FillAndExpand" FontSize="Medium" FontAttributes="Bold"/>
-                        </StackLayout>
-                        <StackLayout Padding="15,20">
-                            <Label Text="Fecha:" TextColor="Black" VerticalOptions="Center" HorizontalOptions="FillAndExpand" FontSize="Medium" FontAttributes="Bold"/>
-                            <Label Text="{Binding FechaInventario, Mode=TwoWay}" TextColor="Red" VerticalOptions="Center" HorizontalOptions="FillAndExpand" FontSize="Medium" FontAttributes="Bold"/>
-                        </StackLayout>
-                        <StackLayout Padding="15,20">
-                            <Label Text="Usuario:" TextColor="Black" VerticalOptions="Center" HorizontalOptions="FillAndExpand" FontSize="Medium" FontAttributes="Bold"/>
-                            <Label Text="{Binding UsuarioInventario, Mode=TwoWay}" TextColor="Red" VerticalOptions="Center" HorizontalOptions="FillAndExpand" FontSize="Medium" FontAttributes="Bold"/>
-                        </StackLayout>
-                        <StackLayout Padding="15,40">
-                            <Button
-                                BorderWidth="1"
-                                BorderColor="Black" 
-                                VerticalOptions="End"
-                                HorizontalOptions="FillAndExpand"
-                                Text="Subir Inventario"
-                                Command="{Binding FinishCommand}" 
-                                IsEnabled="{Binding isEnabled, Mode=TwoWay}"
-                                BackgroundColor="White"
-                                BorderRadius="20" 
-                                TextColor="Red">
-                            </Button>
-                        </StackLayout>
-                    </StackLayout>
-                </Grid>
-            </ScrollView>
-        </Grid>
+                <Button
+                    BorderWidth="1"
+                    BorderColor="Black" 
+                    VerticalOptions="End"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Subir Inventario"
+                    Command="{Binding FinishCommand}" 
+                    IsEnabled="{Binding isEnabled, Mode=TwoWay}"
+                    BackgroundColor="White"
+                    BorderRadius="20" 
+                    TextColor="Red">
+                 </Button>
+            </StackLayout>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

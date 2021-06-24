@@ -87,11 +87,7 @@
         {
             if (string.IsNullOrEmpty(this.Lote))
             {
-                await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "Debes ingresar el lote del producto seleccionado",
-                    "Aceptar");
-                return;
+                this.Lote = "N/A";
             }
             if (string.IsNullOrEmpty(this.Cantidad.ToString()))
             {

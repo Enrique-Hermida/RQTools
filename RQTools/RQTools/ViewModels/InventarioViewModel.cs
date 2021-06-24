@@ -126,6 +126,7 @@
             }
 
         }
+
         private async void LoadProductsNoCode()
         {
             this.IsRefreshing = true;
